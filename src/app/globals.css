@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-brand-emerald: #062E29;
+  --color-brand-emerald-hover: #04201c;
+  --color-brand-deep-green: #0A1B18;
+  --color-brand-gold: #B08A5F;
+  --color-brand-soft-gold: #C6A77D;
+  --color-brand-white: #FEFEFE;
+  --color-brand-cream: #FBF8F5;
+  --color-brand-beige: #EAE4DC;
+  --color-brand-light-cream: #F6F1EB;
+  --color-brand-charcoal: #1B2523;
+  --color-brand-secondary: #66706C;
+  --color-brand-border: #E6E1DB;
+  --color-brand-soft-green: #788C70;
+
+  --background: var(--color-brand-cream);
+  --foreground: var(--color-brand-charcoal);
+}
+
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-montserrat), "Montserrat", sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-playfair-display), "Playfair Display", serif;
+  }
+
+  /* Custom Modern Scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-brand-gold) var(--color-brand-beige);
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--color-brand-beige);
+    border-radius: 4px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: var(--color-brand-gold);
+    border-radius: 4px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--color-brand-emerald);
+  }
+}
