@@ -10,16 +10,19 @@ interface Props {
   setValue: UseFormSetValue<BiodataFormValues>;
   watch: UseFormWatch<BiodataFormValues>;
   errors: FieldErrors<BiodataFormValues>;
+  onImageSelect: (file: File | null) => void;
 }
 
-export function ContactDetails({ register, setValue, watch, errors }: Props) {
+export function ContactDetails({ register, setValue, watch, errors, onImageSelect }: Props) {
   const contactMethodValue = watch('contactMethod') || '';
   const fileInputRef = React.useRef<HTMLInputElement | null>(null);
   const [selectedFileName, setSelectedFileName] = React.useState<string>("");
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setSelectedFileName(e.target.files[0].name);
+      const file = e.target.files[0];
+      setSelectedFileName(file.name);
+      onImageSelect(file);
     }
   };
 

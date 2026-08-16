@@ -36,16 +36,6 @@ export default function SubmitBiodataPage() {
       <section className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12">
         <div className="max-w-5xl mx-auto bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-10 md:p-12 shadow-[0_20px_60px_rgba(6,46,41,0.07)] border border-brand-gold/20 hover:border-brand-gold/40 transition-all duration-300">
           
-          {/* Header Badge inside card */}
-          <div className="text-center mb-8 pb-6 border-b border-slate-100">
-            <h2 className="text-xl sm:text-2xl font-playfair font-bold text-brand-charcoal">
-              Biodata Registration Form
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-500 font-light mt-1">
-              Complete all sections below to generate your official HumNikah profile.
-            </p>
-          </div>
-
           {/* Form */}
           <BiodataForm />
 

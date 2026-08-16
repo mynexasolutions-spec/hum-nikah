@@ -9,9 +9,9 @@ if (!JWT_SECRET) {
 
 const key = new TextEncoder().encode(JWT_SECRET);
 
-export async function createSession(adminId: string) {
+export async function createSession(adminId: string, email: string) {
   const expires = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours session
-  const session = await new SignJWT({ adminId, role: "admin" })
+  const session = await new SignJWT({ adminId, email, role: "admin" })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setExpirationTime("1d")
@@ -37,7 +37,7 @@ export async function verifySession() {
     const { payload } = await jwtVerify(sessionCookie, key, {
       algorithms: ["HS256"],
     });
-    return payload as { adminId: string; role?: string };
+    return payload as { adminId: string; email?: string; role?: string };
   } catch (error) {
     return null;
   }

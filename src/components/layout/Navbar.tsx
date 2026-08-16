@@ -69,14 +69,12 @@ export function Navbar() {
 
           {/* Desktop CTAs: Submit Biodata */}
           <div className="hidden md:flex items-center gap-3">
-            <Link href="/submit-biodata">
-              <Button
-                variant="primary"
-                className="flex items-center gap-2 rounded-xl bg-brand-emerald hover:bg-brand-emerald-hover text-white border-none shadow-sm hover:shadow-md transition-all active:scale-95 text-sm font-medium px-5 py-2.5"
-              >
-                <User size={16} />
-                Submit Biodata
-              </Button>
+            <Link 
+              href="/submit-biodata"
+              className="flex items-center gap-2 rounded-xl bg-brand-emerald hover:bg-brand-emerald-hover text-white border-none shadow-sm hover:shadow-md transition-all active:scale-95 text-sm font-medium px-5 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"
+            >
+              <User size={16} />
+              Submit Biodata
             </Link>
           </div>
 
@@ -120,14 +118,13 @@ export function Navbar() {
           })}
 
           <div className="mt-4 pt-4 border-t border-brand-border flex flex-col gap-3">
-            <Link href="/submit-biodata" onClick={() => setIsMobileMenuOpen(false)}>
-              <Button
-                variant="primary"
-                className="w-full flex items-center gap-2 justify-center rounded-xl bg-brand-emerald hover:bg-brand-emerald-hover text-white py-3"
-              >
-                <User size={18} />
-                Submit Biodata
-              </Button>
+            <Link 
+              href="/submit-biodata" 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="w-full flex items-center gap-2 justify-center rounded-xl bg-brand-emerald hover:bg-brand-emerald-hover text-white py-3 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"
+            >
+              <User size={18} />
+              Submit Biodata
             </Link>
           </div>
         </div>

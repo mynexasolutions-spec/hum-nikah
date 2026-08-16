@@ -76,18 +76,18 @@ export default function EditBlogForm({ blog }: { blog: any }) {
   };
 
   return (
-    <div className="p-4 sm:p-6 max-w-[1600px] mx-auto w-full h-[calc(100vh-theme(spacing.20))] flex flex-col">
-      <div className="mb-4 flex items-center justify-between gap-4 flex-shrink-0">
-        <div className="flex items-center gap-4">
+    <div className="max-w-[1600px] mx-auto w-full space-y-4 sm:space-y-6">
+      <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           <Link
             href="/admin/blogs"
-            className="p-1.5 bg-white rounded-full border border-brand-border/60 hover:bg-brand-cream/50 transition-colors shadow-sm"
+            className="p-1.5 sm:p-2 bg-white rounded-full border border-brand-border/60 hover:bg-brand-cream/50 transition-colors shadow-sm"
           >
-            <ArrowLeft size={18} className="text-brand-charcoal" />
+            <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 text-brand-charcoal" />
           </Link>
           <div>
             <h1 className="text-xl sm:text-2xl font-bold text-brand-charcoal font-playfair leading-tight">Edit Post</h1>
-            <p className="text-xs text-brand-secondary">Update your blog article.</p>
+            <p className="text-[10px] sm:text-xs text-brand-secondary mt-0.5">Update your blog article.</p>
           </div>
         </div>
         
@@ -96,7 +96,7 @@ export default function EditBlogForm({ blog }: { blog: any }) {
           form="edit-blog-form"
           type="submit"
           disabled={loading}
-          className="lg:hidden flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors disabled:opacity-70 shadow-sm"
+          className="lg:hidden flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 transition-colors disabled:opacity-70 shadow-sm shrink-0"
         >
           {loading ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
           {loading ? 'Saving...' : 'Save'}
@@ -104,16 +104,16 @@ export default function EditBlogForm({ blog }: { blog: any }) {
       </div>
 
       {error && (
-        <div className="p-3 mb-4 bg-red-50 text-red-600 rounded-lg text-xs font-medium border border-red-100 flex-shrink-0">
+        <div className="p-3 bg-red-50 text-red-600 rounded-lg text-xs font-medium border border-red-100">
           {error}
         </div>
       )}
 
-      <form id="edit-blog-form" onSubmit={handleSubmit} className="flex-grow flex flex-col lg:flex-row gap-6 min-h-0">
+      <form id="edit-blog-form" onSubmit={handleSubmit} className="flex flex-col lg:flex-row gap-4 sm:gap-6 items-start">
         {/* Left Column: Main Content */}
-        <div className="flex-grow flex flex-col gap-4 overflow-y-auto pr-2 pb-4">
-          <div className="bg-white rounded-xl shadow-sm border border-brand-border/60 p-5 flex flex-col flex-grow">
-            <div className="space-y-4 flex flex-col h-full">
+        <div className="w-full flex-grow flex flex-col gap-4">
+          <div className="bg-white rounded-xl shadow-sm border border-brand-border/60 p-4 sm:p-5 flex flex-col">
+            <div className="space-y-4">
               <div>
                 <input
                   type="text"
@@ -140,13 +140,14 @@ export default function EditBlogForm({ blog }: { blog: any }) {
                 ></textarea>
               </div>
 
-              <div className="flex-grow flex flex-col min-h-[300px]">
+              <div>
                 <textarea
                   id="content"
                   name="content"
                   defaultValue={blog.content}
                   required
-                  className="w-full flex-grow px-3 py-3 rounded-lg border border-brand-border focus:ring-1 focus:ring-brand-gold focus:border-brand-gold outline-none transition-all text-sm font-mono resize-none"
+                  rows={15}
+                  className="w-full px-3 py-3 rounded-lg border border-brand-border focus:ring-1 focus:ring-brand-gold focus:border-brand-gold outline-none transition-all text-sm font-mono resize-y"
                   placeholder="<h2>Subheading</h2><p>Your full HTML content here...</p>"
                 ></textarea>
               </div>
@@ -155,7 +156,7 @@ export default function EditBlogForm({ blog }: { blog: any }) {
         </div>
 
         {/* Right Column: Settings & Metadata */}
-        <div className="w-full lg:w-80 xl:w-96 flex-shrink-0 flex flex-col gap-4 overflow-y-auto pr-2 pb-4">
+        <div className="w-full lg:w-80 xl:w-96 flex-shrink-0 flex flex-col gap-4 lg:sticky lg:top-0">
           {/* Submit Actions (Desktop) */}
           <div className="hidden lg:flex bg-white rounded-xl shadow-sm border border-brand-border/60 p-4 justify-between items-center">
             <Link

@@ -4,20 +4,28 @@ import React, { useState } from "react";
 import { Input } from "../ui/Input";
 import { Textarea } from "../ui/Textarea";
 import { Button } from "../ui/Button";
+import { submitContactMessage } from "@/app/contact/actions";
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage("");
     
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
+    const formData = new FormData(e.currentTarget);
+    const result = await submitContactMessage(formData);
+    
+    setIsSubmitting(false);
+    if (result.success) {
       setStatus("success");
-    }, 1500);
+    } else {
+      setStatus("error");
+      setErrorMessage(result.error || "Something went wrong.");
+    }
   };
 
   if (status === "success") {
@@ -40,17 +48,17 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Input label="Your Name" required placeholder="John Doe" />
-        <Input label="Email Address" type="email" required placeholder="john@example.com" />
+        <Input name="name" label="Your Name" required placeholder="John Doe" />
+        <Input name="email" label="Email Address" type="email" required placeholder="john@example.com" />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Input label="Phone Number (Optional)" type="tel" placeholder="+1 (234) 567-8900" />
-        <Input label="Subject" required placeholder="How can we help?" />
+        <Input name="phone" label="Phone Number (Optional)" type="tel" placeholder="+1 (234) 567-8900" />
+        <Input name="subject" label="Subject" required placeholder="How can we help?" />
       </div>
-      <Textarea label="Your Message" required placeholder="Type your message here..." className="min-h-[150px]" />
+      <Textarea name="message" label="Your Message" required placeholder="Type your message here..." className="min-h-[150px]" />
       
       {status === "error" && (
-        <p className="text-red-500 text-sm">There was an error sending your message. Please try again.</p>
+        <p className="text-red-500 text-sm">{errorMessage}</p>
       )}
       
       <Button type="submit" size="lg" className="w-full" isLoading={isSubmitting}>

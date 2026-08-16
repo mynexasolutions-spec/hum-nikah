@@ -3,11 +3,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Calendar, Clock, Tag, BookOpen, ChevronRight, Sparkles, ArrowRight } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { BLOG_POSTS } from "@/data/blogsData";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: PageProps) {
@@ -20,8 +21,15 @@ export async function generateMetadata({ params }: PageProps) {
     .single();
 
   if (!post) {
+    const fallbackPost = BLOG_POSTS.find(p => p.slug === slug);
+    if (!fallbackPost) {
+      return {
+        title: "Article Not Found | HumNikah",
+      };
+    }
     return {
-      title: "Article Not Found | HumNikah",
+      title: `${fallbackPost.title} | HumNikah Blog`,
+      description: fallbackPost.excerpt,
     };
   }
 
@@ -36,21 +44,33 @@ export const dynamic = "force-dynamic";
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
   
-  const { data: post, error } = await supabase
+  const { data: dbPost, error } = await supabase
     .from("blogs")
     .select("*")
     .eq("slug", slug)
     .single();
 
+  let post = dbPost;
+  
   if (error || !post) {
-    notFound();
+    const fallbackPost = BLOG_POSTS.find((p) => p.slug === slug);
+    if (fallbackPost) {
+      post = fallbackPost;
+    } else {
+      notFound();
+    }
   }
 
-  const { data: relatedPosts } = await supabase
+  const { data: dbRelatedPosts } = await supabase
     .from("blogs")
     .select("*")
     .neq("id", post.id)
     .limit(3);
+
+  let relatedPosts = dbRelatedPosts;
+  if (!relatedPosts || relatedPosts.length === 0) {
+    relatedPosts = BLOG_POSTS.filter((p) => p.slug !== slug).slice(0, 3);
+  }
 
   return (
     <main className="min-h-screen bg-brand-cream pb-16 sm:pb-24">

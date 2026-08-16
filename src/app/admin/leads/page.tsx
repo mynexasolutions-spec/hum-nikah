@@ -81,11 +81,11 @@ export default function LeadsPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5 sm:space-y-8">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-playfair font-bold text-brand-charcoal">Leads Management</h1>
-          <p className="text-sm text-brand-secondary mt-1">
+          <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-brand-charcoal mb-1 sm:mb-2">Leads Management</h1>
+          <p className="text-sm sm:text-base text-brand-secondary">
             View and manage user search criteria &amp; contact inquiries submitted from the website.
           </p>
         </div>
@@ -125,27 +125,28 @@ export default function LeadsPage() {
           </div>
         ) : (
           <div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
               {paginatedLeads.map((lead, index) => {
                 const theme = COLOR_THEMES[index % COLOR_THEMES.length];
                 
                 return (
-                  <div key={lead.id} className={`bg-white rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.03)] border-y border-r border-slate-100 border-l-[3px] ${theme.border} p-4 sm:p-5 flex flex-col hover:shadow-md transition-shadow`}>
+                  <div key={lead.id} className={`bg-white rounded-xl sm:rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.03)] border-y border-r border-slate-100 border-l-[3px] sm:border-l-[4px] ${theme.border} p-3 sm:p-5 flex flex-col hover:shadow-md transition-shadow`}>
                     
                     {/* Header: Avatar, Name, Date, Status */}
-                    <div className="flex justify-between items-start mb-4">
-                      <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center ${theme.iconBg} ${theme.text}`}>
-                          <User size={20} />
+                    <div className="flex justify-between items-start mb-3 sm:mb-4 gap-1">
+                      <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
+                        <div className={`shrink-0 w-8 h-8 sm:w-11 sm:h-11 rounded-full flex items-center justify-center ${theme.iconBg} ${theme.text}`}>
+                          <User size={14} className="sm:w-5 sm:h-5" />
                         </div>
-                        <div>
-                          <h3 className="font-bold text-brand-charcoal text-sm sm:text-[15px] line-clamp-1">{lead.name}</h3>
-                          <p className="text-[10px] sm:text-xs text-slate-400 mt-0.5">
-                            {new Date(lead.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })} • {new Date(lead.createdAt).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}
+                        <div className="min-w-0">
+                          <h3 className="font-bold text-brand-charcoal text-[11px] sm:text-[15px] truncate">{lead.name}</h3>
+                          <p className="text-[8px] sm:text-xs text-slate-400 mt-0.5 truncate font-bold">
+                            {new Date(lead.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+                            <span className="hidden sm:inline"> • {new Date(lead.createdAt).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" })}</span>
                           </p>
                         </div>
                       </div>
-                      <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${
+                      <span className={`shrink-0 inline-flex items-center px-1.5 py-0.5 sm:px-2 sm:py-0.5 rounded-full text-[9px] sm:text-[10px] font-extrabold uppercase tracking-wider ${
                         lead.status === 'DONE' ? 'bg-slate-100 text-slate-500' :
                         lead.status === 'CONTACTED' ? 'bg-blue-50 text-blue-500' :
                         'bg-orange-50 text-orange-500'
@@ -157,23 +158,23 @@ export default function LeadsPage() {
                     {/* Call Button */}
                     <a
                       href={`tel:${(lead.phone || "").replace(/[^0-9+]/g, "")}`}
-                      className={`flex items-center justify-center gap-2 w-full py-2.5 mb-3 rounded-xl transition-colors text-xs sm:text-sm font-semibold border ${theme.bg} ${theme.text} ${theme.hover}`}
+                      className={`flex items-center justify-center gap-1.5 sm:gap-2 w-full py-1.5 sm:py-2.5 mb-2 sm:mb-3 rounded-lg sm:rounded-xl transition-colors text-[10px] sm:text-sm font-bold border ${theme.bg} ${theme.text} ${theme.hover}`}
                     >
-                      <Phone size={14} />
-                      {lead.phone || "No Phone"}
+                      <Phone size={12} className="sm:w-3.5 sm:h-3.5" />
+                      <span className="truncate">{lead.phone || "No Phone"}</span>
                     </a>
 
                     {/* View Details Button */}
                     <button 
                       onClick={() => setSelectedLead(lead)}
-                      className="w-full py-2 bg-white hover:bg-slate-50 text-slate-600 font-semibold text-xs sm:text-sm rounded-xl border border-slate-200 transition-colors flex items-center justify-center gap-2 mb-4"
+                      className="w-full py-1.5 sm:py-2 bg-white hover:bg-slate-50 text-slate-600 font-semibold text-[9px] sm:text-sm rounded-lg sm:rounded-xl border border-slate-200 transition-colors flex items-center justify-center gap-1.5 sm:gap-2 mb-3 sm:mb-4 shadow-sm"
                     >
-                      <FileText size={14} className="text-slate-400" />
-                      View Full Details
+                      <FileText size={12} className="text-slate-400 sm:w-3.5 sm:h-3.5" />
+                      View Details
                     </button>
 
                     {/* Footer Actions */}
-                    <div className="mt-auto pt-3 flex items-center justify-between border-t border-slate-100">
+                    <div className="mt-auto pt-2.5 sm:pt-3 flex items-center justify-between border-t border-slate-100 gap-2">
                       <button
                         onClick={async () => {
                           const newStatus = lead.status === 'NEW' ? 'CONTACTED' : 'DONE';
@@ -181,14 +182,18 @@ export default function LeadsPage() {
                           fetchLeads();
                         }}
                         disabled={lead.status === 'DONE'}
-                        className={`flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-[11px] sm:text-xs font-bold transition-colors ${
+                        className={`flex-1 flex items-center justify-center gap-1 sm:gap-1.5 px-1.5 py-1.5 sm:px-4 sm:py-2 rounded-md sm:rounded-lg text-[9px] sm:text-[11px] uppercase tracking-wider font-extrabold transition-colors ${
                           lead.status === 'DONE' 
                             ? 'bg-slate-50 text-slate-400 cursor-not-allowed border border-slate-100' 
+                            : lead.status === 'CONTACTED'
+                            ? 'bg-blue-50 text-blue-600 hover:bg-blue-100 border border-blue-100'
                             : 'bg-emerald-50 text-emerald-600 hover:bg-emerald-100 hover:text-emerald-700 border border-emerald-100/50'
                         }`}
                       >
-                        <CheckCircle size={14} className="shrink-0" /> 
-                        <span className="whitespace-nowrap">{lead.status === 'DONE' ? 'Completed' : 'Mark Contacted'}</span>
+                        <CheckCircle size={12} className="shrink-0 sm:w-3.5 sm:h-3.5" /> 
+                        <span className="truncate">
+                          {lead.status === 'DONE' ? 'Done' : lead.status === 'CONTACTED' ? 'Mark Done' : 'Mark Contacted'}
+                        </span>
                       </button>
                       
                       <button
@@ -198,10 +203,10 @@ export default function LeadsPage() {
                             fetchLeads();
                           }
                         }}
-                        className="w-8 h-8 flex items-center justify-center bg-red-50 text-red-400 hover:text-red-500 hover:bg-red-100 rounded-lg transition-colors"
+                        className="shrink-0 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center bg-red-50 text-red-400 hover:text-red-500 hover:bg-red-100 rounded-md sm:rounded-lg transition-colors"
                         title="Delete lead"
                       >
-                        <Trash2 size={15} />
+                        <Trash2 size={12} className="sm:w-[15px] sm:h-[15px]" />
                       </button>
                     </div>
 
@@ -254,65 +259,64 @@ export default function LeadsPage() {
 
       {/* Details Modal Popup (Portal to body for full 100vh coverage) */}
       {selectedLead && mounted && createPortal(
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden border border-brand-border/60">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-slate-900/40 backdrop-blur-sm animate-fade-in">
+          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden border border-brand-border/60 flex flex-col max-h-[90vh]">
             {/* Modal Header */}
-            <div className="px-6 py-5 border-b border-slate-100 flex justify-between items-start bg-slate-50/50">
+            <div className="px-4 py-4 sm:px-6 sm:py-5 border-b border-slate-100 flex justify-between items-start bg-slate-50/50 shrink-0">
               <div>
-                <h3 className="text-xl font-bold text-brand-charcoal">{selectedLead.name}</h3>
-                <p className="text-xs text-slate-500 mt-1 mb-2.5">
+                <h3 className="text-lg sm:text-xl font-bold text-brand-charcoal">{selectedLead.name}</h3>
+                <p className="text-[10px] sm:text-xs text-slate-500 mt-1 mb-2">
                   Submitted on {new Date(selectedLead.createdAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit" })}
                 </p>
-                <div className="flex items-center gap-1.5 text-xs font-semibold text-emerald-700 bg-emerald-100/50 px-2.5 py-1 rounded-md w-fit border border-emerald-200">
+                <div className="flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-xs font-semibold text-emerald-700 bg-emerald-100/50 px-2 sm:px-2.5 py-1 rounded-md w-fit border border-emerald-200">
                   <Phone size={12} /> WhatsApp: {selectedLead.phone || "No phone"}
                 </div>
               </div>
               <button 
                 onClick={() => setSelectedLead(null)}
-                className="w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 transition-colors shrink-0 ml-4"
+                className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 transition-colors shrink-0 ml-3 sm:ml-4"
               >
                 ✕
               </button>
             </div>
 
-            {/* Modal Body */}
-            <div className="p-5 sm:p-7 max-h-[60vh] overflow-y-auto scrollbar-thin">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                <div className="bg-slate-50 rounded-2xl p-3.5 sm:p-4 border border-slate-100/80 shadow-sm">
-                  <span className="block text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Gender</span>
-                  <span className="block text-sm font-semibold text-brand-charcoal">{selectedLead.gender || "Not specified"}</span>
+            <div className="p-4 sm:p-7 overflow-y-auto scrollbar-thin">
+              <div className="grid grid-cols-2 gap-2.5 sm:gap-4">
+                <div className="col-span-1 bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
+                  <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Gender</span>
+                  <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedLead.gender || "Not specified"}</span>
                 </div>
-                <div className="bg-slate-50 rounded-2xl p-3.5 sm:p-4 border border-slate-100/80 shadow-sm">
-                  <span className="block text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Date of Birth</span>
-                  <span className="block text-sm font-semibold text-brand-charcoal">{selectedLead.dob || "Not specified"}</span>
+                <div className="col-span-1 bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
+                  <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Date of Birth</span>
+                  <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedLead.dob || "Not specified"}</span>
                 </div>
-                <div className="bg-slate-50 rounded-2xl p-3.5 sm:p-4 border border-slate-100/80 shadow-sm">
-                  <span className="block text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Location</span>
-                  <span className="block text-sm font-semibold text-brand-charcoal">
+                <div className="col-span-2 sm:col-span-1 bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
+                  <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Location</span>
+                  <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">
                     {selectedLead.city || selectedLead.country ? `${selectedLead.city || ''} ${selectedLead.country || ''}` : "Not specified"}
                   </span>
                 </div>
-                <div className="bg-slate-50 rounded-2xl p-3.5 sm:p-4 border border-slate-100/80 shadow-sm">
-                  <span className="block text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Marital Status</span>
-                  <span className="block text-sm font-semibold text-brand-charcoal">{selectedLead.maritalStatus || "Not specified"}</span>
+                <div className="col-span-2 sm:col-span-1 bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
+                  <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Marital Status</span>
+                  <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedLead.maritalStatus || "Not specified"}</span>
                 </div>
-                <div className="bg-slate-50 rounded-2xl p-3.5 sm:p-4 border border-slate-100/80 shadow-sm">
-                  <span className="block text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Profession</span>
-                  <span className="block text-sm font-semibold text-brand-charcoal">{selectedLead.profession || "Not specified"}</span>
+                <div className="col-span-2 sm:col-span-1 bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
+                  <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Profession</span>
+                  <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedLead.profession || "Not specified"}</span>
                 </div>
-                <div className="bg-slate-50 rounded-2xl p-3.5 sm:p-4 border border-slate-100/80 shadow-sm">
-                  <span className="block text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Education</span>
-                  <span className="block text-sm font-semibold text-brand-charcoal">{selectedLead.education || "Not specified"}</span>
+                <div className="col-span-2 sm:col-span-1 bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
+                  <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Education</span>
+                  <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedLead.education || "Not specified"}</span>
                 </div>
               </div>
 
             </div>
             
             {/* Modal Footer */}
-            <div className="p-4 sm:p-5 bg-slate-50 border-t border-slate-100 flex justify-end gap-3">
+            <div className="p-3 sm:p-5 bg-slate-50 border-t border-slate-100 flex justify-end gap-2.5 sm:gap-3 shrink-0">
               <button 
                 onClick={() => setSelectedLead(null)}
-                className="px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-200 transition-colors"
+                className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:bg-slate-200 transition-colors"
               >
                 Close
               </button>
@@ -320,9 +324,9 @@ export default function LeadsPage() {
                 href={`https://wa.me/${(selectedLead.phone || "").replace(/[^0-9]/g, "")}`}
                 target="_blank"
                 rel="noreferrer"
-                className="px-5 py-2.5 rounded-xl text-sm font-semibold bg-[#062e29] hover:bg-[#083b34] text-white transition-colors flex items-center gap-2 shadow-md"
+                className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold bg-[#062e29] hover:bg-[#083b34] text-white transition-colors flex items-center gap-1.5 sm:gap-2 shadow-md"
               >
-                <Phone size={16} /> WhatsApp Now
+                <Phone size={14} className="sm:w-4 sm:h-4" /> WhatsApp Now
               </a>
             </div>
           </div>

@@ -31,11 +31,12 @@ export default async function AdminBlogsPage() {
   }
 
   return (
-    <div className="p-6 sm:p-8 max-w-7xl mx-auto w-full">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+    <div className="space-y-5 sm:space-y-8">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-brand-charcoal font-playfair">Blog Management</h1>
-          <p className="text-sm text-brand-secondary mt-1">Manage your website's blog posts, articles, and guidance.</p>
+                    <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-brand-charcoal mb-1 sm:mb-2">Blog Management</h1>
+
+          <p className="text-sm sm:text-base text-brand-secondary">Manage your website's blog posts, articles, and guidance.</p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3">
           <Link
@@ -49,51 +50,51 @@ export default async function AdminBlogsPage() {
       </div>
 
       {displayBlogs && displayBlogs.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {displayBlogs.map((blog: any) => (
             <div key={blog.id} className="bg-white rounded-2xl shadow-sm border border-brand-border/60 overflow-hidden flex flex-col group hover:shadow-md transition-shadow">
-              <div className="relative h-48 w-full bg-brand-beige overflow-hidden">
+              <div className="relative h-24 sm:h-48 w-full bg-brand-beige overflow-hidden">
                 {blog.image ? (
                   <img src={blog.image} alt={blog.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-brand-secondary">No Image</div>
+                  <div className="w-full h-full flex items-center justify-center text-[10px] sm:text-base text-brand-secondary">No Image</div>
                 )}
-                <div className="absolute top-3 left-3 flex gap-2">
-                  <span className="px-2.5 py-1 rounded-md bg-[#062E29]/90 backdrop-blur-md text-white text-[10px] font-semibold tracking-wide">
+                <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex gap-2">
+                  <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md bg-[#062E29]/90 backdrop-blur-md text-white text-[8px] sm:text-[10px] font-semibold tracking-wide">
                     {blog.category}
                   </span>
                 </div>
               </div>
-              <div className="p-5 flex flex-col flex-grow">
-                <h3 className="font-semibold text-brand-charcoal text-lg line-clamp-2 mb-1 group-hover:text-brand-gold transition-colors">{blog.title}</h3>
-                <p className="text-xs text-brand-secondary line-clamp-1 mb-4">{blog.slug}</p>
+              <div className="p-3 sm:p-5 flex flex-col flex-grow">
+                <h3 className="font-semibold text-brand-charcoal text-xs sm:text-lg line-clamp-2 mb-0.5 sm:mb-1 group-hover:text-brand-gold transition-colors">{blog.title}</h3>
+                <p className="text-[9px] sm:text-xs text-brand-secondary line-clamp-1 mb-2 sm:mb-4">{blog.slug}</p>
                 
-                <div className="flex items-center gap-2 mb-4 text-xs text-brand-secondary">
+                <div className="flex items-center gap-1 sm:gap-2 mb-2 sm:mb-4 text-[9px] sm:text-xs text-brand-secondary">
                   {blog.author?.avatar ? (
-                    <img src={blog.author.avatar} alt={blog.author.name} className="w-5 h-5 rounded-full" />
+                    <img src={blog.author.avatar} alt={blog.author.name} className="w-4 h-4 sm:w-5 sm:h-5 rounded-full" />
                   ) : (
-                    <div className="w-5 h-5 rounded-full bg-brand-gold/20" />
+                    <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-brand-gold/20" />
                   )}
-                  <span className="truncate max-w-[120px]">{blog.author?.name || "Admin"}</span>
-                  <span>•</span>
-                  <span>{blog.publishedAt}</span>
+                  <span className="truncate max-w-[60px] sm:max-w-[120px]">{blog.author?.name || "Admin"}</span>
+                  <span className="hidden sm:inline">•</span>
+                  <span className="hidden sm:inline">{blog.publishedAt}</span>
                 </div>
 
-                <div className="mt-auto pt-4 border-t border-brand-border/40 flex items-center justify-between">
+                <div className="mt-auto pt-2 sm:pt-4 border-t border-brand-border/40 flex items-center justify-between">
                   <Link
                     href={`/blog/${blog.slug}`}
                     target="_blank"
-                    className="flex items-center gap-1 text-xs font-semibold text-slate-500 hover:text-[#062E29] transition-colors"
+                    className="flex items-center gap-1 text-[10px] sm:text-xs font-semibold text-slate-500 hover:text-[#062E29] transition-colors"
                   >
-                    <ExternalLink size={14} /> View
+                    <ExternalLink size={12} className="sm:w-3.5 sm:h-3.5" /> <span className="hidden sm:inline">View</span>
                   </Link>
                   <div className="flex items-center gap-1">
                     <Link
                       href={`/admin/blogs/${blog.id}`}
-                      className="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                      className="p-1 sm:p-1.5 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                       title="Edit post"
                     >
-                      <Edit size={16} />
+                      <Edit size={14} className="sm:w-4 sm:h-4" />
                     </Link>
                     <form action={handleDelete}>
                       <input type="hidden" name="id" value={blog.id} />

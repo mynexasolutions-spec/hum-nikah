@@ -17,7 +17,7 @@ export async function login(formData: FormData) {
   const envAdminPassword = process.env.ADMIN_PASSWORD;
 
   if (envAdminEmail && envAdminPassword && email === envAdminEmail && password === envAdminPassword) {
-    await createSession("env-admin-id");
+    await createSession("env-admin-id", envAdminEmail);
     return { success: true };
   }
 
@@ -32,7 +32,7 @@ export async function login(formData: FormData) {
     if (!error && admin && admin.passwordHash) {
       const isValidPassword = await compare(password, admin.passwordHash);
       if (isValidPassword) {
-        await createSession(admin.id);
+        await createSession(admin.id, admin.email);
         return { success: true };
       }
     }

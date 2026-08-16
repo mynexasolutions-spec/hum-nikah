@@ -11,10 +11,12 @@ import { ReligiousDetails } from './ReligiousDetails';
 import { PartnerPreferences } from './PartnerPreferences';
 import { ContactDetails } from './ContactDetails';
 import { Button } from '../ui/Button';
+import { uploadImage } from '@/app/admin/blogs/actions';
 
 export function BiodataForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [profileImageFile, setProfileImageFile] = useState<File | null>(null);
 
   const {
     register,
@@ -29,21 +31,40 @@ export function BiodataForm() {
   const onSubmit = async (data: BiodataFormValues) => {
     setIsSubmitting(true);
     try {
+      let profileImageUrl = "";
+
+      if (profileImageFile) {
+        const formData = new FormData();
+        formData.append("file", profileImageFile);
+        profileImageUrl = (await uploadImage(formData)) as string;
+      }
+
+      const submissionData = {
+        ...data,
+        profileImageUrl: profileImageUrl || undefined
+      };
+
       // API call to submit biodata will go here
       const res = await fetch('/api/biodata', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify(submissionData),
       });
       
       if (res.ok) {
         setIsSuccess(true);
       } else {
-        throw new Error('Failed to submit biodata');
+        const errorData = await res.json().catch(() => null);
+        console.error("API Error Response:", errorData);
+        if (errorData?.details) {
+          throw new Error("Validation Error: " + JSON.stringify(errorData.details));
+        }
+        throw new Error(errorData?.error || 'Failed to submit biodata');
       }
     } catch (error) {
-      console.error(error);
-      alert('There was an error submitting your biodata. Please try again.');
+      console.error("Submission Error:", error);
+      const errorMessage = error instanceof Error ? error.message : 'Please try again.';
+      alert(`There was an error: ${errorMessage}`);
     } finally {
       setIsSubmitting(false);
     }
@@ -51,33 +72,46 @@ export function BiodataForm() {
 
   if (isSuccess) {
     return (
-      <div className="bg-brand-cream rounded-3xl p-8 md:p-16 text-center max-w-3xl mx-auto shadow-sm border border-brand-beige">
-        <div className="w-20 h-20 bg-brand-emerald rounded-full flex items-center justify-center mx-auto mb-6 text-white">
-          <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+      <div className="bg-slate-50/50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-12 text-center max-w-2xl mx-auto border border-brand-border/60 shadow-[0_4px_20px_rgba(6,46,41,0.03)]">
+        <div className="w-14 h-14 sm:w-20 sm:h-20 bg-gradient-to-br from-[#062e29] to-[#0a4d44] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 text-white shadow-lg shadow-[#062e29]/20">
+          <svg className="w-7 h-7 sm:w-10 sm:h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h2 className="text-3xl font-playfair font-bold text-brand-charcoal mb-4">
-          Your biodata has been submitted successfully.
+        <h2 className="text-xl sm:text-3xl font-playfair font-bold text-brand-charcoal mb-3 sm:mb-4">
+          Biodata Submitted Successfully!
         </h2>
-        <p className="text-brand-secondary text-lg mb-8 max-w-lg mx-auto">
-          JazakAllah Khair for trusting HumNikah. Our team will review your submission carefully. You will receive an email once your profile is approved.
+        <p className="text-xs sm:text-base text-slate-500 mb-6 sm:mb-8 max-w-md mx-auto leading-relaxed">
+          JazakAllah Khair for trusting HumNikah. Our team will review your submission carefully and contact you soon.
         </p>
-        <Button onClick={() => window.location.href = '/'} variant="outline">
+        <button 
+          onClick={() => window.location.href = '/'} 
+          className="inline-flex items-center justify-center font-medium border text-xs sm:text-sm px-6 sm:px-8 py-2 sm:py-2.5 rounded-xl border-brand-border/80 text-brand-charcoal hover:text-black hover:border-brand-charcoal transition-colors bg-white"
+        >
           Return to Homepage
-        </Button>
+        </button>
       </div>
     );
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
+      {/* Header Badge inside card (Now hidden on success) */}
+      <div className="text-center mb-8 pb-6 border-b border-slate-100">
+        <h2 className="text-xl sm:text-2xl font-playfair font-bold text-brand-charcoal">
+          Biodata Registration Form
+        </h2>
+        <p className="text-xs sm:text-sm text-slate-500 font-light mt-1">
+          Complete all sections below to generate your official HumNikah profile.
+        </p>
+      </div>
+
       <PersonalDetails register={register} setValue={setValue} watch={watch} errors={errors} />
       <EducationDetails register={register} errors={errors} />
       <FamilyDetails register={register} setValue={setValue} watch={watch} errors={errors} />
       <ReligiousDetails register={register} setValue={setValue} watch={watch} errors={errors} />
       <PartnerPreferences register={register} errors={errors} />
-      <ContactDetails register={register} setValue={setValue} watch={watch} errors={errors} />
+      <ContactDetails register={register} setValue={setValue} watch={watch} errors={errors} onImageSelect={setProfileImageFile} />
       
       {/* Consent Section */}
       <div className="pt-8 border-t border-slate-200">

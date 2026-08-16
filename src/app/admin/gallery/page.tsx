@@ -31,11 +31,11 @@ export default async function AdminGalleryPage() {
   }
 
   return (
-    <div className="p-6 sm:p-8 max-w-7xl mx-auto w-full">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+    <div className="space-y-5 sm:space-y-8">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-brand-charcoal font-playfair">Gallery Management</h1>
-          <p className="text-sm text-brand-secondary mt-1">Manage your website beautiful gallery moments.</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-brand-charcoal font-playfair mb-1 sm:mb-2">Gallery Management</h1>
+          <p className="text-sm sm:text-base text-brand-secondary">Manage your website beautiful gallery moments.</p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3">
           <Link

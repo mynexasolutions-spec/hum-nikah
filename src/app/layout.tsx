@@ -17,6 +17,9 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "HumNikah | Meaningful Matches, Begin Your Nikah",
   description: "HumNikah is a trusted matrimonial platform helping individuals and families discover meaningful Nikah connections with dignity, privacy and purpose.",
+  icons: {
+    icon: "/images/favicon-rounded.png",
+  },
 };
 
 export default function RootLayout({
