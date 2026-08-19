@@ -85,7 +85,7 @@ function PageLoaderContent() {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-[#FBF8F5] transition-opacity duration-300 ${
+      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-[#F3ECE4] transition-opacity duration-300 ${
         isLoading ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >
@@ -94,23 +94,23 @@ function PageLoaderContent() {
         {/* Modern Dual-Ring Circular Spinner */}
         <div className="relative w-24 h-24 flex items-center justify-center">
           {/* Outer Gold Spinning Ring */}
-          <div className="absolute inset-0 rounded-full border-[3.5px] border-[#B08A5F]/20 border-t-[#B08A5F] animate-spin"></div>
+          <div className="absolute inset-0 rounded-full border-[3.5px] border-[#C58D5F]/20 border-t-[#C58D5F] animate-spin"></div>
           
-          {/* Inner Counter-Spinning Emerald Ring */}
-          <div className="absolute inset-2.5 rounded-full border-[3.5px] border-[#062E29]/20 border-b-[#062E29] animate-[spin_0.8s_linear_infinite_reverse]"></div>
+          {/* Inner Counter-Spinning Navy Ring */}
+          <div className="absolute inset-2.5 rounded-full border-[3.5px] border-[#1D184C]/20 border-b-[#1D184C] animate-[spin_0.8s_linear_infinite_reverse]"></div>
           
           {/* Center Pulsing Logo */}
-          <div className="relative z-10 animate-pulse text-[#B08A5F]">
-            <HumNikahLogo size={36} outerColor="#B08A5F" innerColor="#062E29" />
+          <div className="relative z-10 animate-pulse text-[#C58D5F]">
+            <HumNikahLogo size={36} outerColor="#C58D5F" innerColor="#651514" />
           </div>
         </div>
 
         {/* Brand Text & Loading Subtitle */}
         <div className="space-y-1">
-          <div className="text-xl font-playfair font-bold text-[#1B2523] tracking-wide">
-            Hum<span className="text-[#B08A5F]">Nikah</span>
+          <div className="text-xl font-playfair font-bold text-[#1D184C] tracking-wide">
+            Hum<span className="text-[#C58D5F]">Nikah</span>
           </div>
-          <div className="text-xs font-montserrat font-semibold text-[#66706C] tracking-widest uppercase animate-pulse">
+          <div className="text-xs font-montserrat font-semibold text-[#5E5868] tracking-widest uppercase animate-pulse">
             Loading Page...
           </div>
         </div>

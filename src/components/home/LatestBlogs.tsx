@@ -39,7 +39,7 @@ export function LatestBlogs() {
                 <span className="text-[11px] text-brand-secondary">{post.publishedAt}</span>
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="text-xs font-semibold text-[#062E29] hover:text-brand-gold hover:underline flex items-center gap-1 transition-colors"
+                  className="text-xs font-semibold text-brand-emerald hover:text-brand-gold hover:underline flex items-center gap-1 transition-colors"
                 >
                   Read Article <ArrowRight size={12} />
                 </Link>

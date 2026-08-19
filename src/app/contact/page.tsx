@@ -21,10 +21,10 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen bg-brand-cream pb-20">
       {/* Compact Modern Hero Section (Matches Blog & Gallery page size) */}
-      <section className="relative bg-[#062E29] text-white py-8 sm:py-12 overflow-hidden border-b border-brand-gold/20">
+      <section className="relative bg-[#1D184C] text-white py-8 sm:py-12 overflow-hidden border-b border-brand-gold/20">
         {/* Glow Effects */}
         <div className="absolute top-0 left-1/3 w-80 h-80 bg-brand-gold/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#651514]/25 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-gold/20 border border-brand-gold/40 text-brand-gold text-xs font-semibold tracking-wider uppercase mb-3">
@@ -34,7 +34,7 @@ export default function ContactPage() {
 
           <h1 className="text-2xl sm:text-4xl lg:text-5xl font-playfair font-bold text-white tracking-tight leading-tight">
             We&apos;d Love to{" "}
-            <span className="text-[#C6A77D] italic">Hear From You</span>
+            <span className="text-[#F3B979] italic">Hear From You</span>
           </h1>
 
           <p className="mt-2 text-slate-300 text-xs sm:text-sm lg:text-base font-light max-w-lg mx-auto leading-relaxed">
@@ -66,7 +66,7 @@ export default function ContactPage() {
             <div className="space-y-4">
               {/* Phone Card */}
               <div className="bg-white rounded-2xl p-5 shadow-sm border border-brand-border/70 hover:shadow-md hover:border-brand-gold/50 transition-all flex items-start gap-4">
-                <div className="w-11 h-11 rounded-xl bg-[#062E29]/10 text-[#062E29] flex items-center justify-center shrink-0 border border-[#062E29]/20">
+                <div className="w-11 h-11 rounded-xl bg-brand-emerald/10 text-brand-emerald flex items-center justify-center shrink-0 border border-brand-emerald/20">
                   <Phone size={20} className="text-brand-gold" />
                 </div>
                 <div>
@@ -88,7 +88,7 @@ export default function ContactPage() {
 
               {/* Email Card */}
               <div className="bg-white rounded-2xl p-5 shadow-sm border border-brand-border/70 hover:shadow-md hover:border-brand-gold/50 transition-all flex items-start gap-4">
-                <div className="w-11 h-11 rounded-xl bg-[#062E29]/10 text-[#062E29] flex items-center justify-center shrink-0 border border-[#062E29]/20">
+                <div className="w-11 h-11 rounded-xl bg-brand-emerald/10 text-brand-emerald flex items-center justify-center shrink-0 border border-brand-emerald/20">
                   <Mail size={20} className="text-brand-gold" />
                 </div>
                 <div>
@@ -103,7 +103,7 @@ export default function ContactPage() {
 
               {/* Office Location Card */}
               <div className="bg-white rounded-2xl p-5 shadow-sm border border-brand-border/70 hover:shadow-md hover:border-brand-gold/50 transition-all flex items-start gap-4">
-                <div className="w-11 h-11 rounded-xl bg-[#062E29]/10 text-[#062E29] flex items-center justify-center shrink-0 border border-[#062E29]/20">
+                <div className="w-11 h-11 rounded-xl bg-brand-emerald/10 text-brand-emerald flex items-center justify-center shrink-0 border border-brand-emerald/20">
                   <MapPin size={20} className="text-brand-gold" />
                 </div>
                 <div>
@@ -122,7 +122,7 @@ export default function ContactPage() {
             </div>
 
             {/* Quick FAQ Helper Box */}
-            <div className="bg-gradient-to-r from-[#062E29] to-[#093c35] text-white rounded-2xl p-5 shadow-md border border-brand-gold/30 flex items-center justify-between gap-4">
+            <div className="bg-gradient-to-r from-[#1D184C] to-[#651514] text-white rounded-2xl p-5 shadow-md border border-brand-gold/30 flex items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold shrink-0">
                   <HelpCircle size={18} />
@@ -204,7 +204,7 @@ export default function ContactPage() {
 
             {/* Floating Location Overlay Badge */}
             <div className="absolute bottom-4 left-4 z-10 bg-white/95 backdrop-blur-md rounded-2xl p-3.5 shadow-lg border border-brand-border max-w-xs hidden sm:flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-[#062E29] text-white flex items-center justify-center shrink-0">
+              <div className="w-9 h-9 rounded-xl bg-brand-emerald text-white flex items-center justify-center shrink-0">
                 <MapPin size={18} className="text-brand-gold" />
               </div>
               <div>

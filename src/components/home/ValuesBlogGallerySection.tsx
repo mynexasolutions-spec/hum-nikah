@@ -22,7 +22,7 @@ export function ValuesBlogGallerySection() {
   const latestBlogs = BLOG_POSTS.slice(0, 3);
 
   return (
-    <section className="py-16 bg-brand-cream border-t border-brand-border/40 overflow-hidden">
+    <section className="py-16 bg-brand-cream border-t border-[#651514] overflow-hidden">
       <div className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal variant="fade-up" staggerChildren={0.15} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
@@ -51,7 +51,7 @@ export function ValuesBlogGallerySection() {
                     "Long-term Commitment",
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm font-medium text-brand-charcoal group">
-                      <div className="p-1 rounded-full bg-emerald-100 text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white transition-colors">
+                      <div className="p-1 rounded-full bg-[#651514]/10 text-[#651514] group-hover:bg-[#651514] group-hover:text-white transition-colors">
                         <Check size={14} />
                       </div>
                       {item}

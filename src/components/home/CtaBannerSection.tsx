@@ -11,7 +11,7 @@ export function CtaBannerSection() {
     <section className="py-10 md:py-16 bg-brand-cream overflow-hidden">
       <div className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal variant="zoom-in" duration={0.7}>
-          <div className="relative rounded-2xl md:rounded-3xl bg-[#092c26] text-white overflow-hidden shadow-2xl border border-[#b08a5f]/25 min-h-[340px] sm:min-h-[380px] lg:min-h-[400px] flex items-center">
+          <div className="relative rounded-2xl md:rounded-3xl bg-[#1D184C] text-white overflow-hidden shadow-2xl border border-[#C58D5F]/30 min-h-[340px] sm:min-h-[380px] lg:min-h-[400px] flex items-center">
             
             {/* Ambient Animated Glowing Orbs */}
             <motion.div
@@ -19,6 +19,7 @@ export function CtaBannerSection() {
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -top-20 -left-20 w-80 h-80 bg-brand-gold/20 rounded-full blur-3xl pointer-events-none"
             />
+            <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-[#651514]/30 rounded-full blur-3xl pointer-events-none" />
 
             {/* Right Image Overlay with smooth fade gradient */}
             <div className="absolute right-0 top-0 bottom-0 w-full sm:w-2/3 md:w-3/5 lg:w-1/2 h-full pointer-events-none">
@@ -28,7 +29,7 @@ export function CtaBannerSection() {
                 className="w-full h-full object-cover object-[75%_20%] sm:object-[center_20%] opacity-65 sm:opacity-80 lg:opacity-90"
               />
               {/* Dark gradient fade over the image so text on left is 100% crisp & readable */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#092c26] via-[#092c26]/95 sm:via-[#092c26]/80 lg:via-[#092c26]/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#1D184C] via-[#1D184C]/95 sm:via-[#1D184C]/80 lg:via-[#1D184C]/60 to-transparent" />
             </div>
 
             {/* Left Floral Gold Vector Artwork */}
@@ -39,7 +40,7 @@ export function CtaBannerSection() {
                 viewBox="0 0 280 380"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-full w-auto text-[#c59a5f]"
+                className="h-full w-auto text-[#C58D5F]"
               >
                 <g stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="70" cy="130" r="16" strokeWidth="1.2" />
@@ -79,7 +80,7 @@ export function CtaBannerSection() {
 
                 <h2 className="text-2xl sm:text-4xl lg:text-5xl font-playfair font-bold text-white leading-tight sm:leading-tight lg:leading-tight tracking-tight">
                   Your Journey to{" "}
-                  <span className="text-[#c59a5f] italic">Nikah</span>{" "}
+                  <span className="text-[#F3B979] italic">Nikah</span>{" "}
                   Starts Here
                 </h2>
 
@@ -91,7 +92,7 @@ export function CtaBannerSection() {
                   <div className="inline-block">
                     <Link
                       href="/submit-biodata"
-                      className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 bg-[#b3854d] hover:bg-[#a0743f] text-white font-medium text-sm sm:text-base rounded-xl transition-colors shadow-lg border border-[#d4af37]/40 cursor-pointer"
+                      className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 bg-[#651514] hover:bg-[#4D0F0E] text-white font-medium text-sm sm:text-base rounded-xl transition-all shadow-lg border border-[#C58D5F]/40 hover:scale-105 active:scale-95 cursor-pointer"
                     >
                       <span>Create Your Profile Today</span>
                       <ArrowRight size={18} />

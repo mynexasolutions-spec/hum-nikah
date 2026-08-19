@@ -80,7 +80,7 @@ export function ModernSelect({
                     }}
                     className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 flex items-center justify-between cursor-pointer my-0.5 ${
                       isSelected
-                        ? "bg-[#062e29] text-white font-semibold shadow-xs"
+                        ? "bg-brand-emerald text-white font-semibold shadow-xs"
                         : "text-slate-700 hover:bg-brand-cream/80 hover:text-brand-charcoal"
                     }`}
                   >

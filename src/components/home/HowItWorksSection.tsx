@@ -55,7 +55,7 @@ export function HowItWorksSection() {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: "easeInOut" }}
-            className="hidden lg:block absolute top-[32px] left-[10%] right-[10%] h-[2px] border-t-2 border-dashed border-brand-gold/50 z-0 origin-left"
+            className="hidden lg:block absolute top-[32px] left-[10%] right-[10%] h-[2px] border-t-2 border-dashed border-[#651514] z-0 origin-left"
           />
 
           <ScrollReveal variant="fade-up" staggerChildren={0.2} className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">

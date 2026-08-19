@@ -38,7 +38,7 @@ export function AdminHeader({ onLogout, adminEmail = "Admin" }: AdminHeaderProps
 
           <Link href="/admin" className="flex items-center gap-3 group">
             <div className="w-10 h-10 rounded-xl bg-brand-emerald text-brand-gold flex items-center justify-center font-bold text-lg shadow-md group-hover:scale-105 transition-transform shrink-0">
-              <HumNikahLogo size={22} outerColor="#B08A5F" innerColor="#B08A5F" />
+              <HumNikahLogo size={22} outerColor="#C58D5F" innerColor="#C58D5F" />
             </div>
             {/* Hidden text on mobile as requested */}
             <div className="hidden md:flex flex-col">
@@ -119,7 +119,7 @@ export function AdminHeader({ onLogout, adminEmail = "Admin" }: AdminHeaderProps
             <div className="flex items-center justify-between p-4 border-b border-brand-emerald-hover h-16">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-white text-brand-gold flex items-center justify-center shadow-sm shrink-0">
-                  <HumNikahLogo size={18} outerColor="#B08A5F" innerColor="#B08A5F" />
+                  <HumNikahLogo size={18} outerColor="#C58D5F" innerColor="#C58D5F" />
                 </div>
                 <span className="text-sm font-bold text-white uppercase tracking-wider font-montserrat leading-none">
                   HUMNIKAH

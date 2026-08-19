@@ -44,7 +44,7 @@ export default function AdminLoginPage() {
           {/* Header & Logo Emblem */}
           <div className="text-center mb-6">
             <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-brand-emerald text-brand-gold shadow-md mb-3 ring-3 ring-brand-gold/20">
-              <HumNikahLogo size={32} outerColor="#B08A5F" innerColor="#B08A5F" />
+              <HumNikahLogo size={32} outerColor="#C58D5F" innerColor="#C58D5F" />
             </div>
             
             <h1 className="text-3xl font-playfair font-bold text-brand-charcoal">

@@ -3,22 +3,26 @@
 @tailwind utilities;
 
 :root {
-  --color-brand-emerald: #062E29;
-  --color-brand-emerald-hover: #04201c;
-  --color-brand-deep-green: #0A1B18;
-  --color-brand-gold: #B08A5F;
-  --color-brand-soft-gold: #C6A77D;
-  --color-brand-white: #FEFEFE;
-  --color-brand-cream: #FBF8F5;
-  --color-brand-beige: #EAE4DC;
-  --color-brand-light-cream: #F6F1EB;
-  --color-brand-charcoal: #1B2523;
-  --color-brand-secondary: #66706C;
-  --color-brand-border: #E6E1DB;
-  --color-brand-soft-green: #788C70;
+  --color-brand-emerald: #1D184C;
+  --color-brand-emerald-hover: #141038;
+  --color-brand-deep-green: #141038;
+  --color-brand-navy: #1D184C;
+  --color-brand-maroon: #651514;
+  --color-brand-crimson: #651514;
+  --color-brand-crimson-hover: #4D0F0E;
+  --color-brand-gold: #C58D5F;
+  --color-brand-soft-gold: #F3B979;
+  --color-brand-white: #FFFFFF;
+  --color-brand-cream: #F3ECE4;
+  --color-brand-beige: #F2EAE3;
+  --color-brand-light-cream: #FAF6F0;
+  --color-brand-charcoal: #1D184C;
+  --color-brand-secondary: #5E5868;
+  --color-brand-border: #E5DDD4;
+  --color-brand-soft-green: #651514;
 
   --background: var(--color-brand-cream);
-  --foreground: var(--color-brand-charcoal);
+  --foreground: #1D184C;
 }
 
 @layer base {

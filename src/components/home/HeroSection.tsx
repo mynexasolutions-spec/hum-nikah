@@ -1,12 +1,32 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight, Heart, ShieldCheck, CheckCircle2, Lock, Headphones, Sparkles } from "lucide-react";
-import { motion, Variants } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
+
+const HERO_SLIDER_IMAGES = [
+  "/images/hero/hero_image.png",
+  "/images/hero/img_01.webp",
+  "/images/hero/img_02.webp",
+  "/images/hero/img_03.webp",
+  "/images/hero/img_04.webp",
+  "/images/hero/img_05.webp",
+  "/images/hero/img_06.webp",
+  "/images/about/about_hero_couple.jpg",
+];
 
 export function HeroSection() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % HERO_SLIDER_IMAGES.length);
+    }, 4000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -47,10 +67,10 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-brand-cream py-10 lg:py-16">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#1D184C] via-[#2A1636] to-[#651514] text-white py-10 lg:py-16 border-b border-brand-gold/30">
       {/* Background Decorative Ambient Circles */}
-      <div className="absolute top-0 right-0 -mt-12 -mr-12 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 -mb-12 -ml-12 w-96 h-96 bg-brand-emerald/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-brand-gold/20 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-[#651514]/40 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
@@ -64,7 +84,7 @@ export function HeroSection() {
           >
             {/* Tagline Badge */}
             <motion.div variants={itemVariants} className="inline-block">
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-beige/70 border border-brand-gold/40 text-xs font-semibold text-brand-gold uppercase tracking-wider shadow-xs">
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1D184C]/70 border border-brand-gold/50 text-xs font-semibold text-brand-gold uppercase tracking-wider shadow-sm">
                 <Sparkles size={14} className="text-brand-gold animate-pulse" />
                 A TRUSTED HALAL SERVICE
                 <Sparkles size={14} className="text-brand-gold animate-pulse" />
@@ -74,7 +94,7 @@ export function HeroSection() {
             {/* Main Headline */}
             <motion.h1
               variants={itemVariants}
-              className="text-4xl sm:text-5xl lg:text-6xl font-playfair font-bold text-brand-charcoal leading-tight"
+              className="text-4xl sm:text-5xl lg:text-6xl font-playfair font-bold text-white leading-tight"
             >
               Where Faith <br className="hidden sm:inline" />
               Meets <span className="text-brand-gold italic relative inline-block">
@@ -83,7 +103,7 @@ export function HeroSection() {
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ delay: 0.8, duration: 0.6 }}
-                  className="absolute bottom-1 left-0 right-0 h-1 bg-brand-gold/30 rounded-full origin-left"
+                  className="absolute bottom-1 left-0 right-0 h-1 bg-brand-gold/40 rounded-full origin-left"
                 />
               </span>
             </motion.h1>
@@ -91,7 +111,7 @@ export function HeroSection() {
             {/* Description */}
             <motion.p
               variants={itemVariants}
-              className="text-brand-secondary text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed"
+              className="text-slate-200 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-light leading-relaxed"
             >
               HumNikah helps Muslims find their perfect life partner with trust, respect and complete privacy.
             </motion.p>
@@ -99,33 +119,31 @@ export function HeroSection() {
             {/* Action Buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2"
+              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2"
             >
               <motion.div
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.97 }}
+                whileTap={{ scale: 0.98 }}
                 className="w-full sm:w-auto"
               >
                 <Link
                   href="/submit-biodata"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-3.5 bg-brand-emerald hover:bg-brand-emerald-hover text-white font-medium text-base rounded-lg transition-all shadow-md hover:shadow-xl"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 sm:gap-3 px-4 py-3 sm:px-7 sm:py-3.5 bg-gradient-to-r from-[#651514] via-[#801B1A] to-[#651514] hover:from-[#4D0F0E] hover:to-[#4D0F0E] text-white font-bold text-sm sm:text-base rounded-xl transition-all shadow-xl border border-brand-gold/40 sm:hover:scale-105"
                 >
-                  Submit Your Biodata
-                  <ArrowRight size={18} />
+                  <span>Submit Your Biodata</span>
+                  <ArrowRight size={18} className="text-brand-gold shrink-0" />
                 </Link>
               </motion.div>
               
               <motion.div
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.97 }}
+                whileTap={{ scale: 0.98 }}
                 className="w-full sm:w-auto"
               >
                 <Link
                   href="/#explore-matches"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-white/80 hover:bg-white border border-brand-charcoal/20 hover:border-brand-emerald text-brand-charcoal hover:text-brand-emerald font-medium text-base rounded-lg transition-all shadow-xs hover:shadow-md"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 py-3 sm:px-7 sm:py-3.5 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-medium text-sm sm:text-base rounded-xl transition-all shadow-xs"
                 >
-                  Find Your Match
-                  <Heart size={18} className="text-brand-gold fill-brand-gold/20" />
+                  <span>Find Your Match</span>
+                  <Heart size={18} className="text-brand-gold fill-brand-gold/20 shrink-0" />
                 </Link>
               </motion.div>
             </motion.div>
@@ -133,39 +151,39 @@ export function HeroSection() {
             {/* 4 Core Value Badges */}
             <motion.div
               variants={badgesVariants}
-              className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-brand-border/60"
+              className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-6 border-t border-white/20"
             >
               <motion.div variants={badgeItemVariants} className="flex items-center gap-2 text-left group">
-                <div className="p-1.5 rounded-full bg-brand-light-cream text-brand-gold group-hover:scale-110 transition-transform">
+                <div className="p-1.5 rounded-full bg-white/10 text-brand-gold group-hover:scale-110 transition-transform">
                   <ShieldCheck size={18} />
                 </div>
-                <span className="text-xs font-medium text-brand-charcoal leading-tight">100% Privacy Protected</span>
+                <span className="text-xs font-medium text-slate-200 leading-tight">100% Privacy Protected</span>
               </motion.div>
               
               <motion.div variants={badgeItemVariants} className="flex items-center gap-2 text-left group">
-                <div className="p-1.5 rounded-full bg-brand-light-cream text-brand-gold group-hover:scale-110 transition-transform">
+                <div className="p-1.5 rounded-full bg-white/10 text-brand-gold group-hover:scale-110 transition-transform">
                   <CheckCircle2 size={18} />
                 </div>
-                <span className="text-xs font-medium text-brand-charcoal leading-tight">Verified & Genuine Profiles</span>
+                <span className="text-xs font-medium text-slate-200 leading-tight">Verified &amp; Genuine Profiles</span>
               </motion.div>
 
               <motion.div variants={badgeItemVariants} className="flex items-center gap-2 text-left group">
-                <div className="p-1.5 rounded-full bg-brand-light-cream text-brand-gold group-hover:scale-110 transition-transform">
+                <div className="p-1.5 rounded-full bg-white/10 text-brand-gold group-hover:scale-110 transition-transform">
                   <Lock size={18} />
                 </div>
-                <span className="text-xs font-medium text-brand-charcoal leading-tight">Safe & Secure Platform</span>
+                <span className="text-xs font-medium text-slate-200 leading-tight">Safe &amp; Secure Platform</span>
               </motion.div>
 
               <motion.div variants={badgeItemVariants} className="flex items-center gap-2 text-left group">
-                <div className="p-1.5 rounded-full bg-brand-light-cream text-brand-gold group-hover:scale-110 transition-transform">
+                <div className="p-1.5 rounded-full bg-white/10 text-brand-gold group-hover:scale-110 transition-transform">
                   <Headphones size={18} />
                 </div>
-                <span className="text-xs font-medium text-brand-charcoal leading-tight">Dedicated Support</span>
+                <span className="text-xs font-medium text-slate-200 leading-tight">Dedicated Support</span>
               </motion.div>
             </motion.div>
           </motion.div>
 
-          {/* Right Column: Hero Image with Arch Frame & Floating Badge */}
+          {/* Right Column: Infinite Image Slideshow with Arch Frame */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -174,16 +192,37 @@ export function HeroSection() {
           >
             <div className="relative w-full max-w-lg lg:max-w-none">
               
-              {/* Outer Decorative Glow/Arch Outline */}
-              <div className="relative rounded-[20px] overflow-hidden border-2 border-white shadow-2xl bg-brand-beige group">
-                <Image
-                  src="/images/hero/hero_image.png"
-                  alt="Muslim couple in wedding attire"
-                  width={600}
-                  height={650}
-                  className="w-full object-cover h-[340px] sm:h-auto sm:min-h-[420px] max-h-[580px] object-center group-hover:scale-105 transition-transform duration-700"
-                  priority
-                />
+              {/* Outer Decorative Frame Container */}
+              <div className="relative rounded-[24px] overflow-hidden border-2 border-brand-gold/50 shadow-2xl bg-brand-charcoal h-[310px] sm:h-[390px] lg:h-[430px] group">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={HERO_SLIDER_IMAGES[currentImageIndex]}
+                    src={HERO_SLIDER_IMAGES[currentImageIndex]}
+                    alt="Muslim couple nikah proposals"
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ duration: 0.8, ease: "easeInOut" }}
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                  />
+                </AnimatePresence>
+
+                {/* Dark Vignette Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+
+                {/* Dots Navigation Overlay */}
+                <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
+                  {HERO_SLIDER_IMAGES.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentImageIndex(idx)}
+                      className={`h-2 rounded-full transition-all cursor-pointer ${
+                        idx === currentImageIndex ? "w-5 bg-brand-gold" : "w-2 bg-white/50 hover:bg-white"
+                      }`}
+                      aria-label={`Go to slide ${idx + 1}`}
+                    />
+                  ))}
+                </div>
               </div>
 
               {/* Floating Match Counter Card */}
@@ -196,7 +235,7 @@ export function HeroSection() {
                   ease: "easeInOut",
                 }}
                 whileHover={{ scale: 1.05 }}
-                className="absolute bottom-4 sm:-bottom-6 left-0 right-0 mx-auto w-[92%] sm:w-[280px] min-w-[260px] max-w-[340px] bg-white/95 backdrop-blur-sm p-4 sm:p-5 rounded-2xl shadow-xl border border-brand-border flex items-center justify-center gap-4 cursor-pointer z-10"
+                className="absolute bottom-4 sm:-bottom-6 left-0 right-0 mx-auto w-[92%] sm:w-[280px] min-w-[260px] max-w-[340px] bg-white/95 backdrop-blur-sm p-4 sm:p-5 rounded-2xl shadow-xl border border-brand-gold/40 flex items-center justify-center gap-4 cursor-pointer z-10"
               >
                 <div className="flex -space-x-2.5 overflow-hidden">
                   <img
@@ -224,3 +263,4 @@ export function HeroSection() {
     </section>
   );
 }
+

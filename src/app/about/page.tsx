@@ -21,6 +21,9 @@ import {
   X,
 } from "lucide-react";
 
+import { SocialInitiativeSection } from "@/components/about/SocialInitiativeSection";
+import { LocationsSection } from "@/components/about/LocationsSection";
+
 export default function AboutPage() {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'mission' | 'reach' | 'values'>('mission');
@@ -116,7 +119,7 @@ export default function AboutPage() {
                   <span className="text-brand-gold font-serif">Nikah</span>
                 </h1>
                 
-                <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-playfair font-semibold text-brand-emerald">
+                <h2 className="text-3xl sm:text-4xl font-playfair font-semibold text-brand-emerald">
                   Where Faith Meets Forever
                 </h2>
               </div>
@@ -188,7 +191,7 @@ export default function AboutPage() {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab as 'mission' | 'reach' | 'values')}
-                  className={`min-w-[130px] sm:min-w-[170px] py-3 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 whitespace-nowrap ${
+                  className={`min-w-[120px] sm:min-w-[160px] py-2 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 whitespace-nowrap ${
                     activeTab === tab
                       ? 'bg-brand-emerald text-white shadow-lg scale-105'
                       : 'text-brand-secondary hover:text-brand-charcoal hover:bg-brand-cream/80'
@@ -209,7 +212,7 @@ export default function AboutPage() {
                 <div className="inline-block px-5 py-2 rounded-full bg-brand-emerald text-white text-xs font-semibold mb-6 tracking-wider uppercase shadow-sm">
                   Our Mission
                 </div>
-                <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-playfair font-bold text-brand-charcoal mb-4">
+                <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-brand-charcoal mb-4">
                   Driven by <span className="text-brand-emerald">Faith & Responsibility</span>
                 </h2>
                 <p className="text-brand-secondary text-base sm:text-lg mb-8">
@@ -244,7 +247,7 @@ export default function AboutPage() {
                 <div className="text-xs font-semibold tracking-widest text-brand-emerald uppercase mb-4">
                   GLOBAL PRESENCE
                 </div>
-                <h2 className="text-3xl sm:text-4xl lg:text-[44px] font-playfair font-bold text-brand-charcoal mb-4">
+                <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-brand-charcoal mb-4">
                   Our Reach
                 </h2>
                 <p className="text-brand-secondary text-base sm:text-lg mb-12">
@@ -281,13 +284,13 @@ export default function AboutPage() {
 
             {activeTab === 'values' && (
               <div className="text-center">
-                <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-playfair font-bold text-brand-charcoal mb-12">
+                <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-brand-charcoal mb-12">
                   Our Core <span className="text-brand-emerald font-serif">Values</span>
                 </h2>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
                   {/* Card 1: Faith */}
-                  <div className="bg-white rounded-2xl p-6 sm:p-7 border border-brand-border/80 shadow-sm hover:shadow-xl hover:border-brand-emerald/40 transition-all duration-300 flex flex-col items-center text-center group hover:-translate-y-1">
+                  <div className="bg-white rounded-2xl p-6 sm:p-7 border border-[#651514] shadow-sm hover:shadow-xl hover:border-brand-emerald/40 transition-all duration-300 flex flex-col items-center text-center group hover:-translate-y-1">
                     <div className="w-14 h-14 rounded-2xl bg-brand-light-cream group-hover:bg-brand-light-cream text-brand-emerald flex items-center justify-center mb-4 transition-colors">
                       <HeartHandshake size={28} strokeWidth={1.5} />
                     </div>
@@ -296,7 +299,7 @@ export default function AboutPage() {
                   </div>
 
                   {/* Card 2: Respect */}
-                  <div className="bg-white rounded-2xl p-6 sm:p-7 border border-brand-border/80 shadow-sm hover:shadow-xl hover:border-brand-emerald/40 transition-all duration-300 flex flex-col items-center text-center group hover:-translate-y-1">
+                  <div className="bg-white rounded-2xl p-6 sm:p-7 border border-[#651514] shadow-sm hover:shadow-xl hover:border-brand-emerald/40 transition-all duration-300 flex flex-col items-center text-center group hover:-translate-y-1">
                     <div className="w-14 h-14 rounded-2xl bg-brand-light-cream group-hover:bg-brand-light-cream text-brand-emerald flex items-center justify-center mb-4 transition-colors">
                       <Heart size={28} strokeWidth={1.5} />
                     </div>
@@ -305,7 +308,7 @@ export default function AboutPage() {
                   </div>
 
                   {/* Card 3: Trust */}
-                  <div className="bg-white rounded-2xl p-6 sm:p-7 border border-brand-border/80 shadow-sm hover:shadow-xl hover:border-brand-emerald/40 transition-all duration-300 flex flex-col items-center text-center group hover:-translate-y-1">
+                  <div className="bg-white rounded-2xl p-6 sm:p-7 border border-[#651514] shadow-sm hover:shadow-xl hover:border-brand-emerald/40 transition-all duration-300 flex flex-col items-center text-center group hover:-translate-y-1">
                     <div className="w-14 h-14 rounded-2xl bg-brand-light-cream group-hover:bg-brand-light-cream text-brand-emerald flex items-center justify-center mb-4 transition-colors">
                       <ShieldCheck size={28} strokeWidth={1.5} />
                     </div>
@@ -314,7 +317,7 @@ export default function AboutPage() {
                   </div>
 
                   {/* Card 4: Family */}
-                  <div className="bg-white rounded-2xl p-6 sm:p-7 border border-brand-border/80 shadow-sm hover:shadow-xl hover:border-brand-emerald/40 transition-all duration-300 flex flex-col items-center text-center group hover:-translate-y-1">
+                  <div className="bg-white rounded-2xl p-6 sm:p-7 border border-[#651514] shadow-sm hover:shadow-xl hover:border-brand-emerald/40 transition-all duration-300 flex flex-col items-center text-center group hover:-translate-y-1">
                     <div className="w-14 h-14 rounded-2xl bg-brand-light-cream group-hover:bg-brand-light-cream text-brand-emerald flex items-center justify-center mb-4 transition-colors">
                       <Users size={28} strokeWidth={1.5} />
                     </div>
@@ -323,7 +326,7 @@ export default function AboutPage() {
                   </div>
 
                   {/* Card 5: Excellence */}
-                  <div className="bg-white rounded-2xl p-6 sm:p-7 border border-brand-border/80 shadow-sm hover:shadow-xl hover:border-brand-emerald/40 transition-all duration-300 flex flex-col items-center text-center group hover:-translate-y-1">
+                  <div className="bg-white rounded-2xl p-6 sm:p-7 border border-[#651514] shadow-sm hover:shadow-xl hover:border-brand-emerald/40 transition-all duration-300 flex flex-col items-center text-center group hover:-translate-y-1">
                     <div className="w-14 h-14 rounded-2xl bg-brand-light-cream group-hover:bg-brand-light-cream text-brand-emerald flex items-center justify-center mb-4 transition-colors">
                       <Star size={28} strokeWidth={1.5} />
                     </div>
@@ -338,11 +341,21 @@ export default function AboutPage() {
         </div>
       </section>
       {/* ---------------------------------------------------- */}
+      {/* 5. CHARITY & DIFFERENCE ABLED SOCIAL INITIATIVE     */}
+      {/* ---------------------------------------------------- */}
+      <SocialInitiativeSection />
+
+      {/* ---------------------------------------------------- */}
+      {/* 6. MULTIPLE LOCATIONS & OFFICES                      */}
+      {/* ---------------------------------------------------- */}
+      <LocationsSection />
+
+      {/* ---------------------------------------------------- */}
       {/* 6. READY TO START YOUR JOURNEY? (CTA BANNER)         */}
       {/* ---------------------------------------------------- */}
       <section className="py-6 sm:py-14 bg-brand-cream overflow-hidden">
         <div className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative rounded-2xl sm:rounded-3xl bg-[#092c26] text-white overflow-hidden shadow-2xl border border-[#b08a5f]/25 min-h-[340px] sm:min-h-[380px] lg:min-h-[400px] flex items-center">
+          <div className="relative rounded-2xl sm:rounded-3xl bg-[#1D184C] text-white overflow-hidden shadow-2xl border border-[#C58D5F]/30 min-h-[340px] sm:min-h-[380px] lg:min-h-[400px] flex items-center">
             
             {/* Right Image Overlay with smooth fade gradient */}
             <div className="absolute right-0 top-0 bottom-0 w-full sm:w-2/3 md:w-3/5 lg:w-1/2 h-full pointer-events-none">
@@ -354,7 +367,7 @@ export default function AboutPage() {
                 className="object-cover object-[75%_20%] sm:object-[center_20%] opacity-65 sm:opacity-80 lg:opacity-90"
               />
               {/* Dark gradient fade over the image so text on left is 100% crisp & readable */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#092c26] via-[#092c26]/95 sm:via-[#092c26]/80 lg:via-[#092c26]/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#1D184C] via-[#1D184C]/95 sm:via-[#1D184C]/80 lg:via-[#1D184C]/60 to-transparent" />
             </div>
 
             {/* Left Floral Gold Vector Artwork */}
@@ -365,7 +378,7 @@ export default function AboutPage() {
                 viewBox="0 0 280 380"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-full w-auto text-[#c59a5f]"
+                className="h-full w-auto text-[#C58D5F]"
               >
                 <g stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="70" cy="130" r="16" strokeWidth="1.2" />
@@ -381,6 +394,8 @@ export default function AboutPage() {
                   <circle cx="25" cy="90" r="2" fill="currentColor" />
                   <circle cx="40" cy="55" r="1.5" fill="currentColor" />
                   <circle cx="105" cy="165" r="2" fill="currentColor" />
+                  <circle cx="170" cy="240" r="1.5" fill="currentColor" />
+                  <circle cx="120" cy="325" r="2" fill="currentColor" />
                 </g>
               </svg>
             </div>
@@ -389,7 +404,7 @@ export default function AboutPage() {
             <div className="relative z-20 w-full max-w-xl lg:max-w-2xl px-6 sm:px-10 lg:px-14 py-12 sm:py-16 my-auto text-center sm:text-left mx-auto sm:ml-20 lg:ml-40">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-playfair font-bold text-white leading-tight tracking-tight drop-shadow-md">
                 Ready to Start{" "}
-                <span className="text-[#c59a5f]">Your Journey?</span>
+                <span className="text-[#F3B979]">Your Journey?</span>
               </h2>
 
               <p className="mt-3 sm:mt-4 text-slate-200 text-sm sm:text-base lg:text-lg font-light leading-relaxed max-w-lg mx-auto sm:mx-0">
@@ -399,7 +414,7 @@ export default function AboutPage() {
               <div className="mt-6 sm:mt-8">
                 <Link
                   href="/submit-biodata"
-                  className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-[#c59a5f] to-[#a0743f] hover:from-[#b3854d] hover:to-[#8c6230] text-white font-medium text-sm sm:text-base rounded-xl transition-all shadow-lg hover:shadow-xl active:scale-95 group border border-[#d4af37]/40"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-8 py-3.5 sm:py-4 bg-[#651514] hover:bg-[#4D0F0E] text-white font-medium text-sm sm:text-base rounded-xl transition-all shadow-lg hover:shadow-xl active:scale-95 group border border-[#C58D5F]/40"
                 >
                   <span>Create Your Profile Today</span>
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />

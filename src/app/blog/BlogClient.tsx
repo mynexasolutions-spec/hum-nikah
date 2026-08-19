@@ -26,10 +26,10 @@ export default function BlogClient({ blogs }: { blogs: any[] }) {
   return (
     <main className="min-h-screen bg-brand-cream pb-20">
       {/* Hero Section */}
-      <section className="relative bg-[#062E29] text-white py-8 sm:py-12 overflow-hidden border-b border-brand-gold/20">
+      <section className="relative bg-[#1D184C] text-white py-8 sm:py-12 overflow-hidden border-b border-brand-gold/20">
         {/* Glow Effects */}
         <div className="absolute top-0 left-1/4 w-80 h-80 bg-brand-gold/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#651514]/25 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <motion.div
@@ -48,7 +48,7 @@ export default function BlogClient({ blogs }: { blogs: any[] }) {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-2xl sm:text-4xl lg:text-5xl font-playfair font-bold text-white tracking-tight leading-tight"
           >
-            Faith &amp; Love in <span className="text-[#C6A77D] italic">Nikah</span>
+            Faith &amp; Love in <span className="text-[#F3B979] italic">Nikah</span>
           </motion.h1>
 
           <motion.p
@@ -68,7 +68,7 @@ export default function BlogClient({ blogs }: { blogs: any[] }) {
             className="mt-5 sm:mt-6 max-w-md mx-auto"
           >
             <div className="relative flex items-center">
-              <Search className="absolute left-3.5 z-10 text-[#B08A5F] pointer-events-none" size={18} />
+              <Search className="absolute left-3.5 z-10 text-brand-gold pointer-events-none" size={18} />
               <input
                 type="text"
                 value={searchQuery}
@@ -105,7 +105,7 @@ export default function BlogClient({ blogs }: { blogs: any[] }) {
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all whitespace-nowrap cursor-pointer flex-shrink-0 ${
                     isActive
-                      ? "bg-[#062E29] text-white shadow-md border border-[#062E29]"
+                      ? "bg-brand-emerald text-white shadow-md border border-brand-emerald"
                       : "bg-white text-brand-charcoal hover:bg-brand-beige border border-brand-border/80"
                   }`}
                 >
@@ -153,7 +153,7 @@ export default function BlogClient({ blogs }: { blogs: any[] }) {
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           />
                           <div className="absolute top-3 left-3">
-                            <span className="px-2.5 py-1 rounded-md bg-[#062E29]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide">
+                            <span className="px-2.5 py-1 rounded-md bg-[#1D184C]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide">
                               {post.category}
                             </span>
                           </div>
@@ -196,7 +196,7 @@ export default function BlogClient({ blogs }: { blogs: any[] }) {
                           </span>
                         </div>
 
-                        <span className="text-xs font-semibold text-[#062E29] group-hover:underline flex items-center gap-1">
+                        <span className="text-xs font-semibold text-brand-emerald group-hover:underline flex items-center gap-1">
                           Read <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
                         </span>
                       </div>
@@ -218,7 +218,7 @@ export default function BlogClient({ blogs }: { blogs: any[] }) {
                 setSelectedCategory("All");
                 setSearchQuery("");
               }}
-              className="mt-5 px-5 py-2.5 bg-[#062E29] text-white text-xs font-semibold rounded-xl hover:bg-[#04201c] transition-colors"
+              className="mt-5 px-5 py-2.5 bg-brand-emerald text-white text-xs font-semibold rounded-xl hover:bg-brand-emerald-hover transition-colors"
             >
               Reset Filters
             </button>

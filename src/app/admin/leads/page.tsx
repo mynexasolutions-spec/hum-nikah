@@ -3,13 +3,14 @@
 
 import React, { useEffect, useState, useCallback } from "react";
 import { createPortal } from "react-dom";
-import { Users, Search, Phone, CheckCircle, Trash2, RefreshCw, User, FileText, ChevronLeft, ChevronRight } from "lucide-react";
+import { Users, Search, Phone, Mail, CheckCircle, Trash2, RefreshCw, User, FileText, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { updateLeadStatus, deleteLead } from "./actions";
 
 interface LeadItem {
   id: string;
   name: string;
   phone: string;
+  email?: string;
   status: string;
   gender?: string;
   dob?: string;
@@ -25,6 +26,7 @@ export default function LeadsPage() {
   const [leads, setLeads] = useState<LeadItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [selectedLead, setSelectedLead] = useState<LeadItem | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [mounted, setMounted] = useState(false);
@@ -59,7 +61,9 @@ export default function LeadsPage() {
   const filteredLeads = leads.filter(
     (lead) =>
       (lead.name || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (lead.phone || "").includes(searchQuery)
+      (lead.phone || "").includes(searchQuery) ||
+      (lead.email || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (lead.gender || "").toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   useEffect(() => {
@@ -89,26 +93,80 @@ export default function LeadsPage() {
             View and manage user search criteria &amp; contact inquiries submitted from the website.
           </p>
         </div>
-        <button
-          onClick={fetchLeads}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-brand-border hover:bg-brand-cream text-brand-charcoal text-sm font-medium transition-colors shadow-sm self-start sm:self-auto"
-        >
-          <RefreshCw size={16} className={loading ? "animate-spin" : ""} />
-          Refresh Leads
-        </button>
+        <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-auto">
+          {/* Search Toggle Button */}
+          <button
+            onClick={() => setIsSearchOpen(!isSearchOpen)}
+            className={`relative inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border text-xs sm:text-sm font-semibold transition-all shadow-sm cursor-pointer ${
+              isSearchOpen || searchQuery
+                ? "bg-brand-cream/90 border-brand-gold text-brand-charcoal"
+                : "bg-white border-brand-border hover:bg-brand-cream hover:border-brand-gold/60 text-brand-charcoal"
+            }`}
+            title="Search Leads"
+          >
+            <Search size={16} className="text-brand-gold shrink-0" />
+            <span>Search</span>
+            {searchQuery && (
+              <span className="flex h-2 w-2 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-gold opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-gold"></span>
+              </span>
+            )}
+          </button>
+
+          {/* Refresh Leads Button */}
+          <button
+            onClick={fetchLeads}
+            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-brand-border hover:bg-brand-cream hover:border-brand-gold/60 text-brand-charcoal text-xs sm:text-sm font-semibold transition-all shadow-sm cursor-pointer"
+          >
+            <RefreshCw size={16} className={`text-brand-gold shrink-0 ${loading ? "animate-spin" : ""}`} />
+            <span>Refresh Leads</span>
+          </button>
+        </div>
       </div>
 
-      {/* Filter and Search Bar */}
-      <div className="bg-white p-4 rounded-xl shadow-sm border border-brand-border flex items-center gap-3">
-        <Search size={18} className="text-slate-400" />
-        <input
-          type="text"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search leads by name, phone, or preferences..."
-          className="w-full text-sm outline-none bg-transparent placeholder-slate-400"
-        />
-      </div>
+      {/* Inline Expandable Search Bar */}
+      {isSearchOpen && (
+        <div className="bg-white p-3 sm:p-4 rounded-2xl shadow-sm border border-brand-gold/30 flex items-center gap-2.5 animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="relative flex-1 flex items-center">
+            <Search size={18} className="absolute left-3.5 text-brand-gold pointer-events-none" />
+            <input
+              type="text"
+              autoFocus
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search leads by name, phone, email, gender..."
+              className="w-full pl-10 pr-9 py-2.5 bg-slate-50 hover:bg-white border border-slate-200 rounded-xl text-xs sm:text-sm text-brand-charcoal focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 outline-none transition-all shadow-xs"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute right-3 text-slate-400 hover:text-slate-600 p-1 cursor-pointer"
+                title="Clear text"
+              >
+                <X size={16} />
+              </button>
+            )}
+          </div>
+
+          {/* Side Action Button */}
+          {searchQuery ? (
+            <button
+              onClick={() => setSearchQuery("")}
+              className="px-3.5 sm:px-4 py-2.5 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 text-xs sm:text-sm font-bold transition-colors shrink-0 cursor-pointer border border-red-200/60"
+            >
+              Clear
+            </button>
+          ) : (
+            <button
+              onClick={() => setIsSearchOpen(false)}
+              className="px-3.5 sm:px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs sm:text-sm font-bold transition-colors shrink-0 cursor-pointer border border-slate-200/60"
+            >
+              Close
+            </button>
+          )}
+        </div>
+      )}
 
       {/* Grid Section */}
       <div className="w-full">
@@ -265,12 +323,9 @@ export default function LeadsPage() {
             <div className="px-4 py-4 sm:px-6 sm:py-5 border-b border-slate-100 flex justify-between items-start bg-slate-50/50 shrink-0">
               <div>
                 <h3 className="text-lg sm:text-xl font-bold text-brand-charcoal">{selectedLead.name}</h3>
-                <p className="text-[10px] sm:text-xs text-slate-500 mt-1 mb-2">
+                <p className="text-[10px] sm:text-xs text-slate-500 mt-1">
                   Submitted on {new Date(selectedLead.createdAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", hour: "2-digit", minute: "2-digit" })}
                 </p>
-                <div className="flex items-center gap-1 sm:gap-1.5 text-[10px] sm:text-xs font-semibold text-emerald-700 bg-emerald-100/50 px-2 sm:px-2.5 py-1 rounded-md w-fit border border-emerald-200">
-                  <Phone size={12} /> WhatsApp: {selectedLead.phone || "No phone"}
-                </div>
               </div>
               <button 
                 onClick={() => setSelectedLead(null)}
@@ -281,53 +336,102 @@ export default function LeadsPage() {
             </div>
 
             <div className="p-4 sm:p-7 overflow-y-auto scrollbar-thin">
-              <div className="grid grid-cols-2 gap-2.5 sm:gap-4">
-                <div className="col-span-1 bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
+                  <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Full Name</span>
+                  <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedLead.name || "N/A"}</span>
+                </div>
+                <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
+                  <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Phone / WhatsApp</span>
+                  {selectedLead.phone ? (
+                    <a
+                      href={`tel:${selectedLead.phone.replace(/[^0-9+]/g, "")}`}
+                      className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-emerald-600 hover:text-emerald-700 hover:underline"
+                    >
+                      <Phone size={14} /> {selectedLead.phone}
+                    </a>
+                  ) : (
+                    <span className="block text-xs sm:text-sm font-semibold text-slate-400">N/A</span>
+                  )}
+                </div>
+                <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
+                  <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Email Address</span>
+                  {selectedLead.email ? (
+                    <a
+                      href={`mailto:${selectedLead.email}`}
+                      className="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-blue-600 hover:text-blue-700 hover:underline"
+                    >
+                      <Mail size={14} /> {selectedLead.email}
+                    </a>
+                  ) : (
+                    <span className="block text-xs sm:text-sm font-semibold text-slate-400">N/A</span>
+                  )}
+                </div>
+                <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
                   <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Gender</span>
-                  <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedLead.gender || "Not specified"}</span>
+                  <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedLead.gender || "N/A"}</span>
                 </div>
-                <div className="col-span-1 bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
-                  <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Date of Birth</span>
-                  <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedLead.dob || "Not specified"}</span>
-                </div>
-                <div className="col-span-2 sm:col-span-1 bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
-                  <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Location</span>
-                  <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">
-                    {selectedLead.city || selectedLead.country ? `${selectedLead.city || ''} ${selectedLead.country || ''}` : "Not specified"}
-                  </span>
-                </div>
-                <div className="col-span-2 sm:col-span-1 bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
-                  <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Marital Status</span>
-                  <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedLead.maritalStatus || "Not specified"}</span>
-                </div>
-                <div className="col-span-2 sm:col-span-1 bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
-                  <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Profession</span>
-                  <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedLead.profession || "Not specified"}</span>
-                </div>
-                <div className="col-span-2 sm:col-span-1 bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
-                  <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Education</span>
-                  <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedLead.education || "Not specified"}</span>
-                </div>
-              </div>
 
+                {/* Legacy / optional fields for older entries if available */}
+                {selectedLead.dob && (
+                  <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
+                    <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Date of Birth</span>
+                    <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedLead.dob}</span>
+                  </div>
+                )}
+                {(selectedLead.city || selectedLead.country) && (
+                  <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
+                    <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Location</span>
+                    <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{[selectedLead.city, selectedLead.country].filter(Boolean).join(', ')}</span>
+                  </div>
+                )}
+                {selectedLead.maritalStatus && (
+                  <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
+                    <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Marital Status</span>
+                    <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedLead.maritalStatus}</span>
+                  </div>
+                )}
+                {selectedLead.profession && (
+                  <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
+                    <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Profession</span>
+                    <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedLead.profession}</span>
+                  </div>
+                )}
+                {selectedLead.education && (
+                  <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
+                    <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Education</span>
+                    <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedLead.education}</span>
+                  </div>
+                )}
+              </div>
             </div>
             
-            {/* Modal Footer */}
-            <div className="p-3 sm:p-5 bg-slate-50 border-t border-slate-100 flex justify-end gap-2.5 sm:gap-3 shrink-0">
+            {/* Modal Footer (Always 1 row on mobile) */}
+            <div className="p-3 sm:p-5 bg-slate-50 border-t border-slate-100 flex items-center justify-between sm:justify-end gap-2 sm:gap-3 shrink-0 flex-nowrap">
               <button 
                 onClick={() => setSelectedLead(null)}
-                className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:bg-slate-200 transition-colors"
+                className="flex-1 sm:flex-none px-3 py-2.5 sm:px-5 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-600 hover:bg-slate-200 transition-colors bg-white sm:bg-transparent border border-slate-200 sm:border-transparent text-center justify-center flex items-center shrink-0"
               >
                 Close
               </button>
-              <a
-                href={`https://wa.me/${(selectedLead.phone || "").replace(/[^0-9]/g, "")}`}
-                target="_blank"
-                rel="noreferrer"
-                className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold bg-[#062e29] hover:bg-[#083b34] text-white transition-colors flex items-center gap-1.5 sm:gap-2 shadow-md"
-              >
-                <Phone size={14} className="sm:w-4 sm:h-4" /> WhatsApp Now
-              </a>
+              {selectedLead.email && (
+                <a
+                  href={`mailto:${selectedLead.email}`}
+                  className="flex-1 sm:flex-none px-3 py-2.5 sm:px-5 sm:py-2.5 rounded-xl text-[11px] sm:text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white transition-colors flex items-center justify-center gap-1 sm:gap-2 shadow-md shrink-0 whitespace-nowrap"
+                >
+                  <Mail size={13} className="shrink-0 sm:w-4 sm:h-4" /> Email
+                </a>
+              )}
+              {selectedLead.phone && (
+                <a
+                  href={`https://wa.me/${selectedLead.phone.replace(/[^0-9]/g, "")}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex-1 sm:flex-none px-3 py-2.5 sm:px-5 sm:py-2.5 rounded-xl text-[11px] sm:text-sm font-semibold bg-emerald-700 hover:bg-emerald-800 text-white transition-colors flex items-center justify-center gap-1 sm:gap-2 shadow-md shrink-0 whitespace-nowrap"
+                >
+                  <Phone size={13} className="shrink-0 sm:w-4 sm:h-4" /> WhatsApp
+                </a>
+              )}
             </div>
           </div>
         </div>,

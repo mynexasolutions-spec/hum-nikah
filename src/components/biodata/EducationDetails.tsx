@@ -13,7 +13,7 @@ export function EducationDetails({ register, errors }: Props) {
   return (
     <div className="space-y-6 pt-4 border-t border-slate-200">
       <div className="flex items-center gap-3 border-b border-slate-200/80 pb-3">
-        <div className="w-9 h-9 rounded-xl bg-[#062E29]/10 text-[#062E29] flex items-center justify-center font-bold text-sm border border-[#062E29]/20">
+        <div className="w-9 h-9 rounded-xl bg-brand-emerald/10 text-brand-emerald flex items-center justify-center font-bold text-sm border border-brand-emerald/20">
           <GraduationCap size={18} className="text-brand-gold" />
         </div>
         <h3 className="text-lg sm:text-xl font-bold font-playfair text-brand-charcoal">

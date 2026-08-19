@@ -174,6 +174,13 @@ export interface Database {
           message: string | null
           source: string
           status: 'NEW' | 'CONTACTED' | 'IN_PROGRESS' | 'CONVERTED' | 'CLOSED'
+          gender: string | null
+          dob: string | null
+          country: string | null
+          city: string | null
+          maritalStatus: string | null
+          profession: string | null
+          education: string | null
           createdAt: string
           updatedAt: string
         }
@@ -185,6 +192,13 @@ export interface Database {
           message?: string | null
           source?: string
           status?: 'NEW' | 'CONTACTED' | 'IN_PROGRESS' | 'CONVERTED' | 'CLOSED'
+          gender?: string | null
+          dob?: string | null
+          country?: string | null
+          city?: string | null
+          maritalStatus?: string | null
+          profession?: string | null
+          education?: string | null
           createdAt?: string
           updatedAt?: string
         }
@@ -196,6 +210,13 @@ export interface Database {
           message?: string | null
           source?: string
           status?: 'NEW' | 'CONTACTED' | 'IN_PROGRESS' | 'CONVERTED' | 'CLOSED'
+          gender?: string | null
+          dob?: string | null
+          country?: string | null
+          city?: string | null
+          maritalStatus?: string | null
+          profession?: string | null
+          education?: string | null
           createdAt?: string
           updatedAt?: string
         }

@@ -33,10 +33,10 @@ export default function GalleryClient({ initialItems }: { initialItems: GalleryI
   return (
     <main className="min-h-screen bg-brand-cream pb-20">
       {/* Compact Modern Hero Section */}
-      <section className="relative bg-[#062E29] text-white py-8 sm:py-12 overflow-hidden border-b border-brand-gold/20">
+      <section className="relative bg-[#1D184C] text-white py-8 sm:py-12 overflow-hidden border-b border-brand-gold/20">
         {/* Glow Orbs */}
         <div className="absolute top-0 left-1/3 w-80 h-80 bg-brand-gold/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#651514]/25 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <motion.div
@@ -55,7 +55,7 @@ export default function GalleryClient({ initialItems }: { initialItems: GalleryI
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-2xl sm:text-4xl lg:text-5xl font-playfair font-bold text-white tracking-tight leading-tight"
           >
-            Moments of <span className="text-[#C6A77D] italic">Love &amp; Togetherness</span>
+            Moments of <span className="text-[#F3B979] italic">Love &amp; Togetherness</span>
           </motion.h1>
 
           <motion.p
@@ -81,7 +81,7 @@ export default function GalleryClient({ initialItems }: { initialItems: GalleryI
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all whitespace-nowrap cursor-pointer flex-shrink-0 ${
                     isActive
-                      ? "bg-[#062E29] text-white shadow-md border border-[#062E29]"
+                      ? "bg-brand-emerald text-white shadow-md border border-brand-emerald"
                       : "bg-white text-brand-charcoal hover:bg-brand-beige border border-brand-border/80"
                   }`}
                 >
@@ -127,18 +127,18 @@ export default function GalleryClient({ initialItems }: { initialItems: GalleryI
                 />
 
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#062E29]/90 via-[#062E29]/30 to-transparent opacity-60 group-hover:opacity-85 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1D184C]/90 via-[#1D184C]/30 to-transparent opacity-60 group-hover:opacity-85 transition-opacity duration-300" />
 
                 {/* Category Pill Tag */}
                 <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-10 max-w-[80%]">
-                  <span className="block px-1.5 sm:px-2 py-0.5 rounded-md bg-[#062E29]/90 backdrop-blur-md text-white text-[8px] sm:text-[10px] font-semibold tracking-wide border border-white/10 truncate">
+                  <span className="block px-1.5 sm:px-2 py-0.5 rounded-md bg-[#1D184C]/90 backdrop-blur-md text-white text-[8px] sm:text-[10px] font-semibold tracking-wide border border-white/10 truncate">
                     {item.category}
                   </span>
                 </div>
 
                 {/* Expand Icon */}
                 <div className="absolute top-2 right-2 sm:top-3 sm:right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white hover:bg-white hover:text-[#062E29] transition-colors">
+                  <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white hover:bg-white hover:text-brand-emerald transition-colors">
                     <Maximize2 size={12} />
                   </div>
                 </div>
@@ -170,7 +170,7 @@ export default function GalleryClient({ initialItems }: { initialItems: GalleryI
               {/* Left Navigation Arrow */}
               <button
                 onClick={handlePrevModalItem}
-                className="absolute -left-4 sm:-left-5 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#062E29] hover:bg-brand-gold text-white hover:text-brand-charcoal shadow-2xl flex items-center justify-center transition-all cursor-pointer border-2 border-white hover:scale-110"
+                className="absolute -left-4 sm:-left-5 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-brand-emerald hover:bg-brand-gold text-white shadow-2xl flex items-center justify-center transition-all cursor-pointer border-2 border-white hover:scale-110"
                 aria-label="Previous Photo"
               >
                 <ChevronLeft size={20} />
@@ -179,14 +179,14 @@ export default function GalleryClient({ initialItems }: { initialItems: GalleryI
               {/* Right Navigation Arrow */}
               <button
                 onClick={handleNextModalItem}
-                className="absolute -right-4 sm:-right-5 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#062E29] hover:bg-brand-gold text-white hover:text-brand-charcoal shadow-2xl flex items-center justify-center transition-all cursor-pointer border-2 border-white hover:scale-110"
+                className="absolute -right-4 sm:-right-5 top-1/2 -translate-y-1/2 z-40 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-brand-emerald hover:bg-brand-gold text-white shadow-2xl flex items-center justify-center transition-all cursor-pointer border-2 border-white hover:scale-110"
                 aria-label="Next Photo"
               >
                 <ChevronRight size={20} />
               </button>
 
               {/* Modal Image Wrapper */}
-              <div className="relative w-full h-80 sm:h-[450px] bg-[#062E29] rounded-3xl overflow-hidden">
+              <div className="relative w-full h-80 sm:h-[450px] bg-brand-emerald rounded-3xl overflow-hidden">
                 <img
                   src={activeModalItem.image}
                   alt={activeModalItem.title}
@@ -199,14 +199,14 @@ export default function GalleryClient({ initialItems }: { initialItems: GalleryI
                 {/* Glassmorphic Close Button */}
                 <button
                   onClick={() => setActiveModalItem(null)}
-                  className="absolute top-3 right-3 z-30 w-8 h-8 rounded-full bg-black/50 hover:bg-[#062E29] text-white flex items-center justify-center backdrop-blur-md border border-white/30 transition-all cursor-pointer"
+                  className="absolute top-3 right-3 z-30 w-8 h-8 rounded-full bg-black/50 hover:bg-brand-emerald text-white flex items-center justify-center backdrop-blur-md border border-white/30 transition-all cursor-pointer"
                 >
                   <X size={16} />
                 </button>
 
                 {/* Category & Photo Index Badge */}
                 <div className="absolute top-3 left-3 z-20 flex items-center gap-2">
-                  <span className="px-3 py-1 rounded-full bg-[#062E29]/85 backdrop-blur-md border border-brand-gold/40 text-brand-gold text-[11px] font-semibold tracking-wide">
+                  <span className="px-3 py-1 rounded-full bg-brand-emerald/85 backdrop-blur-md border border-brand-gold/40 text-brand-gold text-[11px] font-semibold tracking-wide">
                     {activeModalItem.category}
                   </span>
                 </div>
@@ -219,13 +219,13 @@ export default function GalleryClient({ initialItems }: { initialItems: GalleryI
 
       {/* Islamic Matrimony Quote Banner */}
       <section className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8 mt-16 sm:mt-20">
-        <div className="bg-gradient-to-r from-[#062E29] via-[#093c35] to-[#062E29] rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden shadow-xl border border-brand-gold/30 text-center">
+        <div className="bg-gradient-to-r from-[#1D184C] via-[#651514] to-[#1D184C] rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden shadow-xl border border-brand-gold/30 text-center">
           <div className="relative z-10 max-w-2xl mx-auto">
-            <Heart size={32} className="mx-auto text-brand-gold mb-3 animate-pulse" />
+            <Heart size={32} className="mx-auto text-[#F3B979] mb-3 animate-pulse" />
             <p className="text-lg sm:text-2xl font-playfair italic leading-relaxed text-slate-100">
               &ldquo;May Allah bless you, and shower His blessings upon you, and join you both in goodness and happiness.&rdquo;
             </p>
-            <p className="text-xs sm:text-sm font-semibold text-brand-gold mt-4">
+            <p className="text-xs sm:text-sm font-semibold text-[#F3B979] mt-4">
               &mdash; Prophetic Dua for Newlyweds (Sunan Abu Dawood)
             </p>
           </div>

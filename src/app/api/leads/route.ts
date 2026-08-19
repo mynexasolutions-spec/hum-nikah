@@ -4,10 +4,7 @@ import { supabase } from '@/lib/supabase';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { 
-      name, phone,
-      gender, dob, country, city, maritalStatus, profession, education
-    } = body;
+    const { name, phone, email, gender } = body;
 
     if (!name || !phone) {
       return NextResponse.json(
@@ -16,36 +13,55 @@ export async function POST(request: Request) {
       );
     }
 
-    const { data, error } = await supabase
+    const payload: Record<string, any> = {
+      name,
+      phone,
+      email: email || null,
+      gender: gender || null,
+      status: 'NEW',
+    };
+
+    // 1. Primary insert attempt with name, phone, email, gender
+    let { data, error } = await supabase
       .from('Lead')
-      .insert({
-        name,
-        phone,
-        status: 'NEW',
-        gender: gender || null,
-        dob: dob || null,
-        country: country || null,
-        city: city || null,
-        maritalStatus: maritalStatus || null,
-        profession: profession || null,
-        education: education || null
-      })
+      .insert(payload)
       .select()
       .single();
 
+    // 2. Fallback insert if gender column is missing in Supabase schema
     if (error) {
-      console.error('Supabase error inserting Lead:', error);
-      return NextResponse.json(
-        { success: false, error: error.message },
-        { status: 500 }
-      );
+      console.warn('Direct insert failed, running fallback insert:', error.message);
+
+      const fallbackPayload = {
+        name,
+        phone,
+        email: email || null,
+        status: 'NEW',
+        message: gender ? `Gender: ${gender}` : null,
+      };
+
+      const fallbackRes = await supabase
+        .from('Lead')
+        .insert(fallbackPayload)
+        .select()
+        .single();
+
+      if (fallbackRes.error) {
+        console.error('Supabase error inserting Lead:', fallbackRes.error);
+        return NextResponse.json(
+          { success: false, error: fallbackRes.error.message },
+          { status: 500 }
+        );
+      }
+
+      data = fallbackRes.data;
     }
 
     return NextResponse.json({ success: true, data }, { status: 201 });
   } catch (error: any) {
-    console.error('Error submitting search lead:', error);
+    console.error('Error submitting lead:', error);
     return NextResponse.json(
-      { success: false, error: 'Internal Server Error' },
+      { success: false, error: error?.message || 'Internal Server Error' },
       { status: 500 }
     );
   }
@@ -67,3 +83,4 @@ export async function GET() {
     return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
   }
 }
+

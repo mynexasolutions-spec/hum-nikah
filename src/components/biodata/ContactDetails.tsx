@@ -29,7 +29,7 @@ export function ContactDetails({ register, setValue, watch, errors, onImageSelec
   return (
     <div className="space-y-6 pt-4 border-t border-slate-200">
       <div className="flex items-center gap-3 border-b border-slate-200/80 pb-3">
-        <div className="w-9 h-9 rounded-xl bg-[#062E29]/10 text-[#062E29] flex items-center justify-center font-bold text-sm border border-[#062E29]/20">
+        <div className="w-9 h-9 rounded-xl bg-brand-emerald/10 text-brand-emerald flex items-center justify-center font-bold text-sm border border-brand-emerald/20">
           <Phone size={18} className="text-brand-gold" />
         </div>
         <h3 className="text-lg sm:text-xl font-bold font-playfair text-brand-charcoal">
@@ -109,7 +109,7 @@ export function ContactDetails({ register, setValue, watch, errors, onImageSelec
 
           <button
             type="button"
-            className="px-3.5 py-1.5 rounded-xl bg-[#062E29] text-white hover:bg-brand-gold hover:text-brand-charcoal text-xs font-semibold transition-colors shrink-0 cursor-pointer ml-3"
+            className="px-3.5 py-1.5 rounded-xl bg-brand-emerald text-white hover:bg-brand-gold hover:text-white text-xs font-semibold transition-colors shrink-0 cursor-pointer ml-3"
           >
             {selectedFileName ? "Change" : "Browse"}
           </button>

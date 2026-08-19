@@ -72,8 +72,8 @@ export function BiodataForm() {
 
   if (isSuccess) {
     return (
-      <div className="bg-slate-50/50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-12 text-center max-w-2xl mx-auto border border-brand-border/60 shadow-[0_4px_20px_rgba(6,46,41,0.03)]">
-        <div className="w-14 h-14 sm:w-20 sm:h-20 bg-gradient-to-br from-[#062e29] to-[#0a4d44] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 text-white shadow-lg shadow-[#062e29]/20">
+      <div className="bg-slate-50/50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-12 text-center max-w-2xl mx-auto border border-brand-border/60 shadow-[0_4px_20px_rgba(29,24,76,0.04)]">
+        <div className="w-14 h-14 sm:w-20 sm:h-20 bg-gradient-to-br from-[#1D184C] via-[#651514] to-[#1D184C] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 text-white shadow-lg shadow-[#1D184C]/25">
           <svg className="w-7 h-7 sm:w-10 sm:h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
           </svg>
@@ -120,7 +120,7 @@ export function BiodataForm() {
             <input
               id="consent"
               type="checkbox"
-              className="w-4 h-4 rounded border-slate-300 text-[#062E29] focus:ring-brand-gold cursor-pointer"
+              className="w-4 h-4 rounded border-slate-300 text-[#1D184C] focus:ring-brand-gold cursor-pointer"
               {...register('consent')}
             />
           </div>
@@ -143,7 +143,7 @@ export function BiodataForm() {
         <button 
           type="submit" 
           disabled={isSubmitting}
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-4 bg-gradient-to-r from-[#062e29] via-[#0b4840] to-[#062e29] hover:from-[#083b34] hover:to-[#083b34] text-white font-semibold text-base rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-0.5 active:scale-95 border border-brand-gold/30 cursor-pointer"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 py-4 bg-gradient-to-r from-[#1D184C] via-[#651514] to-[#1D184C] hover:from-[#141038] hover:to-[#141038] text-white font-semibold text-base rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-0.5 active:scale-95 border border-brand-gold/40 cursor-pointer"
         >
           <span>{isSubmitting ? "Submitting Biodata..." : "Submit My Biodata"}</span>
         </button>

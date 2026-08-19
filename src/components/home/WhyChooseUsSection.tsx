@@ -1,34 +1,34 @@
 "use client";
 
 import React from "react";
-import { ShieldCheck, Lock, Heart, Headphones } from "lucide-react";
+import { ShieldCheck, Lock, Home, Headphones, FileCheck } from "lucide-react";
 import { ScrollReveal, ScrollRevealItem } from "@/components/ui/ScrollReveal";
 import { motion } from "framer-motion";
 
 const features = [
   {
+    icon: Home,
+    title: "Physical Home Visits",
+    description: "In-person representative visit to candidate's home to verify family background and residence.",
+    bgColor: "bg-emerald-500/10 text-emerald-700 border-emerald-500/20 group-hover:bg-emerald-600 group-hover:text-white",
+  },
+  {
     icon: ShieldCheck,
-    title: "100% Genuine Profiles",
-    description: "All profiles are manually verified for authenticity.",
-    bgColor: "bg-emerald-50 text-emerald-700 border-emerald-100 group-hover:bg-emerald-600 group-hover:text-white",
+    title: "5-Layer Background Check",
+    description: "CNIC, degree audit, employment check, and 2+ verified family references.",
+    bgColor: "bg-[#1D184C]/10 text-[#1D184C] border-[#1D184C]/20 group-hover:bg-[#1D184C] group-hover:text-white",
   },
   {
     icon: Lock,
-    title: "Privacy First",
-    description: "Your privacy is our priority. Your data is always safe with us.",
-    bgColor: "bg-amber-50 text-amber-700 border-amber-100 group-hover:bg-amber-600 group-hover:text-white",
-  },
-  {
-    icon: Heart,
-    title: "Faith & Values",
-    description: "We believe in building relationships on the foundation of faith.",
-    bgColor: "bg-emerald-50 text-emerald-700 border-emerald-100 group-hover:bg-emerald-600 group-hover:text-white",
+    title: "Privacy & Modesty First",
+    description: "Wali-controlled profile access, blur options, and 100% data security.",
+    bgColor: "bg-[#C58D5F]/15 text-[#C58D5F] border-[#C58D5F]/30 group-hover:bg-[#C58D5F] group-hover:text-white",
   },
   {
     icon: Headphones,
     title: "Dedicated Support",
-    description: "Our team is here to help you at every step of your journey.",
-    bgColor: "bg-amber-50 text-amber-700 border-amber-100 group-hover:bg-amber-600 group-hover:text-white",
+    description: "Personalized matchmaker support helping families every step of the way.",
+    bgColor: "bg-[#651514]/10 text-[#651514] border-[#651514]/20 group-hover:bg-[#651514] group-hover:text-white",
   },
 ];
 
@@ -71,6 +71,27 @@ export function WhyChooseUsSection() {
               </ScrollRevealItem>
             );
           })}
+        </ScrollReveal>
+
+        {/* Social Impact Highlight Banner */}
+        <ScrollReveal variant="fade-up" className="mt-12">
+          <div className="bg-gradient-to-r from-[#1D184C] via-[#2A2364] to-[#1D184C] rounded-2xl p-4 sm:p-5 text-white shadow-lg border border-brand-gold/30 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 text-xs sm:text-sm font-semibold">
+              <span className="flex items-center gap-2 bg-brand-gold/20 text-brand-gold px-3 py-1 rounded-full border border-brand-gold/30">
+                🎁 2.5% Revenue Donated to Charity
+              </span>
+              <span className="flex items-center gap-2 bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full border border-emerald-400/30">
+                ♿ 100% Free Service for Physically Disabled
+              </span>
+            </div>
+            
+            <a
+              href="/about#our-purpose"
+              className="text-xs text-brand-gold hover:underline font-bold whitespace-nowrap"
+            >
+              Learn More About Our Values &rarr;
+            </a>
+          </div>
         </ScrollReveal>
 
       </div>

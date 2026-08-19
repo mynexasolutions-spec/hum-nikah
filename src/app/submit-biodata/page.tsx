@@ -11,10 +11,10 @@ export default function SubmitBiodataPage() {
   return (
     <main className="min-h-screen bg-brand-cream pb-20">
       {/* Compact Hero Section (Matches Blog, Gallery & Contact pages) */}
-      <section className="relative bg-[#062E29] text-white py-8 sm:py-12 overflow-hidden border-b border-brand-gold/20">
+      <section className="relative bg-[#1D184C] text-white py-8 sm:py-12 overflow-hidden border-b border-brand-gold/20">
         {/* Glow Orbs */}
         <div className="absolute top-0 left-1/3 w-80 h-80 bg-brand-gold/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#651514]/25 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-gold/20 border border-brand-gold/40 text-brand-gold text-xs font-semibold tracking-wider uppercase mb-3">
@@ -23,7 +23,7 @@ export default function SubmitBiodataPage() {
           </div>
 
           <h1 className="text-2xl sm:text-4xl lg:text-5xl font-playfair font-bold text-white tracking-tight leading-tight">
-            Create Your <span className="text-[#C6A77D] italic">Matrimonial Biodata</span>
+            Create Your <span className="text-[#F3B979] italic">Matrimonial Biodata</span>
           </h1>
 
           <p className="mt-2 text-slate-300 text-xs sm:text-sm lg:text-base font-light max-w-lg mx-auto leading-relaxed">
@@ -34,7 +34,7 @@ export default function SubmitBiodataPage() {
 
       {/* Main Content Section - Floating Luxury Card */}
       <section className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12">
-        <div className="max-w-5xl mx-auto bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-10 md:p-12 shadow-[0_20px_60px_rgba(6,46,41,0.07)] border border-brand-gold/20 hover:border-brand-gold/40 transition-all duration-300">
+        <div className="max-w-5xl mx-auto bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-10 md:p-12 shadow-[0_20px_60px_rgba(29,24,76,0.08)] border border-brand-gold/20 hover:border-brand-gold/40 transition-all duration-300">
           
           {/* Form */}
           <BiodataForm />

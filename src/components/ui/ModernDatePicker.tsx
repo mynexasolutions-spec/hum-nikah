@@ -142,7 +142,7 @@ export function ModernDatePicker({
                       onClick={() => handleSelectDay(day)}
                       className={`h-8 w-8 rounded-full text-xs font-medium flex items-center justify-center transition-all cursor-pointer mx-auto ${
                         isSelected
-                          ? "bg-[#062e29] text-white font-bold shadow-md scale-105"
+                          ? "bg-brand-emerald text-white font-bold shadow-md scale-105"
                           : "hover:bg-brand-gold/20 text-slate-700 hover:text-brand-gold"
                       }`}
                     >
@@ -167,7 +167,7 @@ export function ModernDatePicker({
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="text-[#062e29] font-bold hover:underline cursor-pointer"
+                  className="text-brand-emerald font-bold hover:underline cursor-pointer"
                 >
                   Done
                 </button>

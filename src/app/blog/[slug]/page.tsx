@@ -75,9 +75,10 @@ export default async function BlogPostPage({ params }: PageProps) {
   return (
     <main className="min-h-screen bg-brand-cream pb-16 sm:pb-24">
       {/* Top Banner & Header */}
-      <section className="bg-[#062E29] text-white py-8 sm:py-12 border-b border-brand-gold/20 relative overflow-hidden">
+      <section className="bg-[#1D184C] text-white py-8 sm:py-12 border-b border-brand-gold/20 relative overflow-hidden">
         {/* Glow orb */}
         <div className="absolute top-0 right-1/4 w-80 h-80 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-[#651514]/20 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-4xl lg:max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
           {/* Breadcrumb */}
@@ -90,7 +91,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               Blog
             </Link>
             <ChevronRight size={12} className="text-slate-400" />
-            <span className="text-brand-gold font-medium truncate max-w-[200px] sm:max-w-[350px]">
+            <span className="text-[#F3B979] font-medium truncate max-w-[200px] sm:max-w-[350px]">
               {post.title}
             </span>
           </nav>
@@ -139,7 +140,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         <div className="flex items-center justify-between mb-6">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#062E29] hover:text-brand-gold transition-colors bg-white px-3.5 py-1.5 rounded-full shadow-sm border border-brand-border/60"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-emerald hover:text-brand-gold transition-colors bg-white px-3.5 py-1.5 rounded-full shadow-sm border border-brand-border/60"
           >
             <ArrowLeft size={14} /> Back to Articles
           </Link>
@@ -212,7 +213,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           </div>
           <Link
             href="/blog"
-            className="text-xs font-semibold text-[#062E29] hover:text-brand-gold flex items-center gap-1 transition-colors"
+            className="text-xs font-semibold text-brand-emerald hover:text-brand-gold flex items-center gap-1 transition-colors"
           >
             View All <ChevronRight size={14} />
           </Link>
@@ -232,7 +233,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute top-3 left-3">
-                      <span className="px-2.5 py-1 rounded-md bg-[#062E29]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide">
+                      <span className="px-2.5 py-1 rounded-md bg-[#1D184C]/90 backdrop-blur-md text-white text-[11px] font-semibold tracking-wide">
                         {related.category}
                       </span>
                     </div>
@@ -270,7 +271,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                     </span>
                   </div>
 
-                  <span className="text-xs font-semibold text-[#062E29] group-hover:underline flex items-center gap-1">
+                  <span className="text-xs font-semibold text-brand-emerald group-hover:underline flex items-center gap-1">
                     Read <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
                   </span>
                 </div>

@@ -9,61 +9,51 @@ const testimonials = [
     quote: "HumNikah helped me find a life partner who shares my values and respects my family. Alhamdulillah!",
     name: "Sara Farhan",
     location: "Lahore, Pakistan",
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200",
   },
   {
     quote: "Finding a compatible partner with mutual religious goals was so simple. Highly recommend HumNikah!",
     name: "Usman & Zainab",
     location: "Karachi, Pakistan",
-    avatar: "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=200",
   },
   {
     quote: "Alhamdulillah, we found each other here. The platform respects privacy, values, and security.",
     name: "Bilal & Amara",
     location: "Islamabad, Pakistan",
-    avatar: "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&q=80&w=200",
   },
   {
     quote: "Blessed to find my soulmate who is also a doctor. Truly a professional and secure platform!",
     name: "Dr. Ayesha",
     location: "Peshawar, Pakistan",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200",
   },
   {
     quote: "We got married last month. The verified profiles made it easy for our families to connect.",
     name: "Omer & Fatima",
     location: "Rawalpindi, Pakistan",
-    avatar: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=200",
   },
   {
     quote: "Very transparent and clean environment. Found a perfect match who matches my family's expectations.",
     name: "Yasmin Malik",
     location: "Faisalabad, Pakistan",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200",
   },
   {
     quote: "A wonderful platform that prioritizes Islamic values. We are so happy and grateful.",
     name: "Hamza & Sana",
     location: "Multan, Pakistan",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
   },
   {
     quote: "Highly recommend HumNikah. It was simple to filter matches based on religious and cultural values.",
     name: "Zehra & Ali",
     location: "Quetta, Pakistan",
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200",
   },
   {
     quote: "We are happily married now. The support and verification process was excellent and respectful!",
     name: "Farhan & Nida",
     location: "Gujranwala, Pakistan",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
   },
   {
     quote: "Alhamdulillah, a transparent matchmaking process. Best halal platform for seeking a spouse.",
     name: "Mariam & Bilal",
     location: "Sialkot, Pakistan",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200",
   },
 ];
 
@@ -115,13 +105,13 @@ export function SuccessStoriesAndProfilesSection() {
   ];
 
   return (
-    <section className="py-12 bg-brand-cream/30 border-t border-brand-border/40 overflow-hidden">
+    <section className="py-12 bg-brand-cream/30 border-t border-[#651514] overflow-hidden">
       <div className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
         <ScrollReveal variant="fade-up">
           <span className="text-xs font-semibold text-brand-gold uppercase tracking-widest">
             OUR SUCCESS STORIES
           </span>
-          <h2 className="text-3xl sm:text-5xl font-playfair font-bold text-brand-charcoal mt-3">
+          <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-brand-charcoal mt-3">
             Happy Hearts, Successful Nikahs
           </h2>
           <p className="text-brand-secondary text-sm max-w-xl mx-auto mt-3">
@@ -159,16 +149,14 @@ export function SuccessStoriesAndProfilesSection() {
                   </p>
                 </div>
                 <div className="flex items-center gap-3 mt-6 pt-4 border-t border-brand-border/60">
-                  <img
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    className="w-10 h-10 rounded-full object-cover border border-brand-gold"
-                  />
+                  <div className="w-9 h-9 rounded-full bg-[#1D184C]/10 border border-[#1D184C]/20 text-[#1D184C] font-bold text-xs flex items-center justify-center shrink-0">
+                    {testimonial.name.charAt(0)}
+                  </div>
                   <div className="min-w-0">
-                    <h4 className="text-[11px] font-bold text-brand-charcoal truncate">
+                    <h4 className="text-xs font-bold text-brand-charcoal truncate">
                       {testimonial.name}
                     </h4>
-                    <p className="text-[10px] text-brand-secondary truncate">
+                    <p className="text-[11px] text-brand-secondary truncate">
                       {testimonial.location}
                     </p>
                   </div>
