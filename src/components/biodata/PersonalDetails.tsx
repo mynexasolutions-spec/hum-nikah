@@ -4,7 +4,7 @@ import { BiodataFormValues } from '@/lib/validations';
 import { Input } from '../ui/Input';
 import { ModernSelect } from '../ui/ModernSelect';
 import { ModernDatePicker } from '../ui/ModernDatePicker';
-import { Users, HeartHandshake, User, MapPin, Globe, Compass } from 'lucide-react';
+import { Users, HeartHandshake, User } from 'lucide-react';
 
 interface Props {
   register: UseFormRegister<BiodataFormValues>;
@@ -19,17 +19,17 @@ export function PersonalDetails({ register, setValue, watch, errors }: Props) {
   const dobValue = watch('dateOfBirth') || '';
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       <div className="flex items-center gap-3 border-b border-slate-200/80 pb-3">
-        <div className="w-9 h-9 rounded-xl bg-brand-emerald/10 text-brand-emerald flex items-center justify-center font-bold text-sm border border-brand-emerald/20">
-          <User size={18} className="text-brand-gold" />
+        <div className="w-8 h-8 rounded-xl bg-brand-emerald/10 text-brand-emerald flex items-center justify-center font-bold text-sm border border-brand-emerald/20">
+          <User size={16} className="text-brand-gold" />
         </div>
-        <h3 className="text-lg sm:text-xl font-bold font-playfair text-brand-charcoal">
-          1. Personal Information
+        <h3 className="text-base sm:text-lg font-bold font-playfair text-brand-charcoal">
+          1. Personal Details
         </h3>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
         <Input 
           label="Full Name" 
           {...register('fullName')} 
@@ -39,7 +39,7 @@ export function PersonalDetails({ register, setValue, watch, errors }: Props) {
 
         <ModernSelect
           label="Gender"
-          icon={<Users size={18} />}
+          icon={<Users size={16} />}
           placeholder="Select Gender"
           value={genderValue}
           onChange={(val) => setValue('gender', val as any, { shouldValidate: true })}
@@ -60,7 +60,7 @@ export function PersonalDetails({ register, setValue, watch, errors }: Props) {
 
         <ModernSelect
           label="Marital Status"
-          icon={<HeartHandshake size={18} />}
+          icon={<HeartHandshake size={16} />}
           placeholder="Select Status"
           value={maritalStatusValue}
           onChange={(val) => setValue('maritalStatus', val as any, { shouldValidate: true })}
@@ -70,36 +70,21 @@ export function PersonalDetails({ register, setValue, watch, errors }: Props) {
             { value: 'Divorced', label: 'Divorced' },
             { value: 'Widowed', label: 'Widowed' },
             { value: 'Separated', label: 'Separated' },
-            { value: 'Annulled', label: 'Annulled' },
           ]}
         />
 
         <Input 
-          label="Height (e.g., 5'8&quot;)" 
+          label="Height (e.g. 5'8&quot;)" 
           {...register('height')} 
           error={errors.height?.message} 
-          placeholder="e.g., 5'8&quot;" 
+          placeholder="e.g. 5'8&quot;" 
         />
 
         <Input 
-          label="City" 
+          label="City / State" 
           {...register('city')} 
           error={errors.city?.message} 
-          placeholder="Current city" 
-        />
-
-        <Input 
-          label="State / Province" 
-          {...register('state')} 
-          error={errors.state?.message} 
-          placeholder="Current state" 
-        />
-
-        <Input 
-          label="Country" 
-          {...register('country')} 
-          error={errors.country?.message} 
-          placeholder="Current country" 
+          placeholder="e.g. Bangalore, Karnataka" 
         />
       </div>
     </div>

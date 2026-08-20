@@ -1,19 +1,30 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import { Database } from "@/types/database";
-import { Eye, Check, X, Search, Filter, Phone, Mail, Loader2, Calendar, MapPin, Briefcase, Camera } from "lucide-react";
-import { updateBiodataStatus, deleteBiodata } from "./actions";
+import { Eye, Check, X, Search, RotateCw, Phone, Mail, Loader2, Calendar, MapPin, Briefcase, Camera } from "lucide-react";
+import { updateBiodataStatus, deleteBiodata, fetchBiodatas } from "./actions";
 import { createPortal } from "react-dom";
 
 type BiodataRow = Database['public']['Tables']['Biodata']['Row'];
 
+function hasValue(val?: string | number | null): boolean {
+  if (val === undefined || val === null) return false;
+  if (typeof val === 'string') return val.trim().length > 0;
+  return true;
+}
+
 export default function BiodataList({ initialBiodatas }: { initialBiodatas: BiodataRow[] }) {
+  const router = useRouter();
   const [biodatas, setBiodatas] = useState(initialBiodatas);
   const [selectedBiodata, setSelectedBiodata] = useState<BiodataRow | null>(null);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const [loadingId, setLoadingId] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [isPending, startTransition] = useTransition();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -21,6 +32,24 @@ export default function BiodataList({ initialBiodatas }: { initialBiodatas: Biod
     setMounted(true);
   }, []);
   
+  // Refresh Handler
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    try {
+      const freshData = await fetchBiodatas();
+      if (freshData && Array.isArray(freshData)) {
+        setBiodatas(freshData);
+      }
+      startTransition(() => {
+        router.refresh();
+      });
+    } catch (err) {
+      console.error("Failed to refresh biodatas:", err);
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
+
   // Handlers
   const handleStatusUpdate = async (id: string, newStatus: 'PENDING' | 'APPROVED' | 'REJECTED') => {
     setLoadingId(id);
@@ -55,6 +84,18 @@ export default function BiodataList({ initialBiodatas }: { initialBiodatas: Biod
     });
   };
 
+  const filteredBiodatas = biodatas.filter(b => {
+    if (!searchQuery.trim()) return true;
+    const q = searchQuery.toLowerCase().trim();
+    return (
+      (b.fullName && b.fullName.toLowerCase().includes(q)) ||
+      (b.city && b.city.toLowerCase().includes(q)) ||
+      (b.profession && b.profession.toLowerCase().includes(q)) ||
+      (b.phone && b.phone.includes(q)) ||
+      (b.status && b.status.toLowerCase().includes(q))
+    );
+  });
+
   return (
     <div className="space-y-5 sm:space-y-8 pb-10">
       
@@ -69,12 +110,21 @@ export default function BiodataList({ initialBiodatas }: { initialBiodatas: Biod
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-3.5 h-3.5 sm:w-4 sm:h-4" />
             <input 
               type="text" 
-              placeholder="Search names..." 
+              placeholder="Search names, city, profession..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full sm:w-64 pl-9 pr-4 py-1.5 sm:py-2 text-xs sm:text-sm border border-brand-border/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-gold/50 bg-white"
             />
           </div>
-          <button className="p-1.5 sm:p-2 border border-brand-border/60 rounded-xl bg-white text-slate-600 hover:bg-slate-50 transition-colors shadow-sm">
-            <Filter size={16} className="sm:w-5 sm:h-5" />
+          <button 
+            type="button"
+            onClick={handleRefresh}
+            disabled={isRefreshing || isPending}
+            title="Refresh biodata list"
+            aria-label="Refresh biodata list"
+            className="p-1.5 sm:p-2 border border-brand-border/60 rounded-xl bg-white text-slate-600 hover:text-brand-charcoal hover:bg-slate-50 active:scale-95 transition-all shadow-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center cursor-pointer"
+          >
+            <RotateCw size={16} className={`sm:w-5 sm:h-5 transition-transform ${isRefreshing || isPending ? 'animate-spin text-brand-gold' : ''}`} />
           </button>
         </div>
       </div>
@@ -88,9 +138,17 @@ export default function BiodataList({ initialBiodatas }: { initialBiodatas: Biod
           <h3 className="text-lg font-bold text-brand-charcoal mb-1">No biodatas found</h3>
           <p className="text-sm text-slate-500">Wait for users to submit their biodata.</p>
         </div>
+      ) : filteredBiodatas.length === 0 ? (
+        <div className="bg-white rounded-3xl p-12 text-center border border-slate-100 shadow-sm">
+          <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Search className="text-slate-400 w-8 h-8" />
+          </div>
+          <h3 className="text-lg font-bold text-brand-charcoal mb-1">No matching results</h3>
+          <p className="text-sm text-slate-500">No biodatas match &quot;{searchQuery}&quot;.</p>
+        </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
-          {biodatas.map((biodata, index) => {
+          {filteredBiodatas.map((biodata, index) => {
             // Array of subtle modern border colors
             const borderColors = [
               'border-blue-200 hover:border-blue-300',
@@ -139,26 +197,34 @@ export default function BiodataList({ initialBiodatas }: { initialBiodatas: Biod
 
                   {/* Location, Profession & Contact */}
                   <div className="space-y-3 mt-2 px-1">
-                    <div className="flex items-center gap-3 text-slate-700">
-                      <div className="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
-                        <MapPin size={15} className="text-emerald-600" />
+                    {(hasValue(biodata.city) || hasValue(biodata.country)) && (
+                      <div className="flex items-center gap-3 text-slate-700">
+                        <div className="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
+                          <MapPin size={15} className="text-emerald-600" />
+                        </div>
+                        <span className="text-[13px] sm:text-sm font-medium truncate">
+                          {[biodata.city, biodata.country].filter(hasValue).join(', ')}
+                        </span>
                       </div>
-                      <span className="text-[13px] sm:text-sm font-medium truncate">{biodata.city}, {biodata.country}</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-slate-700">
-                      <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
-                        <Briefcase size={15} className="text-blue-600" />
+                    )}
+                    {hasValue(biodata.profession) && (
+                      <div className="flex items-center gap-3 text-slate-700">
+                        <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+                          <Briefcase size={15} className="text-blue-600" />
+                        </div>
+                        <span className="text-[13px] sm:text-sm font-medium truncate">{biodata.profession}</span>
                       </div>
-                      <span className="text-[13px] sm:text-sm font-medium truncate">{biodata.profession}</span>
-                    </div>
-                    <a 
-                      href={`tel:${biodata.phone}`} 
-                      onClick={(e) => e.stopPropagation()} 
-                      className="inline-flex items-center gap-2 mt-1 w-fit px-3 py-1.5 rounded-lg bg-emerald-50/50 hover:bg-emerald-100 border border-emerald-200 transition-colors text-[#0c704f] text-[13px] sm:text-sm font-bold shadow-sm"
-                    >
-                      <Phone size={14} className="shrink-0" strokeWidth={2.5} />
-                      {biodata.phone}
-                    </a>
+                    )}
+                    {hasValue(biodata.phone) && (
+                      <a 
+                        href={`tel:${biodata.phone}`} 
+                        onClick={(e) => e.stopPropagation()} 
+                        className="inline-flex items-center gap-2 mt-1 w-fit px-3 py-1.5 rounded-lg bg-emerald-50/50 hover:bg-emerald-100 border border-emerald-200 transition-colors text-[#0c704f] text-[13px] sm:text-sm font-bold shadow-sm"
+                      >
+                        <Phone size={14} className="shrink-0" strokeWidth={2.5} />
+                        {biodata.phone}
+                      </a>
+                    )}
                   </div>
                 </div>
 
@@ -249,190 +315,240 @@ export default function BiodataList({ initialBiodatas }: { initialBiodatas: Biod
             <div className="flex-grow overflow-y-auto p-4 sm:p-8 custom-scrollbar bg-white">
               
               {/* Overview Blocks */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8">
-                <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
-                  <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Age</span>
-                  <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.age} Years</span>
-                </div>
-                <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
-                  <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Height</span>
-                  <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.height}</span>
-                </div>
-                <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
-                  <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Marital Status</span>
-                  <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.maritalStatus}</span>
-                </div>
-                <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
-                  <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Location</span>
-                  <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal break-words leading-tight">{selectedBiodata.city}, {selectedBiodata.country}</span>
-                </div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8">
+                {hasValue(selectedBiodata.gender) && (
+                  <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
+                    <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Gender</span>
+                    <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.gender}</span>
+                  </div>
+                )}
+                {hasValue(selectedBiodata.age) && (
+                  <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
+                    <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Age</span>
+                    <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.age} Years</span>
+                  </div>
+                )}
+                {hasValue(selectedBiodata.height) && (
+                  <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
+                    <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Height</span>
+                    <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.height}</span>
+                  </div>
+                )}
+                {hasValue(selectedBiodata.maritalStatus) && (
+                  <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm">
+                    <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Marital Status</span>
+                    <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.maritalStatus}</span>
+                  </div>
+                )}
+                {(hasValue(selectedBiodata.city) || hasValue(selectedBiodata.country)) && (
+                  <div className="bg-slate-50 rounded-xl sm:rounded-2xl p-3 sm:p-4 border border-slate-100/80 shadow-sm col-span-2 sm:col-span-1">
+                    <span className="block text-[9px] sm:text-[10px] uppercase tracking-wider text-slate-400 font-bold mb-1">Location</span>
+                    <span className="block text-xs sm:text-sm font-semibold text-brand-charcoal break-words leading-tight">
+                      {[selectedBiodata.city, selectedBiodata.state, selectedBiodata.country].filter(hasValue).join(', ')}
+                    </span>
+                  </div>
+                )}
               </div>
 
               {/* Detailed Sections */}
               <div className="space-y-8 sm:space-y-10">
                 
                 {/* About & Religious */}
-                <div className="grid md:grid-cols-2 gap-8 sm:gap-10">
-                  <div className="space-y-4">
-                    <h4 className="text-xs sm:text-sm font-bold text-brand-charcoal uppercase tracking-wider border-b border-brand-border/60 pb-2">About Them</h4>
-                    <div className="space-y-3">
-                      <div>
-                        <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Introduction</span>
-                        <p className="text-xs sm:text-sm text-brand-charcoal leading-relaxed">{selectedBiodata.shortIntro}</p>
-                      </div>
-                      <div>
-                        <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Personality</span>
-                        <p className="text-xs sm:text-sm text-brand-charcoal leading-relaxed">{selectedBiodata.personality}</p>
-                      </div>
-                      <div>
-                        <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Interests</span>
-                        <p className="text-xs sm:text-sm text-brand-charcoal leading-relaxed">{selectedBiodata.interests}</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4">
-                    <h4 className="text-xs sm:text-sm font-bold text-brand-charcoal uppercase tracking-wider border-b border-brand-border/60 pb-2">Religious Practice</h4>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Sect</span>
-                        <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.sect}</p>
-                      </div>
-                      <div>
-                        <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Practice</span>
-                        <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.religiousPractice}</p>
-                      </div>
-                      <div>
-                        <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Prayer</span>
-                        <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.prayerPractice}</p>
-                      </div>
-                      {selectedBiodata.hijab && (
+                {(hasValue(selectedBiodata.shortIntro) ||
+                  (hasValue(selectedBiodata.religiousPractice) || hasValue(selectedBiodata.prayerPractice))) && (
+                  <div className="grid md:grid-cols-2 gap-8 sm:gap-10">
+                    {/* About Them */}
+                    {hasValue(selectedBiodata.shortIntro) && (
+                      <div className="space-y-4">
+                        <h4 className="text-xs sm:text-sm font-bold text-brand-charcoal uppercase tracking-wider border-b border-brand-border/60 pb-2">About & Background</h4>
                         <div>
-                          <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Hijab</span>
-                          <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.hijab}</p>
+                          <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Introduction</span>
+                          <p className="text-xs sm:text-sm text-brand-charcoal leading-relaxed whitespace-pre-line">{selectedBiodata.shortIntro}</p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Religious Practice */}
+                    {(hasValue(selectedBiodata.religiousPractice) || hasValue(selectedBiodata.prayerPractice)) && (
+                      <div className="space-y-4">
+                        <h4 className="text-xs sm:text-sm font-bold text-brand-charcoal uppercase tracking-wider border-b border-brand-border/60 pb-2">Religious Practice</h4>
+                        <div className="grid grid-cols-2 gap-4">
+                          {hasValue(selectedBiodata.religiousPractice) && (
+                            <div>
+                              <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Practice</span>
+                              <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.religiousPractice}</p>
+                            </div>
+                          )}
+                          {hasValue(selectedBiodata.prayerPractice) && (
+                            <div>
+                              <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Prayer</span>
+                              <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.prayerPractice}</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Education, Profession & Family */}
+                {((hasValue(selectedBiodata.highestEducation) || hasValue(selectedBiodata.profession) || hasValue(selectedBiodata.incomeRange)) ||
+                  (hasValue(selectedBiodata.familyType) || hasValue(selectedBiodata.familyLocation) || hasValue(selectedBiodata.fatherOccupation) || hasValue(selectedBiodata.motherOccupation) || hasValue(selectedBiodata.siblings))) && (
+                  <div className="grid md:grid-cols-2 gap-8 sm:gap-10">
+                    {/* Education & Career */}
+                    {(hasValue(selectedBiodata.highestEducation) || hasValue(selectedBiodata.profession) || hasValue(selectedBiodata.incomeRange)) && (
+                      <div className="space-y-4">
+                        <h4 className="text-xs sm:text-sm font-bold text-brand-charcoal uppercase tracking-wider border-b border-brand-border/60 pb-2">Education & Career</h4>
+                        <div className="grid grid-cols-2 gap-4">
+                          {hasValue(selectedBiodata.highestEducation) && (
+                            <div>
+                              <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Education</span>
+                              <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.highestEducation}</p>
+                            </div>
+                          )}
+                          {hasValue(selectedBiodata.profession) && (
+                            <div>
+                              <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Profession</span>
+                              <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.profession}</p>
+                            </div>
+                          )}
+                          {hasValue(selectedBiodata.incomeRange) && (
+                            <div className="col-span-2">
+                              <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Income Range</span>
+                              <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.incomeRange}</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Family Background */}
+                    {(hasValue(selectedBiodata.familyType) || hasValue(selectedBiodata.familyLocation) || hasValue(selectedBiodata.fatherOccupation) || hasValue(selectedBiodata.motherOccupation) || hasValue(selectedBiodata.siblings)) && (
+                      <div className="space-y-4">
+                        <h4 className="text-xs sm:text-sm font-bold text-brand-charcoal uppercase tracking-wider border-b border-brand-border/60 pb-2">Family Background</h4>
+                        <div className="grid grid-cols-2 gap-4">
+                          {hasValue(selectedBiodata.familyType) && (
+                            <div>
+                              <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Family Type</span>
+                              <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.familyType}</p>
+                            </div>
+                          )}
+                          {hasValue(selectedBiodata.familyLocation) && (
+                            <div>
+                              <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Location</span>
+                              <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.familyLocation}</p>
+                            </div>
+                          )}
+                          {hasValue(selectedBiodata.fatherOccupation) && (
+                            <div>
+                              <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Father</span>
+                              <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.fatherOccupation}</p>
+                            </div>
+                          )}
+                          {hasValue(selectedBiodata.motherOccupation) && (
+                            <div>
+                              <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Mother</span>
+                              <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.motherOccupation}</p>
+                            </div>
+                          )}
+                          {hasValue(selectedBiodata.siblings) && (
+                            <div>
+                              <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Siblings</span>
+                              <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.siblings}</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Partner Preferences */}
+                {(hasValue(selectedBiodata.prefAgeRange) || hasValue(selectedBiodata.prefLocation) || hasValue(selectedBiodata.prefEducation)) && (
+                  <div className="space-y-4">
+                    <h4 className="text-xs sm:text-sm font-bold text-brand-charcoal uppercase tracking-wider border-b border-brand-border/60 pb-2">Partner Preferences</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      {hasValue(selectedBiodata.prefAgeRange) && (
+                        <div>
+                          <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Preferred Age</span>
+                          <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.prefAgeRange}</p>
+                        </div>
+                      )}
+                      {hasValue(selectedBiodata.prefLocation) && (
+                        <div>
+                          <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Preferred Location</span>
+                          <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.prefLocation}</p>
+                        </div>
+                      )}
+                      {hasValue(selectedBiodata.prefEducation) && (
+                        <div>
+                          <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Education / Profession</span>
+                          <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.prefEducation}</p>
                         </div>
                       )}
                     </div>
                   </div>
-                </div>
-
-                {/* Education, Profession & Family */}
-                <div className="grid md:grid-cols-2 gap-8 sm:gap-10">
-                  <div className="space-y-4">
-                    <h4 className="text-xs sm:text-sm font-bold text-brand-charcoal uppercase tracking-wider border-b border-brand-border/60 pb-2">Education & Career</h4>
-                    <div className="space-y-3">
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Education</span>
-                          <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.highestEducation}</p>
-                        </div>
-                        <div>
-                          <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Field</span>
-                          <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.fieldOfStudy}</p>
-                        </div>
-                        <div>
-                          <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Profession</span>
-                          <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.profession}</p>
-                        </div>
-                        {selectedBiodata.company && (
-                          <div>
-                            <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Company</span>
-                            <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.company}</p>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-4">
-                    <h4 className="text-xs sm:text-sm font-bold text-brand-charcoal uppercase tracking-wider border-b border-brand-border/60 pb-2">Family Background</h4>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Family Type</span>
-                        <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.familyType}</p>
-                      </div>
-                      <div>
-                        <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Location</span>
-                        <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.familyLocation}</p>
-                      </div>
-                      <div>
-                        <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Father</span>
-                        <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.fatherOccupation}</p>
-                      </div>
-                      <div>
-                        <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Mother</span>
-                        <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.motherOccupation}</p>
-                      </div>
-                      <div>
-                        <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Siblings</span>
-                        <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.siblings}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Partner Preferences */}
-                <div className="space-y-4">
-                  <h4 className="text-xs sm:text-sm font-bold text-brand-charcoal uppercase tracking-wider border-b border-brand-border/60 pb-2">Partner Preferences</h4>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div>
-                      <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Age Range</span>
-                      <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.prefAgeRange}</p>
-                    </div>
-                    <div>
-                      <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Location</span>
-                      <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.prefLocation}</p>
-                    </div>
-                    <div>
-                      <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Education</span>
-                      <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.prefEducation}</p>
-                    </div>
-                    <div>
-                      <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Profession</span>
-                      <p className="text-xs sm:text-sm font-semibold text-brand-charcoal">{selectedBiodata.prefProfession}</p>
-                    </div>
-                  </div>
-                  {selectedBiodata.prefOther && (
-                    <div className="mt-3">
-                      <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Other Requirements</span>
-                      <p className="text-xs sm:text-sm text-brand-charcoal leading-relaxed">{selectedBiodata.prefOther}</p>
-                    </div>
-                  )}
-                </div>
+                )}
 
                 {/* Contact Info (Only visible in modal) */}
-                <div className="bg-brand-cream/30 border border-brand-gold/20 rounded-xl sm:rounded-2xl p-4 sm:p-5">
-                  <h4 className="text-[10px] sm:text-xs font-bold text-brand-gold uppercase tracking-wider mb-3">Contact Information</h4>
-                  <div className="flex flex-wrap gap-4 sm:gap-8">
-                    <a href={`tel:${selectedBiodata.phone}`} className="flex items-center gap-2 text-brand-charcoal hover:text-brand-gold transition-colors">
-                      <div className="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0">
-                        <Phone size={14} className="text-[#062E29]" />
-                      </div>
-                      <div>
-                        <span className="block text-[12px] text-slate-500">Phone</span>
-                        <span className="text-xs sm:text-sm font-semibold">{selectedBiodata.phone}</span>
-                      </div>
-                    </a>
-                    <a href={`https://wa.me/${selectedBiodata.whatsapp.replace(/\D/g,'')}`} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-brand-charcoal hover:text-brand-gold transition-colors">
-                      <div className="w-8 h-8 rounded-full bg-emerald-50 shadow-sm flex items-center justify-center shrink-0">
-                        <Phone size={14} className="text-emerald-600" />
-                      </div>
-                      <div>
-                        <span className="block text-[12px] text-slate-500">WhatsApp</span>
-                        <span className="text-xs sm:text-sm font-semibold">{selectedBiodata.whatsapp}</span>
-                      </div>
-                    </a>
-                    <a href={`mailto:${selectedBiodata.email}`} className="flex items-center gap-2 text-brand-charcoal hover:text-brand-gold transition-colors">
-                      <div className="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center shrink-0">
-                        <Mail size={14} className="text-[#062E29]" />
-                      </div>
-                      <div>
-                        <span className="block text-[12px] text-slate-500">Email</span>
-                        <span className="text-xs sm:text-sm font-semibold">{selectedBiodata.email}</span>
-                      </div>
-                    </a>
+                {(hasValue(selectedBiodata.phone) || hasValue(selectedBiodata.whatsapp) || hasValue(selectedBiodata.email) || hasValue(selectedBiodata.contactMethod)) && (
+                  <div className="bg-brand-cream/30 border border-brand-gold/20 rounded-xl sm:rounded-2xl p-4 sm:p-5">
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="text-[10px] sm:text-xs font-bold text-brand-gold uppercase tracking-wider">Contact Information</h4>
+                      {hasValue(selectedBiodata.contactMethod) && (
+                        <span className="text-[10px] font-semibold text-brand-charcoal bg-white/80 px-2.5 py-0.5 rounded-full border border-brand-gold/30">
+                          Prefers: {selectedBiodata.contactMethod}
+                        </span>
+                      )}
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+                      {hasValue(selectedBiodata.phone) && (
+                        <a 
+                          href={`tel:${selectedBiodata.phone}`} 
+                          className="group flex items-center gap-2.5 sm:gap-3 p-2 rounded-xl bg-white/70 hover:bg-white border border-brand-gold/20 hover:border-brand-gold/60 text-brand-charcoal hover:text-brand-gold transition-all duration-200 shadow-xs"
+                        >
+                          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-50 group-hover:bg-brand-cream/60 border border-slate-200/90 group-hover:border-brand-gold/50 shadow-xs flex items-center justify-center shrink-0 transition-colors">
+                            <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#062E29] group-hover:text-brand-gold transition-colors" />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <span className="block text-[11px] sm:text-[12px] text-slate-500 font-medium">Phone</span>
+                            <span className="text-xs sm:text-sm font-semibold truncate block">{selectedBiodata.phone}</span>
+                          </div>
+                        </a>
+                      )}
+                      {hasValue(selectedBiodata.whatsapp) && (
+                        <a 
+                          href={`https://wa.me/${selectedBiodata.whatsapp.replace(/\D/g,'')}`} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          className="group flex items-center gap-2.5 sm:gap-3 p-2 rounded-xl bg-white/70 hover:bg-white border border-emerald-200/70 hover:border-emerald-400 text-brand-charcoal hover:text-emerald-700 transition-all duration-200 shadow-xs"
+                        >
+                          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-emerald-50 group-hover:bg-emerald-100/70 border border-emerald-200 group-hover:border-emerald-400 shadow-xs flex items-center justify-center shrink-0 transition-colors">
+                            <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 transition-colors" />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <span className="block text-[11px] sm:text-[12px] text-slate-500 font-medium">WhatsApp</span>
+                            <span className="text-xs sm:text-sm font-semibold truncate block">{selectedBiodata.whatsapp}</span>
+                          </div>
+                        </a>
+                      )}
+                      {hasValue(selectedBiodata.email) && (
+                        <a 
+                          href={`mailto:${selectedBiodata.email}`} 
+                          className="group flex items-center gap-2.5 sm:gap-3 p-2 rounded-xl bg-white/70 hover:bg-white border border-brand-gold/20 hover:border-brand-gold/60 text-brand-charcoal hover:text-brand-gold transition-all duration-200 shadow-xs"
+                        >
+                          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-50 group-hover:bg-brand-cream/60 border border-slate-200/90 group-hover:border-brand-gold/50 shadow-xs flex items-center justify-center shrink-0 transition-colors">
+                            <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#062E29] group-hover:text-brand-gold transition-colors" />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <span className="block text-[11px] sm:text-[12px] text-slate-500 font-medium">Email</span>
+                            <span className="text-xs sm:text-sm font-semibold truncate block">{selectedBiodata.email}</span>
+                          </div>
+                        </a>
+                      )}
+                    </div>
                   </div>
-                </div>
+                )}
 
               </div>
             </div>

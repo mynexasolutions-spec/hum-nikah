@@ -1,5 +1,6 @@
 import React from "react";
 import { HeroSection } from "@/components/home/HeroSection";
+import { BismillahSection } from "@/components/home/BismillahSection";
 import { WhyChooseUsSection } from "@/components/home/WhyChooseUsSection";
 import { TrustVerificationSection } from "@/components/home/TrustVerificationSection";
 import { VerificationFaqSection } from "@/components/home/VerificationFaqSection";
@@ -17,6 +18,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-brand-cream overflow-hidden">
       <HeroSection />
+      <BismillahSection />
       <WhyChooseUsSection />
       <TrustVerificationSection />
       <VerificationFaqSection />

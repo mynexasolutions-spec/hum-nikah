@@ -95,14 +95,14 @@ export function BiodataForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-10">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 sm:space-y-8">
       {/* Header Badge inside card (Now hidden on success) */}
-      <div className="text-center mb-8 pb-6 border-b border-slate-100">
+      <div className="text-center mb-6 pb-4 border-b border-slate-100">
         <h2 className="text-xl sm:text-2xl font-playfair font-bold text-brand-charcoal">
           Biodata Registration Form
         </h2>
         <p className="text-xs sm:text-sm text-slate-500 font-light mt-1">
-          Complete all sections below to generate your official HumNikah profile.
+          Complete the essential details below to register your matrimonial profile.
         </p>
       </div>
 

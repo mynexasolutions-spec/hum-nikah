@@ -8,9 +8,9 @@ import Link from "next/link";
 const locationsData = [
   {
     id: "loc-1",
-    title: "[ Location 1 ]",
+    title: "[ Bangalore ]",
     address: "Splendid Plaza, No. 6. 2nd, Floor, Wheeler Road, Cox Town Bangalore 560005",
-    phone: "+91 9844321312",
+    phone: "+91 90190 82205",
     email: "CONNECT@HUMNIKAH.COM",
     timing: "Mon - Sat: 10:00 AM - 7:00 PM",
   },
@@ -18,7 +18,7 @@ const locationsData = [
     id: "loc-2",
     title: "[ Location 2 ]",
     address: "[ Location 2 Address Line, Street Name, City, Pincode ]",
-    phone: "+91 9019082205",
+    phone: "+91 90190 82205",
     email: "SUPPORT@HUMNIKAH.COM",
     timing: "Mon - Sat: 10:00 AM - 6:30 PM",
   },
@@ -26,7 +26,7 @@ const locationsData = [
     id: "loc-3",
     title: "[ Location 3 ]",
     address: "[ Location 3 Address Line, Area / Region, City Name ]",
-    phone: "+91 9844321312",
+    phone: "+91 90190 82205",
     email: "INFO@HUMNIKAH.COM",
     timing: "Mon - Sat: 10:30 AM - 7:00 PM",
   },
@@ -34,7 +34,7 @@ const locationsData = [
     id: "loc-4",
     title: "[ Location 4 ]",
     address: "[ Location 4 Address Line, Country / Region Name ]",
-    phone: "+91 9019082205",
+    phone: "+91 90190 82205",
     email: "GLOBAL@HUMNIKAH.COM",
     timing: "Mon - Sat: 10:00 AM - 6:00 PM",
   }
@@ -42,7 +42,7 @@ const locationsData = [
 
 export function LocationsSection() {
   return (
-    <section className="py-14 sm:py-20 bg-white relative overflow-hidden border-t border-brand-border/40">
+    <section id="locations" className="scroll-mt-24 py-12 sm:py-14 bg-white relative overflow-hidden border-t border-brand-border/40">
       
       {/* Background Decorative Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-brand-gold/10 blur-[160px] rounded-full pointer-events-none" />

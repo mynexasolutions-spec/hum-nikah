@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export function SocialInitiativeSection() {
   return (
-    <section className="py-14 sm:py-20 bg-gradient-to-b from-white via-brand-cream/50 to-white relative overflow-hidden border-t border-brand-border/50">
+    <section id="social-initiatives" className="scroll-mt-24 py-14 sm:py-20 bg-gradient-to-b from-white via-brand-cream/50 to-white relative overflow-hidden border-t border-brand-border/50">
       
       {/* Decorative Glows */}
       <div className="absolute top-1/3 left-0 w-96 h-96 bg-brand-gold/10 blur-[140px] rounded-full pointer-events-none" />

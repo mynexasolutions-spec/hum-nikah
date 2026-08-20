@@ -96,7 +96,7 @@ export function ValuesBlogGallerySection() {
                       <img
                         src={post.image}
                         alt={post.title}
-                        className="w-16 h-16 rounded-lg object-cover shrink-0 group-hover:scale-105 transition-transform duration-300"
+                        className="w-16 h-16 rounded-lg object-cover object-top shrink-0 group-hover:scale-105 transition-transform duration-300"
                       />
                       <div>
                         <h4 className="text-xs sm:text-sm font-bold text-brand-charcoal group-hover:text-brand-emerald line-clamp-2 leading-snug transition-colors">
@@ -138,17 +138,17 @@ export function ValuesBlogGallerySection() {
                 </div>
 
                 {/* 6 Grid Photos */}
-                <div className="grid grid-cols-3 gap-2.5">
+                <div className="grid grid-cols-3 gap-2 sm:gap-3">
                   {galleryPhotos.map((photo, i) => (
                     <motion.div
                       key={i}
-                      whileHover={{ scale: 1.05 }}
-                      className="aspect-square rounded-lg overflow-hidden bg-brand-beige cursor-pointer"
+                      whileHover={{ scale: 1.03 }}
+                      className="aspect-[1/1] sm:aspect-[4/5] rounded-xl overflow-hidden bg-brand-beige border border-brand-border/40 shadow-2xs cursor-pointer group"
                     >
                       <img
                         src={photo}
                         alt={`Gallery thumbnail ${i + 1}`}
-                        className="w-full h-full object-cover hover:scale-115 transition-transform duration-500"
+                        className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500"
                       />
                     </motion.div>
                   ))}

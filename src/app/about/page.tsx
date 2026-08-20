@@ -181,11 +181,11 @@ export default function AboutPage() {
       {/* ---------------------------------------------------- */}
       {/* 2. TABS NAVIGATION & CONTENT                         */}
       {/* ---------------------------------------------------- */}
-      <section className="py-10 lg:py-16 bg-white relative min-h-[600px]">
+      <section id="our-mission" className="scroll-mt-24 py-8 lg:py-14 bg-white relative min-h-[600px]">
         <div className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Tab Navigation */}
-          <div className="flex justify-start sm:justify-center mb-12 overflow-x-auto no-scrollbar py-2 -mx-4 px-4 sm:mx-0 sm:px-0" id="our-purpose">
+          <div className="flex justify-start sm:justify-center mb-10 overflow-x-auto no-scrollbar py-2 -mx-4 px-4 sm:mx-0 sm:px-0" id="our-purpose">
             <div className="inline-flex bg-white/70 backdrop-blur-md rounded-full p-2 border border-brand-border shadow-md min-w-max">
               {['mission', 'reach', 'values'].map(tab => (
                 <button
@@ -340,20 +340,107 @@ export default function AboutPage() {
 
         </div>
       </section>
+
       {/* ---------------------------------------------------- */}
-      {/* 5. CHARITY & DIFFERENCE ABLED SOCIAL INITIATIVE     */}
+      {/* 3. WHY CHOOSE HUMNIKAH (TRUST & VERIFICATION)        */}
+      {/* ---------------------------------------------------- */}
+      <section id="why-choose-us" className="scroll-mt-24 py-12 sm:py-14 bg-brand-cream relative overflow-hidden border-t border-brand-border/60">
+        <div className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-gold/15 border border-brand-gold/40 text-brand-gold text-xs font-bold uppercase tracking-widest shadow-xs">
+              <ShieldCheck size={16} className="text-brand-gold animate-pulse" />
+              <span>THE HUMNIKAH DIFFERENCE</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-playfair font-bold text-brand-charcoal leading-tight">
+              Why Families Trust <span className="text-brand-emerald">HumNikah</span>
+            </h2>
+
+            <p className="text-brand-secondary text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+              A sacred union deserves sincere care. We provide a completely safe, Shariah-compliant matrimonial ecosystem backed by human matchmakers.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-white rounded-3xl p-7 border border-brand-border/80 shadow-sm hover:shadow-xl hover:border-brand-emerald/40 transition-all duration-300 flex flex-col justify-between group">
+              <div>
+                <div className="w-14 h-14 rounded-2xl bg-brand-light-cream text-brand-emerald flex items-center justify-center mb-5 group-hover:bg-brand-emerald group-hover:text-white transition-colors">
+                  <ShieldCheck size={28} />
+                </div>
+                <h3 className="text-xl font-playfair font-bold text-brand-charcoal mb-2">100% Verified Profiles</h3>
+                <p className="text-xs sm:text-sm text-brand-secondary leading-relaxed">
+                  Every biodata undergoes mandatory government ID and phone screening before profile activation to eliminate fake profiles.
+                </p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-brand-border/50 text-[11px] font-bold text-brand-emerald uppercase tracking-wider">
+                Zero Compromise Security
+              </div>
+            </div>
+
+            <div className="bg-white rounded-3xl p-7 border border-brand-border/80 shadow-sm hover:shadow-xl hover:border-brand-emerald/40 transition-all duration-300 flex flex-col justify-between group">
+              <div>
+                <div className="w-14 h-14 rounded-2xl bg-brand-light-cream text-brand-emerald flex items-center justify-center mb-5 group-hover:bg-brand-emerald group-hover:text-white transition-colors">
+                  <Lock size={28} />
+                </div>
+                <h3 className="text-xl font-playfair font-bold text-brand-charcoal mb-2">Complete Privacy &amp; Modesty</h3>
+                <p className="text-xs sm:text-sm text-brand-secondary leading-relaxed">
+                  Strict privacy controls for photos and contact info. Your details are never made publicly searchable without permission.
+                </p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-brand-border/50 text-[11px] font-bold text-brand-emerald uppercase tracking-wider">
+                Family &amp; Purdah Friendly
+              </div>
+            </div>
+
+            <div className="bg-white rounded-3xl p-7 border border-brand-border/80 shadow-sm hover:shadow-xl hover:border-brand-emerald/40 transition-all duration-300 flex flex-col justify-between group">
+              <div>
+                <div className="w-14 h-14 rounded-2xl bg-brand-light-cream text-brand-emerald flex items-center justify-center mb-5 group-hover:bg-brand-emerald group-hover:text-white transition-colors">
+                  <Headphones size={28} />
+                </div>
+                <h3 className="text-xl font-playfair font-bold text-brand-charcoal mb-2">Senior Matchmakers</h3>
+                <p className="text-xs sm:text-sm text-brand-secondary leading-relaxed">
+                  Experienced relationship managers assist families with shortlisting, coordinating introductions, and discreet background checks.
+                </p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-brand-border/50 text-[11px] font-bold text-brand-emerald uppercase tracking-wider">
+                Personalized Human Care
+              </div>
+            </div>
+
+            <div className="bg-white rounded-3xl p-7 border border-brand-border/80 shadow-sm hover:shadow-xl hover:border-brand-emerald/40 transition-all duration-300 flex flex-col justify-between group">
+              <div>
+                <div className="w-14 h-14 rounded-2xl bg-brand-light-cream text-brand-emerald flex items-center justify-center mb-5 group-hover:bg-brand-emerald group-hover:text-white transition-colors">
+                  <HeartHandshake size={28} />
+                </div>
+                <h3 className="text-xl font-playfair font-bold text-brand-charcoal mb-2">Shariah Principles</h3>
+                <p className="text-xs sm:text-sm text-brand-secondary leading-relaxed">
+                  Operated with genuine Islamic ethos, treating marriage as a sacred covenant and encouraging respectful wali and family involvement.
+                </p>
+              </div>
+              <div className="mt-6 pt-4 border-t border-brand-border/50 text-[11px] font-bold text-brand-emerald uppercase tracking-wider">
+                Guided by Islamic Values
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ---------------------------------------------------- */}
+      {/* 4. CHARITY & DIFFERENCE ABLED SOCIAL INITIATIVE     */}
       {/* ---------------------------------------------------- */}
       <SocialInitiativeSection />
 
       {/* ---------------------------------------------------- */}
-      {/* 6. MULTIPLE LOCATIONS & OFFICES                      */}
+      {/* 5. MULTIPLE LOCATIONS & OFFICES                      */}
       {/* ---------------------------------------------------- */}
       <LocationsSection />
 
       {/* ---------------------------------------------------- */}
       {/* 6. READY TO START YOUR JOURNEY? (CTA BANNER)         */}
       {/* ---------------------------------------------------- */}
-      <section className="py-6 sm:py-14 bg-brand-cream overflow-hidden">
+      <section className="py-6 sm:py-12 bg-brand-cream overflow-hidden">
         <div className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative rounded-2xl sm:rounded-3xl bg-[#1D184C] text-white overflow-hidden shadow-2xl border border-[#C58D5F]/30 min-h-[340px] sm:min-h-[380px] lg:min-h-[400px] flex items-center">
             

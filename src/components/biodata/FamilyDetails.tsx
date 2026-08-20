@@ -16,17 +16,17 @@ export function FamilyDetails({ register, setValue, watch, errors }: Props) {
   const familyTypeValue = watch('familyType') || '';
 
   return (
-    <div className="space-y-6 pt-4 border-t border-slate-200">
+    <div className="space-y-5 pt-4 border-t border-slate-200">
       <div className="flex items-center gap-3 border-b border-slate-200/80 pb-3">
-        <div className="w-9 h-9 rounded-xl bg-brand-emerald/10 text-brand-emerald flex items-center justify-center font-bold text-sm border border-brand-emerald/20">
-          <Home size={18} className="text-brand-gold" />
+        <div className="w-8 h-8 rounded-xl bg-brand-emerald/10 text-brand-emerald flex items-center justify-center font-bold text-sm border border-brand-emerald/20">
+          <Home size={16} className="text-brand-gold" />
         </div>
-        <h3 className="text-lg sm:text-xl font-bold font-playfair text-brand-charcoal">
+        <h3 className="text-base sm:text-lg font-bold font-playfair text-brand-charcoal">
           3. Family Information
         </h3>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
         <Input 
           label="Father's Occupation" 
           {...register('fatherOccupation')} 
@@ -40,17 +40,17 @@ export function FamilyDetails({ register, setValue, watch, errors }: Props) {
           error={errors.motherOccupation?.message} 
           placeholder="e.g., Homemaker / Teacher" 
         />
-        
+
         <Input 
           label="Number of Siblings" 
           {...register('siblings')} 
           error={errors.siblings?.message} 
           placeholder="e.g., 2 Brothers, 1 Sister" 
         />
-        
+
         <ModernSelect
           label="Family Type"
-          icon={<Users size={18} />}
+          icon={<Users size={16} />}
           placeholder="Select Family Type"
           value={familyTypeValue}
           onChange={(val) => setValue('familyType', val as any, { shouldValidate: true })}
@@ -61,12 +61,14 @@ export function FamilyDetails({ register, setValue, watch, errors }: Props) {
           ]}
         />
 
-        <Input 
-          label="Family Location (City/Country)" 
-          {...register('familyLocation')} 
-          error={errors.familyLocation?.message} 
-          placeholder="e.g., Karachi, Pakistan" 
-        />
+        <div className="md:col-span-2">
+          <Input 
+            label="Family Location (City/Country)" 
+            {...register('familyLocation')} 
+            error={errors.familyLocation?.message} 
+            placeholder="e.g., Bangalore, India" 
+          />
+        </div>
       </div>
     </div>
   );

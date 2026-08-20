@@ -13,8 +13,8 @@ const stats = [
   },
   {
     icon: Heart,
-    value: "12,000+",
-    label: "Successful Matches",
+    value: "Multiple",
+    label: "Successful Marriages",
   },
   {
     icon: ShieldCheck,

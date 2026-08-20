@@ -68,6 +68,26 @@ export function HeroSection() {
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-[#1D184C] via-[#2A1636] to-[#651514] text-white py-10 lg:py-16 border-b border-brand-gold/30">
+      
+      {/* Semi-Transparent Hero Background Dynamic Image Backdrop (Synchronized with Right Slider) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={HERO_SLIDER_IMAGES[currentImageIndex]}
+            src={HERO_SLIDER_IMAGES[currentImageIndex]}
+            alt=""
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 0.45, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.98 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="w-full h-full object-cover object-center"
+          />
+        </AnimatePresence>
+        {/* Soft atmospheric gradient tint */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1D184C]/85 via-[#1D184C]/50 to-[#651514]/65" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/50" />
+      </div>
+
       {/* Background Decorative Ambient Circles */}
       <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-brand-gold/20 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-[#651514]/40 rounded-full blur-[140px] pointer-events-none" />
@@ -96,9 +116,9 @@ export function HeroSection() {
               variants={itemVariants}
               className="text-4xl sm:text-5xl lg:text-6xl font-playfair font-bold text-white leading-tight"
             >
-              Where Faith <br className="hidden sm:inline" />
-              Meets <span className="text-brand-gold italic relative inline-block">
-                Forever
+              Matrimonial Site  <br className="hidden sm:inline" />
+              in <span className="text-brand-gold italic relative inline-block">
+                Bangalore
                 <motion.span
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
@@ -139,7 +159,7 @@ export function HeroSection() {
                 className="w-full sm:w-auto"
               >
                 <Link
-                  href="/#explore-matches"
+                  href="/#submit-biodata"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 sm:gap-2.5 px-4 py-3 sm:px-7 sm:py-3.5 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-medium text-sm sm:text-base rounded-xl transition-all shadow-xs"
                 >
                   <span>Find Your Match</span>
@@ -203,7 +223,7 @@ export function HeroSection() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.98 }}
                     transition={{ duration: 0.8, ease: "easeInOut" }}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                   />
                 </AnimatePresence>
 
@@ -235,9 +255,9 @@ export function HeroSection() {
                   ease: "easeInOut",
                 }}
                 whileHover={{ scale: 1.05 }}
-                className="absolute bottom-4 sm:-bottom-6 left-0 right-0 mx-auto w-[92%] sm:w-[280px] min-w-[260px] max-w-[340px] bg-white/95 backdrop-blur-sm p-4 sm:p-5 rounded-2xl shadow-xl border border-brand-gold/40 flex items-center justify-center gap-4 cursor-pointer z-10"
+                className="absolute bottom-4 sm:-bottom-6 left-0 right-0 mx-auto w-[90%] sm:w-auto min-w-[250px] max-w-[330px] bg-white/95 backdrop-blur-sm px-4 py-3 sm:px-5 sm:py-3.5 rounded-2xl shadow-xl border border-brand-gold/40 flex items-center justify-center gap-3.5 cursor-pointer z-10"
               >
-                <div className="flex -space-x-2.5 overflow-hidden">
+                <div className="flex -space-x-2.5 overflow-hidden shrink-0">
                   <img
                     className="inline-block h-9 w-9 rounded-full ring-2 ring-white object-cover"
                     src="/images/profiles/3.png"
@@ -249,9 +269,13 @@ export function HeroSection() {
                     alt="User avatar"
                   />
                 </div>
-                <div>
-                  <div className="text-base font-bold text-brand-charcoal leading-none">25,000+</div>
-                  <div className="text-xs text-brand-secondary font-medium mt-0.5">Successful Matches</div>
+                <div className="text-left">
+                  <div className="text-base sm:text-lg font-bold text-brand-charcoal leading-none">
+                    25,000+
+                  </div>
+                  <div className="text-xs text-brand-secondary font-medium mt-0.5">
+                    Successful Matches
+                  </div>
                 </div>
               </motion.div>
 

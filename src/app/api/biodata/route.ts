@@ -9,7 +9,7 @@ export async function POST(request: Request) {
     // Validate request body
     const validatedData = biodataSchema.parse(body);
     
-    // Save to database
+    // Save to database with safe fallbacks for non-blocking insert
     const { data: newBiodata, error } = await supabase.from('Biodata').insert({
         fullName: validatedData.fullName,
         gender: validatedData.gender,
@@ -18,42 +18,34 @@ export async function POST(request: Request) {
         maritalStatus: validatedData.maritalStatus,
         height: validatedData.height,
         city: validatedData.city,
-        state: validatedData.state,
-        country: validatedData.country,
+        state: validatedData.state || '',
+        country: validatedData.country || 'India',
         
         highestEducation: validatedData.highestEducation,
-        fieldOfStudy: validatedData.fieldOfStudy,
         profession: validatedData.profession,
-        company: validatedData.company,
-        incomeRange: validatedData.incomeRange,
+        incomeRange: validatedData.incomeRange || '',
         
         fatherOccupation: validatedData.fatherOccupation,
-        motherOccupation: validatedData.motherOccupation,
-        siblings: validatedData.siblings,
-        familyType: validatedData.familyType,
+        motherOccupation: validatedData.motherOccupation || '',
+        siblings: validatedData.siblings || '',
+        familyType: validatedData.familyType || 'Nuclear',
         familyLocation: validatedData.familyLocation,
         
-        religiousPractice: validatedData.religiousPractice,
-        sect: validatedData.sect,
-        prayerPractice: validatedData.prayerPractice,
-        hijab: validatedData.hijab,
+        religiousPractice: validatedData.religiousPractice || 'Practicing',
+        prayerPractice: validatedData.prayerPractice || 'Always Pray (5 Times Daily)',
         
         shortIntro: validatedData.shortIntro,
-        personality: validatedData.personality,
-        interests: validatedData.interests,
         
         prefAgeRange: validatedData.prefAgeRange,
         prefLocation: validatedData.prefLocation,
         prefEducation: validatedData.prefEducation,
-        prefProfession: validatedData.prefProfession,
-        prefOther: validatedData.prefOther,
         
         phone: validatedData.phone,
-        whatsapp: validatedData.whatsapp,
+        whatsapp: validatedData.whatsapp || validatedData.phone,
         email: validatedData.email,
-        contactMethod: validatedData.contactMethod,
+        contactMethod: validatedData.contactMethod || 'WhatsApp',
         
-        profileImageUrl: validatedData.profileImageUrl,
+        profileImageUrl: validatedData.profileImageUrl || '',
         status: 'PENDING',
     }).select().single();
 
@@ -71,7 +63,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, error: 'Validation failed', details: error.errors }, { status: 400 });
     }
     
-    return NextResponse.json({ success: false, error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ success: false, error: error.message || 'Internal Server Error' }, { status: 500 });
   }
 }
 

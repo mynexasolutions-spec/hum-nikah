@@ -10,17 +10,22 @@ export function Footer() {
           
           {/* Column 1: Brand & Logo (Header Matching Logo) */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-1 group inline-flex">
+            <Link href="/" className="flex items-center gap-2 group inline-flex">
               <div className="flex-shrink-0 rounded-full">
                 <img
                   src="/images/HN-logo.webp"
                   alt="HumNikah Logo"
-                  className="w-16 h-16 object-contain rounded-full"
+                  className="w-14 h-14 sm:w-18 sm:h-18 object-contain rounded-full"
                 />
               </div>
-              <span className="text-1xl sm:text-2xl font-playfair font-bold text-white leading-none transition-colors group-hover:text-brand-gold ml-2">
-                HumNikah
-              </span>
+              <div className="flex flex-col justify-center -ml-1 sm:-ml-1.5">
+                <span className="text-2xl sm:text-3xl font-playfair font-extrabold text-white leading-none transition-colors group-hover:text-brand-gold tracking-tight">
+                  HumNikah
+                </span>
+                <span className="text-[9px] sm:text-[10.5px] font-bold text-brand-gold uppercase tracking-[0.16em] leading-none mt-1 sm:mt-1.5 transition-colors">
+                  Love with Barakah
+                </span>
+              </div>
             </Link>
 
             <p className="text-gray-300 text-xs sm:text-sm leading-relaxed max-w-sm font-light">
@@ -48,7 +53,7 @@ export function Footer() {
 
                 {/* 2. Call */}
                 <a
-                  href="tel:+919844321312"
+                  href="tel:+919019082205"
                   aria-label="Call Us"
                   className="w-10 h-10 rounded-full bg-[#1D184C] hover:bg-[#C58D5F] text-white flex items-center justify-center transition-all duration-300 hover:scale-110 border border-white/20 shadow-sm cursor-pointer group"
                 >
@@ -162,7 +167,7 @@ export function Footer() {
               <li className="flex items-center gap-2.5">
                 <Phone size={16} className="text-brand-gold shrink-0" />
                 <span className="text-gray-300 text-xs sm:text-sm font-light">
-                  +91 9844321312
+                  +91 90190 82205
                 </span>
               </li>
               <li className="flex items-center gap-2.5">
@@ -187,18 +192,12 @@ export function Footer() {
                 Walk-in family consultation &amp; physical verification centers.
               </p>
             </div>
-            <Link
-              href="/about"
-              className="text-xs text-brand-gold hover:underline font-semibold"
-            >
-              View All Locations &rarr;
-            </Link>
           </div>
 
           {/* Locations Grid Pill Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
             <div className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors">
-              <div className="text-brand-gold font-bold mb-1">[ Location 1 - Bangalore HQ ]</div>
+              <div className="text-brand-gold font-bold mb-1">| Bangalore |</div>
               <div className="text-gray-300 font-light text-[11px] leading-relaxed">
                 Splendid Plaza, Wheeler Road, Cox Town, Bangalore 560005
               </div>

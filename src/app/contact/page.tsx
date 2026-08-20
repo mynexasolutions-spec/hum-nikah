@@ -73,12 +73,23 @@ export default function ContactPage() {
                   <h3 className="text-sm sm:text-base font-bold font-playfair text-brand-charcoal">
                     Phone &amp; WhatsApp
                   </h3>
-                  <p className="text-xs sm:text-sm text-brand-secondary font-medium mt-0.5">
-                    Call: +91 9844321312
-                  </p>
-                  <p className="text-xs sm:text-sm text-brand-secondary font-medium mt-0.5">
-                    WA: +91 9019082205
-                  </p>
+                  <div className="text-xs sm:text-sm text-brand-secondary font-medium mt-0.5 flex flex-wrap items-center gap-2">
+                    <a 
+                      href="tel:+919019082205" 
+                      className="hover:text-brand-gold hover:underline transition-colors"
+                    >
+                      Call: +91 90190 82205
+                    </a>
+                    <span className="text-slate-300">/</span>
+                    <a 
+                      href="https://wa.me/919019082205" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-emerald-700 hover:text-emerald-800 hover:underline font-semibold transition-colors"
+                    >
+                      WA: +91 90190 82205
+                    </a>
+                  </div>
                   <p className="text-[11px] text-brand-secondary/70 mt-1 flex items-center gap-1 font-light">
                     <Clock size={12} className="text-brand-gold" /> Mon-Sat from
                     9am to 6pm IST
@@ -95,9 +106,12 @@ export default function ContactPage() {
                   <h3 className="text-sm sm:text-base font-bold font-playfair text-brand-charcoal">
                     Email Support
                   </h3>
-                  <p className="text-xs sm:text-sm text-brand-secondary font-medium mt-0.5">
+                  <a 
+                    href="mailto:connect@humnikah.com" 
+                    className="text-xs sm:text-sm text-brand-secondary hover:text-brand-gold hover:underline font-medium mt-0.5 inline-block transition-colors"
+                  >
                     CONNECT@HUMNIKAH.COM
-                  </p>
+                  </a>
                 </div>
               </div>
 
@@ -111,11 +125,11 @@ export default function ContactPage() {
                     Main Office
                   </h3>
                   <p className="text-xs sm:text-sm text-brand-secondary font-light mt-0.5 leading-relaxed">
-                    SPLENDID PLAZA, NO. 6. 2ND, FLOOR,
+                    Splendid Plaza, No. 6. 2nd, Floor
                     <br />
-                    WHEELER ROAD, COX TOWN
+                    Wheeler Road, Cox Town
                     <br />
-                    BANGALORE 560005
+                    Bangalore 560005
                   </p>
                 </div>
               </div>

@@ -33,8 +33,8 @@ export default function SubmitBiodataPage() {
       </section>
 
       {/* Main Content Section - Floating Luxury Card */}
-      <section className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12">
-        <div className="max-w-5xl mx-auto bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-10 md:p-12 shadow-[0_20px_60px_rgba(29,24,76,0.08)] border border-brand-gold/20 hover:border-brand-gold/40 transition-all duration-300">
+      <section className="max-w-wrap mx-auto px-3 sm:px-6 lg:px-8 pt-6 sm:pt-12">
+        <div className="max-w-5xl mx-auto bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 md:p-12 shadow-[0_20px_60px_rgba(29,24,76,0.08)] border border-brand-gold/20 hover:border-brand-gold/40 transition-all duration-300">
           
           {/* Form */}
           <BiodataForm />

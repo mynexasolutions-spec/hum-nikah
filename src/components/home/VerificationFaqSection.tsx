@@ -109,7 +109,7 @@ export function VerificationFaqSection() {
               <Sparkles size={14} /> Have custom verification questions?
             </span>
             <a
-              href="tel:+923000000000"
+              href="tel:+919019082205"
               className="inline-flex items-center gap-1.5 text-white font-bold hover:text-brand-gold transition-colors"
             >
               <PhoneCall size={14} className="text-brand-gold" />

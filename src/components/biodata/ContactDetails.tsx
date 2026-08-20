@@ -27,29 +27,22 @@ export function ContactDetails({ register, setValue, watch, errors, onImageSelec
   };
 
   return (
-    <div className="space-y-6 pt-4 border-t border-slate-200">
+    <div className="space-y-5 pt-4 border-t border-slate-200">
       <div className="flex items-center gap-3 border-b border-slate-200/80 pb-3">
-        <div className="w-9 h-9 rounded-xl bg-brand-emerald/10 text-brand-emerald flex items-center justify-center font-bold text-sm border border-brand-emerald/20">
-          <Phone size={18} className="text-brand-gold" />
+        <div className="w-8 h-8 rounded-xl bg-brand-emerald/10 text-brand-emerald flex items-center justify-center font-bold text-sm border border-brand-emerald/20">
+          <Phone size={16} className="text-brand-gold" />
         </div>
-        <h3 className="text-lg sm:text-xl font-bold font-playfair text-brand-charcoal">
-          6. Contact Information
+        <h3 className="text-base sm:text-lg font-bold font-playfair text-brand-charcoal">
+          6. Contact &amp; Photo
         </h3>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
         <Input 
-          label="Phone Number" 
+          label="Phone / Mobile Number" 
           {...register('phone')} 
           error={errors.phone?.message} 
-          placeholder="+1 (234) 567-8900" 
-        />
-        
-        <Input 
-          label="WhatsApp Number" 
-          {...register('whatsapp')} 
-          error={errors.whatsapp?.message} 
-          placeholder="+1 (234) 567-8900" 
+          placeholder="+91 98765 43210" 
         />
         
         <Input 
@@ -57,12 +50,12 @@ export function ContactDetails({ register, setValue, watch, errors, onImageSelec
           label="Email Address" 
           {...register('email')} 
           error={errors.email?.message} 
-          placeholder="you@example.com" 
+          placeholder="yourname@gmail.com" 
         />
-        
+
         <ModernSelect
           label="Preferred Contact Method"
-          icon={<Phone size={18} />}
+          icon={<Phone size={16} />}
           placeholder="Select Method"
           value={contactMethodValue}
           onChange={(val) => setValue('contactMethod', val as any, { shouldValidate: true })}
@@ -70,13 +63,12 @@ export function ContactDetails({ register, setValue, watch, errors, onImageSelec
           options={[
             { value: 'WhatsApp', label: 'WhatsApp' },
             { value: 'Phone Call', label: 'Phone Call' },
-            { value: 'Email', label: 'Email' },
           ]}
         />
       </div>
       
-      {/* Profile Photo Upload Box - Compact Modern */}
-      <div className="mt-4 pt-4 border-t border-slate-200">
+      {/* Profile Photo Upload Box */}
+      <div className="pt-2">
         <label className="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5">
           Profile Photo (Optional)
         </label>
@@ -99,17 +91,17 @@ export function ContactDetails({ register, setValue, watch, errors, onImageSelec
             </div>
             <div className="truncate">
               <p className="text-xs sm:text-sm font-semibold text-brand-charcoal truncate">
-                {selectedFileName ? selectedFileName : "Choose a profile photo"}
+                {selectedFileName ? selectedFileName : "Choose photo (Optional)"}
               </p>
               <p className="text-[11px] text-slate-400 font-light">
-                {selectedFileName ? "Click to change photo" : "PNG, JPG, WEBP up to 5MB"}
+                {selectedFileName ? "Click to replace photo" : "PNG, JPG, WEBP"}
               </p>
             </div>
           </div>
 
           <button
             type="button"
-            className="px-3.5 py-1.5 rounded-xl bg-brand-emerald text-white hover:bg-brand-gold hover:text-white text-xs font-semibold transition-colors shrink-0 cursor-pointer ml-3"
+            className="px-3.5 py-1.5 rounded-xl bg-brand-emerald text-white hover:bg-brand-gold text-xs font-semibold transition-colors shrink-0 cursor-pointer ml-3"
           >
             {selectedFileName ? "Change" : "Browse"}
           </button>

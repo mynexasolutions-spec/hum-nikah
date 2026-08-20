@@ -49,9 +49,7 @@ export interface Database {
           state: string
           country: string
           highestEducation: string
-          fieldOfStudy: string
           profession: string
-          company: string | null
           incomeRange: string | null
           fatherOccupation: string
           motherOccupation: string
@@ -59,17 +57,11 @@ export interface Database {
           familyType: string
           familyLocation: string
           religiousPractice: string
-          sect: string
           prayerPractice: string
-          hijab: string | null
           shortIntro: string
-          personality: string
-          interests: string
           prefAgeRange: string
           prefLocation: string
           prefEducation: string
-          prefProfession: string
-          prefOther: string | null
           phone: string
           whatsapp: string
           email: string
@@ -91,9 +83,7 @@ export interface Database {
           state: string
           country: string
           highestEducation: string
-          fieldOfStudy: string
           profession: string
-          company?: string | null
           incomeRange?: string | null
           fatherOccupation: string
           motherOccupation: string
@@ -101,17 +91,11 @@ export interface Database {
           familyType: string
           familyLocation: string
           religiousPractice: string
-          sect: string
           prayerPractice: string
-          hijab?: string | null
           shortIntro: string
-          personality: string
-          interests: string
           prefAgeRange: string
           prefLocation: string
           prefEducation: string
-          prefProfession: string
-          prefOther?: string | null
           phone: string
           whatsapp: string
           email: string
@@ -133,9 +117,7 @@ export interface Database {
           state?: string
           country?: string
           highestEducation?: string
-          fieldOfStudy?: string
           profession?: string
-          company?: string | null
           incomeRange?: string | null
           fatherOccupation?: string
           motherOccupation?: string
@@ -143,17 +125,11 @@ export interface Database {
           familyType?: string
           familyLocation?: string
           religiousPractice?: string
-          sect?: string
           prayerPractice?: string
-          hijab?: string | null
           shortIntro?: string
-          personality?: string
-          interests?: string
           prefAgeRange?: string
           prefLocation?: string
           prefEducation?: string
-          prefProfession?: string
-          prefOther?: string | null
           phone?: string
           whatsapp?: string
           email?: string

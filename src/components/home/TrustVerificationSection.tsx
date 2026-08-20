@@ -645,7 +645,7 @@ export function TrustVerificationSection() {
                 </Link>
 
                 <a
-                  href="tel:+923000000000"
+                  href="tel:+919019082205"
                   className="px-6 py-3.5 bg-white/10 backdrop-blur-md border border-white/20 text-white font-semibold text-xs sm:text-sm rounded-xl hover:bg-white/20 transition-all text-center flex items-center justify-center gap-2"
                 >
                   <PhoneCall size={16} className="text-brand-gold" />

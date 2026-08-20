@@ -54,7 +54,7 @@ export default async function AdminGalleryPage() {
             <div key={item.id} className="bg-white rounded-2xl shadow-sm border border-brand-border/60 overflow-hidden flex flex-col group hover:shadow-md transition-shadow relative">
               <div className="relative aspect-square w-full bg-brand-beige overflow-hidden">
                 {item.image ? (
-                  <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <img src={item.image} alt={item.title} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-brand-secondary">No Image</div>
                 )}
