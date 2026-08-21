@@ -1,16 +1,12 @@
 "use client";
 
 import React from "react";
-import { Users, Heart, ShieldCheck, Star } from "lucide-react";
+import {  Heart, ShieldCheck, Star } from "lucide-react";
 import { ScrollReveal, ScrollRevealItem } from "@/components/ui/ScrollReveal";
 import { motion } from "framer-motion";
 
 const stats = [
-  {
-    icon: Users,
-    value: "25,000+",
-    label: "Active Members",
-  },
+
   {
     icon: Heart,
     value: "Multiple",
@@ -23,7 +19,7 @@ const stats = [
   },
   {
     icon: Star,
-    value: "4.8/5",
+    value: "5/5",
     label: "User Satisfaction",
   },
 ];
@@ -33,7 +29,7 @@ export function StatsSection() {
     <section className="py-10 bg-brand-cream border-t border-brand-border/40 overflow-hidden">
       <div className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal variant="zoom-in" duration={0.6}>
-          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-brand-border/60 shadow-sm hover:shadow-md transition-shadow grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-brand-border/60 shadow-sm hover:shadow-md transition-shadow grid grid-cols-2 md:grid-cols-3 gap-3 text-center">
             {stats.map((stat, idx) => {
               const Icon = stat.icon;
               return (
@@ -41,7 +37,9 @@ export function StatsSection() {
                   key={idx}
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  className="flex flex-col items-center justify-center p-2 group cursor-pointer"
+                  className={`flex flex-col items-center justify-center p-2 group cursor-pointer ${
+                    idx === 2 ? "col-span-2 md:col-span-1" : ""
+                  }`}
                 >
                   <motion.div
                     whileHover={{ rotate: 12 }}

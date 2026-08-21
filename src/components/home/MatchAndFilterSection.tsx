@@ -39,7 +39,7 @@ function ModernSelect({ icon, placeholder, value, onChange, options, dropdownPos
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="w-full pl-11 pr-10 py-3.5 rounded-2xl bg-slate-50/80 hover:bg-white border border-slate-200/90 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 text-brand-charcoal text-sm transition-all duration-200 flex items-center justify-between outline-none cursor-pointer shadow-xs"
+          className="w-full pl-11 pr-10 py-3.5 rounded-2xl bg-white border border-slate-200/90 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 text-brand-charcoal text-sm transition-all duration-200 flex items-center justify-between outline-none cursor-pointer shadow-xs"
         >
           <span className={value ? "text-slate-900 font-semibold" : "text-slate-400 font-normal"}>
             {selectedOption ? selectedOption.label : placeholder}
@@ -179,7 +179,7 @@ export function MatchAndFilterSection() {
                         value={formData.fullName}
                         onChange={handleChange}
                         placeholder="Enter your full name"
-                        className="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-slate-50/80 hover:bg-white border border-slate-200/90 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 text-brand-charcoal text-sm transition-all duration-200 outline-none shadow-xs"
+                        className="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white border border-slate-200/90 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 text-brand-charcoal text-sm font-semibold placeholder:font-normal placeholder:text-slate-400 transition-all duration-200 outline-none shadow-xs"
                       />
                     </div>
                   </div>
@@ -198,7 +198,7 @@ export function MatchAndFilterSection() {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="e.g. +92 300 1234567"
-                        className="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-slate-50/80 hover:bg-white border border-slate-200/90 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 text-brand-charcoal text-sm transition-all duration-200 outline-none shadow-xs"
+                        className="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white border border-slate-200/90 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 text-brand-charcoal text-sm font-semibold placeholder:font-normal placeholder:text-slate-400 transition-all duration-200 outline-none shadow-xs"
                       />
                     </div>
                   </div>
@@ -216,7 +216,7 @@ export function MatchAndFilterSection() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="Enter your email address"
-                        className="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-slate-50/80 hover:bg-white border border-slate-200/90 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 text-brand-charcoal text-sm transition-all duration-200 outline-none shadow-xs"
+                        className="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white border border-slate-200/90 focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 text-brand-charcoal text-sm font-semibold placeholder:font-normal placeholder:text-slate-400 transition-all duration-200 outline-none shadow-xs"
                       />
                     </div>
                   </div>

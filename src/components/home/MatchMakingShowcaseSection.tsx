@@ -147,23 +147,23 @@ export function MatchMakingShowcaseSection() {
               </div>
 
               {/* Right Column: 3 Luxury Pillar Cards */}
-              <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch">
                 {pillars.map((pillar, i) => {
                   const Icon = pillar.icon;
                   return (
                     <motion.div
                       key={i}
                       whileHover={{ y: -4 }}
-                      className="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/15 hover:border-brand-gold/50 transition-all text-left flex flex-col justify-between"
+                      className="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/15 hover:border-brand-gold/50 transition-all text-left flex flex-col justify-start h-full group shadow-xs"
                     >
-                      <div className="w-10 h-10 rounded-xl bg-brand-gold/20 text-brand-gold flex items-center justify-center mb-3">
+                      <div className="w-10 h-10 rounded-xl bg-brand-gold/20 text-brand-gold flex items-center justify-center mb-3.5 shrink-0 group-hover:bg-brand-gold group-hover:text-[#1D184C] transition-all">
                         <Icon size={20} />
                       </div>
-                      <div>
-                        <h4 className="text-sm sm:text-base font-bold text-white mb-1 font-playfair">
+                      <div className="flex flex-col flex-1">
+                        <h4 className="text-sm sm:text-base font-bold text-white  font-playfair sm:min-h-[2.75rem] flex items-center">
                           {pillar.title}
                         </h4>
-                        <p className="text-slate-300 text-xs font-light leading-relaxed">
+                        <p className="text-slate-300 text-xs font-light leading-relaxed flex-1">
                           {pillar.desc}
                         </p>
                       </div>

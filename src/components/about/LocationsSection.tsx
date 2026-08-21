@@ -16,6 +16,14 @@ const locationsData = [
   },
   {
     id: "loc-2",
+    title: "Kerala",
+    address: "Kochi, Kerala – 682001",
+    phone: "+91 98443 21312",
+    email: "CONNECT@HUMNIKAH.COM",
+    timing: "Mon - Sat: 10:00 AM - 6:30 PM",
+  },
+  {
+    id: "loc-3",
     title: "Tamil Nadu",
     address: "Chennai, Tamil Nadu – 600001",
     phone: "+91 98443 21312",
@@ -23,7 +31,7 @@ const locationsData = [
     timing: "Mon - Sat: 10:00 AM - 6:30 PM",
   },
   {
-    id: "loc-3",
+    id: "loc-4",
     title: "Andhra Pradesh",
     address: "Vijayawada, Andhra Pradesh – 520001",
     phone: "+91 98443 21312",
@@ -31,7 +39,7 @@ const locationsData = [
     timing: "Mon - Sat: 10:00 AM - 6:30 PM",
   },
   {
-    id: "loc-4",
+    id: "loc-5",
     title: "Telangana",
     address: "Hyderabad, Telangana – 500001",
     phone: "+91 98443 21312",
@@ -39,7 +47,7 @@ const locationsData = [
     timing: "Mon - Sat: 10:00 AM - 6:30 PM",
   },
   {
-    id: "loc-5",
+    id: "loc-6",
     title: "Maharashtra",
     address: "Mumbai, Maharashtra – 400001",
     phone: "+91 98443 21312",

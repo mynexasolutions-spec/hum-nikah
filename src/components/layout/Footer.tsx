@@ -165,24 +165,24 @@ export function Footer() {
             <h4 className="text-base font-playfair font-semibold mb-5 text-brand-beige relative after:content-[''] after:absolute after:bottom-[-6px] after:left-0 after:w-10 after:h-[2px] after:bg-brand-gold">
               Contact Support
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-3.5">
               <li className="flex items-start gap-2.5">
-                <MapPin size={16} className="text-brand-gold shrink-0 mt-0.5" />
-                <span className="text-gray-300 text-xs sm:text-sm font-light leading-relaxed captalize">
-                    Splendid Plaza, No. 6. 2nd, Floor, Wheeler Road, Cox Town Bangalore 560005
+                <MapPin size={18} className="text-brand-gold shrink-0 mt-0.5" />
+                <span className="text-gray-200 text-sm sm:text-base font-normal leading-relaxed">
+                  Splendid Plaza, No. 6, 2nd Floor, Wheeler Road, Cox Town, Bangalore 560005
                 </span>
               </li>
               <li className="flex items-center gap-2.5">
-                <Phone size={16} className="text-brand-gold shrink-0" />
-                <a href="tel:+919844321312" className="text-gray-300 text-xs sm:text-sm font-light hover:text-brand-gold transition-colors">
+                <Phone size={18} className="text-brand-gold shrink-0" />
+                <a href="tel:+919844321312" className="text-gray-200 text-sm sm:text-base font-medium hover:text-brand-gold transition-colors tracking-wide">
                   +91 98443 21312
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
-                <Mail size={16} className="text-brand-gold shrink-0" />
-                <span className="text-gray-300 text-xs sm:text-sm font-light">
-                  CONNECT@HUMNIKAH.COM
-                </span>
+                <Mail size={18} className="text-brand-gold shrink-0" />
+                <a href="mailto:connect@humnikah.com" className="text-gray-200 text-sm sm:text-base font-medium hover:text-brand-gold transition-colors">
+                  connect@humnikah.com
+                </a>
               </li>
             </ul>
           </div>
@@ -203,7 +203,7 @@ export function Footer() {
           </div>
 
           {/* Locations Grid Pill Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 text-xs">
             <div className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors">
               <div className="text-brand-gold font-bold mb-1">Bangalore</div>
               <div className="text-gray-300 font-light text-[11px] leading-relaxed">
@@ -212,28 +212,35 @@ export function Footer() {
             </div>
 
             <div className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors">
-              <div className="text-brand-gold font-bold mb-1">Tamil Nadu </div>
+              <div className="text-brand-gold font-bold mb-1">Kerala</div>
+              <div className="text-gray-300 font-light text-[11px] leading-relaxed">
+                Kochi, Kerala – 682001
+              </div>
+            </div>
+
+            <div className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors">
+              <div className="text-brand-gold font-bold mb-1">Tamil Nadu</div>
               <div className="text-gray-300 font-light text-[11px] leading-relaxed">
                 Chennai, Tamil Nadu – 600001
               </div>
             </div>
 
             <div className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors">
-              <div className="text-brand-gold font-bold mb-1">Andhra Pradesh </div>
+              <div className="text-brand-gold font-bold mb-1">Andhra Pradesh</div>
               <div className="text-gray-300 font-light text-[11px] leading-relaxed">
                 Vijayawada, Andhra Pradesh – 520001
               </div>
             </div>
 
             <div className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors">
-              <div className="text-brand-gold font-bold mb-1">Telangana </div>
+              <div className="text-brand-gold font-bold mb-1">Telangana</div>
               <div className="text-gray-300 font-light text-[11px] leading-relaxed">
                 Hyderabad, Telangana – 500001
               </div>
             </div>
 
             <div className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors">
-              <div className="text-brand-gold font-bold mb-1">Maharashtra </div>
+              <div className="text-brand-gold font-bold mb-1">Maharashtra</div>
               <div className="text-gray-300 font-light text-[11px] leading-relaxed">
                 Mumbai, Maharashtra – 400001
               </div>
@@ -246,9 +253,12 @@ export function Footer() {
           <p className="text-gray-400 text-xs sm:text-sm text-center md:text-left font-light">
             &copy; {new Date().getFullYear()} HumNikah. All Rights Reserved.
           </p>
-          <div className="flex items-center gap-4 text-xs text-gray-400 font-light">
-            <span>&bull;</span>
-            <Link href="/contact" className="hover:text-brand-gold transition-colors">
+          <div className="flex items-center gap-4">
+            <span className="text-brand-gold/40 hidden sm:inline">&bull;</span>
+            <Link
+              href="/contact"
+              className="text-[16px] sm:text-[15.5px] font-semibold text-brand-gold hover:text-white transition-colors duration-200 flex items-center gap-1.5"
+            >
               Contact Us
             </Link>
           </div>
