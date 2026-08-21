@@ -75,10 +75,10 @@ export default function ContactPage() {
                   </h3>
                   <div className="text-xs sm:text-sm text-brand-secondary font-medium mt-0.5 flex flex-wrap items-center gap-2">
                     <a 
-                      href="tel:+919019082205" 
+                      href="tel:+919844321312" 
                       className="hover:text-brand-gold hover:underline transition-colors"
                     >
-                      Call: +91 90190 82205
+                      Call: +91 98443 21312
                     </a>
                     <span className="text-slate-300">/</span>
                     <a 
@@ -198,7 +198,7 @@ export default function ContactPage() {
               </h3>
             </div>
             <span className="text-xs text-brand-secondary bg-white border border-brand-border px-3 py-1 rounded-full font-medium hidden sm:inline-block">
-              Bangalore Office
+              Bangalore , India
             </span>
           </div>
 

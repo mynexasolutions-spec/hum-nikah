@@ -8,35 +8,43 @@ import Link from "next/link";
 const locationsData = [
   {
     id: "loc-1",
-    title: "[ Bangalore ]",
+    title: "Bangalore",
     address: "Splendid Plaza, No. 6. 2nd, Floor, Wheeler Road, Cox Town Bangalore 560005",
-    phone: "+91 90190 82205",
+    phone: "+91 98443 21312",
     email: "CONNECT@HUMNIKAH.COM",
     timing: "Mon - Sat: 10:00 AM - 7:00 PM",
   },
   {
     id: "loc-2",
-    title: "[ Location 2 ]",
-    address: "[ Location 2 Address Line, Street Name, City, Pincode ]",
-    phone: "+91 90190 82205",
-    email: "SUPPORT@HUMNIKAH.COM",
+    title: "Tamil Nadu",
+    address: "Chennai, Tamil Nadu – 600001",
+    phone: "+91 98443 21312",
+    email: "CONNECT@HUMNIKAH.COM",
     timing: "Mon - Sat: 10:00 AM - 6:30 PM",
   },
   {
     id: "loc-3",
-    title: "[ Location 3 ]",
-    address: "[ Location 3 Address Line, Area / Region, City Name ]",
-    phone: "+91 90190 82205",
-    email: "INFO@HUMNIKAH.COM",
-    timing: "Mon - Sat: 10:30 AM - 7:00 PM",
+    title: "Andhra Pradesh",
+    address: "Vijayawada, Andhra Pradesh – 520001",
+    phone: "+91 98443 21312",
+    email: "CONNECT@HUMNIKAH.COM",
+    timing: "Mon - Sat: 10:00 AM - 6:30 PM",
   },
   {
     id: "loc-4",
-    title: "[ Location 4 ]",
-    address: "[ Location 4 Address Line, Country / Region Name ]",
-    phone: "+91 90190 82205",
-    email: "GLOBAL@HUMNIKAH.COM",
-    timing: "Mon - Sat: 10:00 AM - 6:00 PM",
+    title: "Telangana",
+    address: "Hyderabad, Telangana – 500001",
+    phone: "+91 98443 21312",
+    email: "CONNECT@HUMNIKAH.COM",
+    timing: "Mon - Sat: 10:00 AM - 6:30 PM",
+  },
+  {
+    id: "loc-5",
+    title: "Maharashtra",
+    address: "Mumbai, Maharashtra – 400001",
+    phone: "+91 98443 21312",
+    email: "CONNECT@HUMNIKAH.COM",
+    timing: "Mon - Sat: 10:00 AM - 6:30 PM",
   }
 ];
 
@@ -56,7 +64,7 @@ export function LocationsSection() {
             <span>MULTIPLE LOCATIONS &amp; OFFICES</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-playfair font-bold text-brand-charcoal leading-tight">
+          <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-brand-charcoal leading-tight">
             Visit Our Walk-In Offices <br className="hidden sm:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1D184C] via-[#651514] to-brand-gold">
               Across Multiple Locations
@@ -69,7 +77,7 @@ export function LocationsSection() {
         </ScrollReveal>
 
         {/* Locations Grid */}
-        <ScrollReveal variant="fade-up" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <ScrollReveal variant="fade-up" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
           {locationsData.map((loc) => (
             <div
               key={loc.id}

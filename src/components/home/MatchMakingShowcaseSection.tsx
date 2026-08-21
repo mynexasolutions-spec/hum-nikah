@@ -69,7 +69,7 @@ export function MatchMakingShowcaseSection() {
           </h2>
 
           <p className="text-slate-600 text-sm sm:text-base font-light max-w-xl mx-auto leading-relaxed">
-            Take a look at how HumNikah helps families connect with verified, noble proposals from across Pakistan &amp; abroad.
+            Take a look at how HumNikah helps families connect with verified, noble proposals from across India &amp; abroad.
           </p>
         </ScrollReveal>
 

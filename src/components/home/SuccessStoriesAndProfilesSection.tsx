@@ -8,52 +8,52 @@ const testimonials = [
   {
     quote: "HumNikah helped me find a life partner who shares my values and respects my family. Alhamdulillah!",
     name: "Sara Farhan",
-    location: "Lahore, Pakistan",
+    location: "New Delhi, India",
   },
   {
     quote: "Finding a compatible partner with mutual religious goals was so simple. Highly recommend HumNikah!",
     name: "Usman & Zainab",
-    location: "Karachi, Pakistan",
+    location: "Mumbai, India",
   },
   {
     quote: "Alhamdulillah, we found each other here. The platform respects privacy, values, and security.",
     name: "Bilal & Amara",
-    location: "Islamabad, Pakistan",
+    location: "Hyderabad, India",
   },
   {
     quote: "Blessed to find my soulmate who is also a doctor. Truly a professional and secure platform!",
     name: "Dr. Ayesha",
-    location: "Peshawar, Pakistan",
+    location: "Bengaluru, India",
   },
   {
     quote: "We got married last month. The verified profiles made it easy for our families to connect.",
     name: "Omer & Fatima",
-    location: "Rawalpindi, Pakistan",
+    location: "Lucknow, India",
   },
   {
     quote: "Very transparent and clean environment. Found a perfect match who matches my family's expectations.",
     name: "Yasmin Malik",
-    location: "Faisalabad, Pakistan",
+    location: "Kolkata, India",
   },
   {
     quote: "A wonderful platform that prioritizes Islamic values. We are so happy and grateful.",
     name: "Hamza & Sana",
-    location: "Multan, Pakistan",
+    location: "Chennai, India",
   },
   {
     quote: "Highly recommend HumNikah. It was simple to filter matches based on religious and cultural values.",
     name: "Zehra & Ali",
-    location: "Quetta, Pakistan",
+    location: "Ahmedabad, India",
   },
   {
     quote: "We are happily married now. The support and verification process was excellent and respectful!",
     name: "Farhan & Nida",
-    location: "Gujranwala, Pakistan",
+    location: "Pune, India",
   },
   {
     quote: "Alhamdulillah, a transparent matchmaking process. Best halal platform for seeking a spouse.",
     name: "Mariam & Bilal",
-    location: "Sialkot, Pakistan",
+    location: "Bhopal, India",
   },
 ];
 

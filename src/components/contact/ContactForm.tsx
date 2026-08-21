@@ -61,7 +61,7 @@ export function ContactForm() {
         <p className="text-red-500 text-sm">{errorMessage}</p>
       )}
       
-      <Button type="submit" size="lg" className="w-full" isLoading={isSubmitting}>
+      <Button type="submit" size="lg" className="w-full text-2xl" isLoading={isSubmitting}>
         Send Message
       </Button>
     </form>

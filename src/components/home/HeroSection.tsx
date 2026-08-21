@@ -67,7 +67,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#1D184C] via-[#2A1636] to-[#651514] text-white py-10 lg:py-16 border-b border-brand-gold/30">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#1D184C] via-[#2A1636] to-[#651514] text-white py-8 lg:py-12 border-b border-brand-gold/30">
       
       {/* Semi-Transparent Hero Background Dynamic Image Backdrop (Synchronized with Right Slider) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -92,7 +92,7 @@ export function HeroSection() {
       <div className="absolute -top-20 -right-20 w-[500px] h-[500px] bg-brand-gold/20 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute -bottom-20 -left-20 w-[500px] h-[500px] bg-[#651514]/40 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-wrap mx-auto px-3 sm:px-4 lg:px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           
           {/* Left Column: Text & CTAs */}
@@ -102,6 +102,49 @@ export function HeroSection() {
             animate="visible"
             className="lg:col-span-6 space-y-6 text-center lg:text-left"
           >
+            {/* Bismillah Calligraphy Artwork */}
+            <motion.div
+              variants={itemVariants}
+              className="flex items-center justify-center lg:justify-start"
+            >
+              <div className="inline-flex max-w-full items-center justify-center gap-2 sm:gap-3 px-4.5 py-2 sm:px-6 sm:py-2.5 lg:px-7 rounded-xl bg-[#FCFBF9] border border-brand-gold/40 shadow-sm hover:border-brand-gold transition-all duration-300">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#651514] animate-pulse shrink-0 hidden xs:inline-block" />
+                <svg
+                  viewBox="0 0 650 96"
+                  className="w-full min-w-[185px] max-w-[225px] sm:max-w-[275px] md:max-w-[310px] h-auto"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-label="Bismillahir Rahmanir Raheem"
+                >
+                  <defs>
+                    <linearGradient id="heroBismillahGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#1D184C" />
+                      <stop offset="35%" stopColor="#651514" />
+                      <stop offset="70%" stopColor="#C58D5F" />
+                      <stop offset="100%" stopColor="#8F6B38" />
+                    </linearGradient>
+                  </defs>
+                  <text
+                    x="50%"
+                    y="58%"
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                    className="font-bold select-none"
+                    fill="url(#heroBismillahGradient)"
+                    style={{
+                      fontSize: "52px",
+                      fontFamily: "var(--font-amiri), 'Amiri', 'Traditional Arabic', 'Scheherazade New', serif",
+                      direction: "rtl",
+                      letterSpacing: "0.5px",
+                    }}
+                  >
+                    بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+                  </text>
+                </svg>
+                <span className="w-1.5 h-1.5 rounded-full bg-[#8F6B38] animate-pulse shrink-0 hidden xs:inline-block" />
+              </div>
+            </motion.div>
+
             {/* Tagline Badge */}
             <motion.div variants={itemVariants} className="inline-block">
               <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1D184C]/70 border border-brand-gold/50 text-xs font-semibold text-brand-gold uppercase tracking-wider shadow-sm">
@@ -116,7 +159,7 @@ export function HeroSection() {
               variants={itemVariants}
               className="text-4xl sm:text-5xl lg:text-6xl font-playfair font-bold text-white leading-tight"
             >
-              Matrimonial Site  <br className="hidden sm:inline" />
+             #1 Matrimonial Site  <br className="hidden sm:inline" />
               in <span className="text-brand-gold italic relative inline-block">
                 Bangalore
                 <motion.span
@@ -271,7 +314,7 @@ export function HeroSection() {
                 </div>
                 <div className="text-left">
                   <div className="text-base sm:text-lg font-bold text-brand-charcoal leading-none">
-                    25,000+
+                    Multiple
                   </div>
                   <div className="text-xs text-brand-secondary font-medium mt-0.5">
                     Successful Matches

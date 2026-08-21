@@ -61,3 +61,75 @@
     background: var(--color-brand-emerald);
   }
 }
+
+/* Mobile Typography Optimization: Increase font-weight & +15% font-size for paragraph (<p>) tags */
+@media (max-width: 768px) {
+  p {
+    font-weight: 500;
+    font-size: calc(1rem * 1.15);
+    line-height: 1.55;
+  }
+
+  p.font-light,
+  p.font-normal,
+  p.font-thin,
+  p.font-extralight {
+    font-weight: 500 !important;
+  }
+
+  /* 15% Font Size Increase for standard and custom Tailwind text sizes on mobile */
+  p.text-xs {
+    font-size: calc(0.75rem * 1.15) !important;
+    line-height: calc(1rem * 1.2) !important;
+  }
+
+  p.text-sm {
+    font-size: calc(0.875rem * 1.15) !important;
+    line-height: calc(1.25rem * 1.2) !important;
+  }
+
+  p.text-base {
+    font-size: calc(1rem * 1.15) !important;
+    line-height: calc(1.5rem * 1.2) !important;
+  }
+
+  p.text-lg {
+    font-size: calc(1.125rem * 1.15) !important;
+    line-height: calc(1.75rem * 1.2) !important;
+  }
+
+  p.text-xl {
+    font-size: calc(1.25rem * 1.15) !important;
+    line-height: calc(1.75rem * 1.2) !important;
+  }
+
+  p.text-2xl {
+    font-size: calc(1.5rem * 1.15) !important;
+    line-height: calc(2rem * 1.2) !important;
+  }
+
+  p.text-\[10px\] {
+    font-size: calc(10px * 1.15) !important;
+  }
+
+  p.text-\[11px\] {
+    font-size: calc(11px * 1.15) !important;
+  }
+
+  p.text-\[12px\] {
+    font-size: calc(12px * 1.15) !important;
+  }
+
+  p.text-\[13px\] {
+    font-size: calc(13px * 1.15) !important;
+  }
+
+  p.text-\[14px\] {
+    font-size: calc(14px * 1.15) !important;
+  }
+
+  p.text-\[15px\] {
+    font-size: calc(15px * 1.15) !important;
+  }
+}
+

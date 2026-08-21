@@ -19,12 +19,20 @@ export function Footer() {
                 />
               </div>
               <div className="flex flex-col justify-center -ml-1 sm:-ml-1.5">
-                <span className="text-2xl sm:text-3xl font-playfair font-extrabold text-white leading-none transition-colors group-hover:text-brand-gold tracking-tight">
-                  HumNikah
-                </span>
-                <span className="text-[9px] sm:text-[10.5px] font-bold text-brand-gold uppercase tracking-[0.16em] leading-none mt-1 sm:mt-1.5 transition-colors">
-                  Love with Barakah
-                </span>
+                <div className="flex items-baseline tracking-tight leading-none font-outfit">
+                  <span className="text-[26px] sm:text-3xl font-black text-white tracking-tight transition-colors group-hover:text-brand-gold">
+                    Hum
+                  </span>
+                  <span className="text-[26px] sm:text-3xl font-black bg-gradient-to-r from-brand-gold via-[#F3B979] to-brand-gold bg-clip-text text-transparent tracking-tight transition-all duration-300">
+                    Nikah
+                  </span>
+                </div>
+                <div className="flex items-center gap-1 sm:gap-1.5 mt-1 sm:mt-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-brand-gold shrink-0"></span>
+                  <span className="text-[11px] sm:text-[11.5px] font-bold font-outfit text-brand-gold uppercase tracking-[0.2em] leading-none transition-colors">
+                    Love with Barakah
+                  </span>
+                </div>
               </div>
             </Link>
 
@@ -53,7 +61,7 @@ export function Footer() {
 
                 {/* 2. Call */}
                 <a
-                  href="tel:+919019082205"
+                  href="tel:+919844321312"
                   aria-label="Call Us"
                   className="w-10 h-10 rounded-full bg-[#1D184C] hover:bg-[#C58D5F] text-white flex items-center justify-center transition-all duration-300 hover:scale-110 border border-white/20 shadow-sm cursor-pointer group"
                 >
@@ -166,9 +174,9 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone size={16} className="text-brand-gold shrink-0" />
-                <span className="text-gray-300 text-xs sm:text-sm font-light">
-                  +91 90190 82205
-                </span>
+                <a href="tel:+919844321312" className="text-gray-300 text-xs sm:text-sm font-light hover:text-brand-gold transition-colors">
+                  +91 98443 21312
+                </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail size={16} className="text-brand-gold shrink-0" />
@@ -195,32 +203,39 @@ export function Footer() {
           </div>
 
           {/* Locations Grid Pill Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 text-xs">
             <div className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors">
-              <div className="text-brand-gold font-bold mb-1">| Bangalore |</div>
+              <div className="text-brand-gold font-bold mb-1">Bangalore</div>
               <div className="text-gray-300 font-light text-[11px] leading-relaxed">
                 Splendid Plaza, Wheeler Road, Cox Town, Bangalore 560005
               </div>
             </div>
 
             <div className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors">
-              <div className="text-brand-gold font-bold mb-1">[ Location 2 ]</div>
+              <div className="text-brand-gold font-bold mb-1">Tamil Nadu </div>
               <div className="text-gray-300 font-light text-[11px] leading-relaxed">
-                [ Location 2 Address / Regional Branch Office ]
+                Chennai, Tamil Nadu – 600001
               </div>
             </div>
 
             <div className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors">
-              <div className="text-brand-gold font-bold mb-1">[ Location 3 ]</div>
+              <div className="text-brand-gold font-bold mb-1">Andhra Pradesh </div>
               <div className="text-gray-300 font-light text-[11px] leading-relaxed">
-                [ Location 3 Address / Regional Matchmaking Hub ]
+                Vijayawada, Andhra Pradesh – 520001
               </div>
             </div>
 
             <div className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors">
-              <div className="text-brand-gold font-bold mb-1">[ Location 4 - Overseas ]</div>
+              <div className="text-brand-gold font-bold mb-1">Telangana </div>
               <div className="text-gray-300 font-light text-[11px] leading-relaxed">
-                [ Location 4 Address / International Representative Hub ]
+                Hyderabad, Telangana – 500001
+              </div>
+            </div>
+
+            <div className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors">
+              <div className="text-brand-gold font-bold mb-1">Maharashtra </div>
+              <div className="text-gray-300 font-light text-[11px] leading-relaxed">
+                Mumbai, Maharashtra – 400001
               </div>
             </div>
           </div>
