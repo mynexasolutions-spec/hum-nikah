@@ -8,10 +8,10 @@ import Link from "next/link";
 const locationsData = [
   {
     id: "loc-1",
-    title: "Bangalore",
+    title: "Karnataka",
     address: "Splendid Plaza, No. 6. 2nd, Floor, Wheeler Road, Cox Town Bangalore 560005",
     phone: "+91 98443 21312",
-    email: "CONNECT@HUMNIKAH.COM",
+    email: "Irshadahmedbng@gmail.com",
     timing: "Mon - Sat: 10:00 AM - 7:00 PM",
   },
   {
@@ -19,7 +19,7 @@ const locationsData = [
     title: "Kerala",
     address: "Kochi, Kerala – 682001",
     phone: "+91 98443 21312",
-    email: "CONNECT@HUMNIKAH.COM",
+    email: "Irshadahmedbng@gmail.com",
     timing: "Mon - Sat: 10:00 AM - 6:30 PM",
   },
   {
@@ -27,7 +27,7 @@ const locationsData = [
     title: "Tamil Nadu",
     address: "Chennai, Tamil Nadu – 600001",
     phone: "+91 98443 21312",
-    email: "CONNECT@HUMNIKAH.COM",
+    email: "Irshadahmedbng@gmail.com",
     timing: "Mon - Sat: 10:00 AM - 6:30 PM",
   },
   {
@@ -35,7 +35,7 @@ const locationsData = [
     title: "Andhra Pradesh",
     address: "Vijayawada, Andhra Pradesh – 520001",
     phone: "+91 98443 21312",
-    email: "CONNECT@HUMNIKAH.COM",
+    email: "Irshadahmedbng@gmail.com",
     timing: "Mon - Sat: 10:00 AM - 6:30 PM",
   },
   {
@@ -43,7 +43,7 @@ const locationsData = [
     title: "Telangana",
     address: "Hyderabad, Telangana – 500001",
     phone: "+91 98443 21312",
-    email: "CONNECT@HUMNIKAH.COM",
+    email: "Irshadahmedbng@gmail.com",
     timing: "Mon - Sat: 10:00 AM - 6:30 PM",
   },
   {
@@ -51,7 +51,7 @@ const locationsData = [
     title: "Maharashtra",
     address: "Mumbai, Maharashtra – 400001",
     phone: "+91 98443 21312",
-    email: "CONNECT@HUMNIKAH.COM",
+    email: "Irshadahmedbng@gmail.com",
     timing: "Mon - Sat: 10:00 AM - 6:30 PM",
   }
 ];

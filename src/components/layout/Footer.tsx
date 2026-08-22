@@ -174,14 +174,14 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone size={18} className="text-brand-gold shrink-0" />
-                <a href="tel:+919844321312" className="text-gray-200 text-sm sm:text-base font-medium hover:text-brand-gold transition-colors tracking-wide">
-                  +91 98443 21312
+                <a href="tel:+919019082205" className="text-gray-200 text-sm sm:text-base font-medium hover:text-brand-gold transition-colors tracking-wide">
+                  +91 9019082205
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail size={18} className="text-brand-gold shrink-0" />
-                <a href="mailto:connect@humnikah.com" className="text-gray-200 text-sm sm:text-base font-medium hover:text-brand-gold transition-colors">
-                  connect@humnikah.com
+                <a href="mailto:Irshadahmedbng@gmail.com" className="text-gray-200 text-sm sm:text-base font-medium hover:text-brand-gold transition-colors">
+                  Irshadahmedbng@gmail.com
                 </a>
               </li>
             </ul>
@@ -205,7 +205,7 @@ export function Footer() {
           {/* Locations Grid Pill Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 text-xs">
             <div className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors">
-              <div className="text-brand-gold font-bold mb-1">Bangalore</div>
+              <div className="text-brand-gold font-bold mb-1">Karnataka</div>
               <div className="text-gray-300 font-light text-[11px] leading-relaxed">
                 Splendid Plaza, Wheeler Road, Cox Town, Bangalore 560005
               </div>

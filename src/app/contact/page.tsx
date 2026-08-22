@@ -107,10 +107,10 @@ export default function ContactPage() {
                     Email Support
                   </h3>
                   <a 
-                    href="mailto:connect@humnikah.com" 
+                    href="mailto:Irshadahmedbng@gmail.com" 
                     className="text-xs sm:text-sm text-brand-secondary hover:text-brand-gold hover:underline font-medium mt-0.5 inline-block transition-colors"
                   >
-                    CONNECT@HUMNIKAH.COM
+                    Irshadahmedbng@gmail.com
                   </a>
                 </div>
               </div>
