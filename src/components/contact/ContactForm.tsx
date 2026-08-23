@@ -48,11 +48,11 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Input name="name" label="Your Name" required placeholder="John Doe" />
-        <Input name="email" label="Email Address" type="email" required placeholder="john@example.com" />
+        <Input name="name" label="Your Name" required placeholder="Enter your full name" />
+        <Input name="email" label="Email Address" type="email" required placeholder="Enter your email address" />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Input name="phone" label="Phone Number (Optional)" type="tel" placeholder="+1 (234) 567-8900" />
+        <Input name="phone" label="Phone Number (Optional)" type="tel" placeholder="+91 9876543210" />
         <Input name="subject" label="Subject" required placeholder="How can we help?" />
       </div>
       <Textarea name="message" label="Your Message" required placeholder="Type your message here..." className="min-h-[150px]" />
