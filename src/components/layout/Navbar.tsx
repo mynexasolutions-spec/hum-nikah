@@ -74,12 +74,12 @@ export function Navbar() {
           
           {/* Logo & Brand Typography */}
           <div className="flex items-center shrink-0">
-            <Link href="/" className="flex items-center gap-1.5 sm:gap-2.5 group cursor-pointer select-none">
+            <Link href="/" className="flex items-center gap-1 sm:gap-2 group cursor-pointer select-none">
               <div className="flex-shrink-0 relative">
                 <img
                   src="/images/HN-logo.webp"
                   alt="HumNikah Logo"
-                  className="w-16 h-16 sm:w-18 sm:h-18 lg:w-[80px] lg:h-[80px] object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-300 ease-out"
+                  className="w-[80px] h-[80px] sm:w-20 sm:h-20 lg:w-[90px] lg:h-[90px] object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-300 ease-out"
                 />
               </div>
               <div className="flex flex-col justify-center -ml-1 sm:-ml-1.5">

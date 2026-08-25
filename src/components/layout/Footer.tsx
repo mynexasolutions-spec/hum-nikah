@@ -178,6 +178,13 @@ export function Footer() {
                   +91 9019082205
                 </a>
               </li>
+                            <li className="flex items-center gap-2.5">
+                <Phone size={18} className="text-brand-gold shrink-0" />
+                <a href="tel:+919844321312" className="text-gray-200 text-sm sm:text-base font-medium hover:text-brand-gold transition-colors tracking-wide">
+                  +91 9844321312
+                </a>
+              </li>
+
               <li className="flex items-center gap-2.5">
                 <Mail size={18} className="text-brand-gold shrink-0" />
                 <a href="mailto:connect@humnikah.com" className="text-gray-200 text-sm sm:text-base font-medium hover:text-brand-gold transition-colors">
