@@ -89,6 +89,77 @@
   }
 }
 
+/* Legal pages (Terms, Privacy, Refunds) - readable long-form styling */
+.legal-prose,
+.legal-prose p,
+.legal-prose li {
+  color: #0A0A0A;
+}
+
+.legal-prose h3 {
+  font-family: var(--font-playfair-display), "Playfair Display", serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-brand-charcoal);
+  margin-top: 1.25rem;
+  margin-bottom: 0.35rem;
+}
+
+.legal-prose ul {
+  list-style: disc;
+  padding-left: 1.35rem;
+  margin: 0.25rem 0;
+}
+
+.legal-prose ul li {
+  margin: 0.4rem 0;
+}
+
+.legal-prose a {
+  color: var(--color-brand-gold);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.legal-prose a:hover {
+  color: var(--color-brand-emerald);
+}
+
+.legal-prose strong {
+  color: var(--color-brand-charcoal);
+  font-weight: 600;
+}
+
+/* Keep legal long-form text at a comfortable size on phones.
+   Overrides the global mobile <p> upscaling further down this file. */
+@media (max-width: 768px) {
+  .legal-prose p,
+  .legal-prose li {
+    font-size: 0.9375rem !important;
+    line-height: 1.6 !important;
+    font-weight: 400 !important;
+  }
+  .legal-prose h3 {
+    font-size: 0.95rem;
+  }
+}
+
+/* Terms/Privacy table of contents: collapsible on mobile, always open on desktop */
+.toc-details > summary::-webkit-details-marker {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  /* Header stays visible on desktop, but the panel is always open (not collapsible) */
+  .toc-details > summary {
+    cursor: default;
+  }
+  .toc-details > div {
+    display: block !important;
+  }
+}
+
 /* Mobile Typography Optimization: Increase font-weight & +15% font-size for paragraph (<p>) tags */
 @media (max-width: 768px) {
   p {

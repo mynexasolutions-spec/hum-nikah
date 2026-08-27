@@ -74,15 +74,15 @@ export function Navbar() {
           
           {/* Logo & Brand Typography */}
           <div className="flex items-center shrink-0">
-            <Link href="/" className="flex items-center gap-1 sm:gap-2 group cursor-pointer select-none">
+            <Link href="/" className="flex items-center gap-2.5 sm:gap-3.5 group cursor-pointer select-none">
               <div className="flex-shrink-0 relative">
                 <img
-                  src="/images/HN-logo.webp"
+                  src="/images/hum-nikah-logo.png"
                   alt="HumNikah Logo"
-                  className="w-[80px] h-[80px] sm:w-20 sm:h-20 lg:w-[90px] lg:h-[90px] object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-300 ease-out"
+                  className="w-14 h-14 sm:w-[60px] sm:h-[60px] lg:w-[68px] lg:h-[68px] object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-300 ease-out"
                 />
               </div>
-              <div className="flex flex-col justify-center -ml-1 sm:-ml-1.5">
+              <div className="flex flex-col justify-center">
                 <div className="flex items-baseline tracking-tight leading-none font-outfit">
                   <span className="text-[27px] sm:text-[33px] lg:text-[2.45rem] font-black text-brand-charcoal tracking-tight transition-colors group-hover:text-brand-emerald">
                     Hum

@@ -10,15 +10,15 @@ export function Footer() {
           
           {/* Column 1: Brand & Logo (Header Matching Logo) */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-2 group inline-flex">
-              <div className="flex-shrink-0 rounded-full">
+            <Link href="/" className="flex items-center gap-3 sm:gap-4 group inline-flex">
+              <div className="flex-shrink-0">
                 <img
-                  src="/images/HN-logo.webp"
+                  src="/images/hum-nikah-logo.png"
                   alt="HumNikah Logo"
-                  className="w-14 h-14 sm:w-18 sm:h-18 object-contain rounded-full"
+                  className="w-[68px] h-[68px] sm:w-[84px] sm:h-[84px] object-contain"
                 />
               </div>
-              <div className="flex flex-col justify-center -ml-1 sm:-ml-1.5">
+              <div className="flex flex-col justify-center">
                 <div className="flex items-baseline tracking-tight leading-none font-outfit">
                   <span className="text-[26px] sm:text-3xl font-black text-white tracking-tight transition-colors group-hover:text-brand-gold">
                     Hum
@@ -114,6 +114,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/muslim-matrimony-india" className="text-gray-300 hover:text-brand-gold transition-colors text-xs sm:text-sm font-light">
+                  Muslim Matrimony in India
+                </Link>
+              </li>
+              <li>
                 <Link href="/gallery" className="text-gray-300 hover:text-brand-gold transition-colors text-xs sm:text-sm font-light">
                   Gallery
                 </Link>
@@ -148,12 +153,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/refunds" className="text-gray-300 hover:text-brand-gold transition-colors text-xs sm:text-sm font-light">
-                  Refund Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/#faq" className="text-gray-300 hover:text-brand-gold transition-colors text-xs sm:text-sm font-light">
+                <Link href="/faq" className="text-gray-300 hover:text-brand-gold transition-colors text-xs sm:text-sm font-light">
                   FAQ
                 </Link>
               </li>

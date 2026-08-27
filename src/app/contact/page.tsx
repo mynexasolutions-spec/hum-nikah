@@ -151,7 +151,7 @@ export default function ContactPage() {
                 </div>
               </div>
               <Link
-                href="/#faq"
+                href="/faq"
                 className="px-3 py-1.5 bg-brand-gold text-brand-charcoal hover:bg-white text-xs font-bold rounded-lg transition-colors shrink-0"
               >
                 View FAQ
