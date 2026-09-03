@@ -51,7 +51,7 @@ const testimonials = [
     location: "Pune, India",
   },
   {
-    quote: "Alhamdulillah, a transparent matchmaking process. Best halal platform for seeking a spouse.",
+    quote: "Alhamdulillah, a transparent matchmaking process. Best trusted platform for seeking a spouse.",
     name: "Mariam & Bilal",
     location: "Bhopal, India",
   },

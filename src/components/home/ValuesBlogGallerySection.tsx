@@ -40,12 +40,12 @@ export function ValuesBlogGallerySection() {
                   Guided by Islamic Values, Built for Lasting Relationships
                 </h2>
                 <p className="text-brand-secondary text-xs sm:text-sm mt-3 leading-relaxed">
-                  Our mission is to help Muslims find their life partner in a halal, respectful and trustworthy environment.
+                  Our mission is to help Muslims find their life partner in a trusted, respectful and authentic environment.
                 </p>
 
                 <ul className="mt-5 space-y-2.5">
                   {[
-                    "Halal & Respectful",
+                    "Dignified & Respectful",
                     "Simplicity in Process",
                     "Family Involvement",
                     "Long-term Commitment",

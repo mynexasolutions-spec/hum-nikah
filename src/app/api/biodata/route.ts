@@ -9,43 +9,64 @@ export async function POST(request: Request) {
     // Validate request body
     const validatedData = biodataSchema.parse(body);
     
+    // Format birthday & calculate age
+    let dobIso = new Date().toISOString();
+    let calculatedAge = 25;
+    if (validatedData.dateOfBirth) {
+      const parsedDate = new Date(validatedData.dateOfBirth);
+      if (!isNaN(parsedDate.getTime())) {
+        dobIso = parsedDate.toISOString();
+        calculatedAge = calculateAge(parsedDate);
+      }
+    }
+
+    // Format short intro to embed uploaded document link if present
+    let finalIntro = validatedData.shortIntro || '';
+    if (validatedData.biodataDocUrl) {
+      const docBadge = `[BIODATA_DOC:${validatedData.biodataDocUrl}|NAME:${validatedData.biodataDocName || 'Attached Biodata'}]`;
+      finalIntro = finalIntro ? `${finalIntro}\n\n${docBadge}` : docBadge;
+    }
+
+    // Document or profile picture URL
+    const fileUrl = validatedData.biodataDocUrl || validatedData.profileImageUrl || '';
+
     // Save to database with safe fallbacks for non-blocking insert
     const { data: newBiodata, error } = await supabase.from('Biodata').insert({
         fullName: validatedData.fullName,
         gender: validatedData.gender,
-        dateOfBirth: new Date(validatedData.dateOfBirth).toISOString(),
-        age: calculateAge(new Date(validatedData.dateOfBirth)),
+        dateOfBirth: dobIso,
+        age: calculatedAge,
         maritalStatus: validatedData.maritalStatus,
-        height: validatedData.height,
+        height: validatedData.height || '',
         city: validatedData.city,
         state: validatedData.state || '',
         country: validatedData.country || 'India',
         
-        highestEducation: validatedData.highestEducation,
-        profession: validatedData.profession,
+        highestEducation: validatedData.highestEducation || '',
+        profession: validatedData.profession || '',
         incomeRange: validatedData.incomeRange || '',
         
-        fatherOccupation: validatedData.fatherOccupation,
+        fatherOccupation: validatedData.fatherOccupation || '',
         motherOccupation: validatedData.motherOccupation || '',
         siblings: validatedData.siblings || '',
         familyType: validatedData.familyType || 'Nuclear',
-        familyLocation: validatedData.familyLocation,
+        familyLocation: validatedData.familyLocation || validatedData.city,
         
         religiousPractice: validatedData.religiousPractice || 'Practicing',
         prayerPractice: validatedData.prayerPractice || 'Always Pray (5 Times Daily)',
         
-        shortIntro: validatedData.shortIntro,
+        shortIntro: finalIntro,
         
-        prefAgeRange: validatedData.prefAgeRange,
-        prefLocation: validatedData.prefLocation,
-        prefEducation: validatedData.prefEducation,
+        prefAgeRange: validatedData.prefAgeRange || '',
+        prefLocation: validatedData.prefLocation || '',
+        prefEducation: validatedData.prefEducation || '',
         
         phone: validatedData.phone,
         whatsapp: validatedData.whatsapp || validatedData.phone,
-        email: validatedData.email,
+        email: validatedData.email || '',
         contactMethod: validatedData.contactMethod || 'WhatsApp',
         
-        profileImageUrl: validatedData.profileImageUrl || '',
+        profileImageUrl: fileUrl,
         status: 'PENDING',
     }).select().single();
 

@@ -4,7 +4,7 @@
 import { useState, useEffect, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Database } from "@/types/database";
-import { Eye, Check, X, Search, RotateCw, Phone, Mail, Loader2, Calendar, MapPin, Briefcase, Camera } from "lucide-react";
+import { Eye, Check, X, Search, RotateCw, Phone, Mail, Loader2, Calendar, MapPin, Briefcase, Camera, FileText, Download, ExternalLink } from "lucide-react";
 import { updateBiodataStatus, deleteBiodata, fetchBiodatas } from "./actions";
 import { createPortal } from "react-dom";
 
@@ -14,6 +14,21 @@ function hasValue(val?: string | number | null): boolean {
   if (val === undefined || val === null) return false;
   if (typeof val === 'string') return val.trim().length > 0;
   return true;
+}
+
+function extractDocInfo(biodata: BiodataRow) {
+  const intro = biodata.shortIntro || '';
+  const match = intro.match(/\[BIODATA_DOC:(.*?)\|NAME:(.*?)\]/);
+  if (match) {
+    return { url: match[1], name: match[2] };
+  }
+  if (biodata.profileImageUrl) {
+    const isDoc = biodata.profileImageUrl.match(/\.(pdf|doc|docx)$/i);
+    if (isDoc) {
+      return { url: biodata.profileImageUrl, name: 'Attached Document' };
+    }
+  }
+  return null;
 }
 
 export default function BiodataList({ initialBiodatas }: { initialBiodatas: BiodataRow[] }) {
@@ -236,7 +251,18 @@ export default function BiodataList({ initialBiodatas }: { initialBiodatas: Biod
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    {biodata.profileImageUrl && (
+                    {extractDocInfo(biodata) && (
+                      <a 
+                        href={extractDocInfo(biodata)!.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="flex items-center gap-1.5 justify-center py-1.5 px-3 rounded-xl bg-brand-gold/15 border border-brand-gold/40 hover:bg-brand-gold hover:text-white transition-colors text-brand-charcoal text-xs font-semibold shadow-xs"
+                      >
+                        <FileText size={14} className="text-brand-gold" /> <span className="hidden sm:inline">Doc</span>
+                      </a>
+                    )}
+                    {biodata.profileImageUrl && !extractDocInfo(biodata) && (
                       <button 
                         onClick={(e) => { e.stopPropagation(); setLightboxImage(biodata.profileImageUrl); }}
                         className="flex items-center gap-1.5 justify-center py-1.5 px-3 sm:px-4 rounded-xl bg-white border border-brand-border/60 hover:bg-[#b3854d] hover:text-white hover:border-[#b3854d] transition-colors text-brand-gold text-xs font-semibold shadow-sm"
@@ -350,20 +376,50 @@ export default function BiodataList({ initialBiodatas }: { initialBiodatas: Biod
                 )}
               </div>
 
+              {/* Uploaded Biodata Document Banner */}
+              {extractDocInfo(selectedBiodata) && (
+                <div className="bg-brand-gold/10 border-2 border-brand-gold/40 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+                  <div className="flex items-center gap-3.5 min-w-0">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1D184C] to-[#651514] text-white flex items-center justify-center shrink-0 shadow-sm">
+                      <FileText size={24} className="text-[#F3B979]" />
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="text-sm sm:text-base font-bold text-brand-charcoal truncate">
+                        Attached Biodata Document
+                      </h4>
+                      <p className="text-xs text-slate-500 font-medium truncate">
+                        {extractDocInfo(selectedBiodata)!.name}
+                      </p>
+                    </div>
+                  </div>
+                  <a
+                    href={extractDocInfo(selectedBiodata)!.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#1D184C] hover:bg-[#651514] text-white text-xs sm:text-sm font-semibold transition-all shadow-sm shrink-0"
+                  >
+                    <Download size={16} />
+                    <span>View / Download File</span>
+                  </a>
+                </div>
+              )}
+
               {/* Detailed Sections */}
               <div className="space-y-8 sm:space-y-10">
                 
                 {/* About & Religious */}
-                {(hasValue(selectedBiodata.shortIntro) ||
+                {(hasValue(selectedBiodata.shortIntro?.replace(/\[BIODATA_DOC:.*?\]/g, '').trim()) ||
                   (hasValue(selectedBiodata.religiousPractice) || hasValue(selectedBiodata.prayerPractice))) && (
                   <div className="grid md:grid-cols-2 gap-8 sm:gap-10">
                     {/* About Them */}
-                    {hasValue(selectedBiodata.shortIntro) && (
+                    {hasValue(selectedBiodata.shortIntro?.replace(/\[BIODATA_DOC:.*?\]/g, '').trim()) && (
                       <div className="space-y-4">
                         <h4 className="text-xs sm:text-sm font-bold text-brand-charcoal uppercase tracking-wider border-b border-brand-border/60 pb-2">About & Background</h4>
                         <div>
                           <span className="block text-[10px] text-slate-500 font-medium mb-0.5">Introduction</span>
-                          <p className="text-xs sm:text-sm text-brand-charcoal leading-relaxed whitespace-pre-line">{selectedBiodata.shortIntro}</p>
+                          <p className="text-xs sm:text-sm text-brand-charcoal leading-relaxed whitespace-pre-line">
+                            {selectedBiodata.shortIntro.replace(/\[BIODATA_DOC:.*?\]/g, '').trim()}
+                          </p>
                         </div>
                       </div>
                     )}

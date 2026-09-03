@@ -27,7 +27,7 @@ const values = [
   },
   {
     icon: HeartHandshake,
-    title: "Halal & Dignified Matching",
+    title: "Authentic & Dignified Matching",
     description: "Designed purely for matrimonial matrimony (Nikah). No casual dating or unverified profiles allowed.",
     accent: "from-[#b3854d] to-[#966b37]",
   },
@@ -47,7 +47,7 @@ export function PrivacyAndIslamicValuesSection() {
         <ScrollReveal variant="fade-up" className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-gold/10 border border-brand-gold/30 text-brand-gold text-xs font-semibold uppercase tracking-widest shadow-xs">
             <Sparkles size={14} className="text-brand-gold animate-pulse" />
-            <span>HALAL &amp; SECURE MATCHMAKING</span>
+            <span>TRUSTED &amp; SECURE MATCHMAKING</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-brand-charcoal leading-tight">
@@ -55,7 +55,7 @@ export function PrivacyAndIslamicValuesSection() {
           </h2>
 
           <p className="text-slate-600 text-sm sm:text-base font-light max-w-2xl mx-auto leading-relaxed">
-            HumNikah provides a dignified, halal environment to find your life partner while honoring your modesty, family traditions, and peace of mind.
+            HumNikah provides a dignified, trusted environment to find your life partner while honoring your modesty, family traditions, and peace of mind.
           </p>
         </ScrollReveal>
 

@@ -75,7 +75,7 @@ export function CtaBannerSection() {
               >
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/20 border border-brand-gold/40 text-brand-gold text-xs font-semibold uppercase tracking-wider mb-4">
                   <Sparkles size={14} className="animate-pulse" />
-                  <span>START YOUR HALAL JOURNEY</span>
+                  <span>START YOUR SACRED JOURNEY</span>
                 </div>
 
                 <h2 className="text-2xl sm:text-4xl lg:text-5xl font-playfair font-bold text-white leading-tight sm:leading-tight lg:leading-tight tracking-tight">

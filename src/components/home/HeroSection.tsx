@@ -149,7 +149,7 @@ export function HeroSection() {
             <motion.div variants={itemVariants} className="inline-block">
               <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1D184C]/70 border border-brand-gold/50 text-xs font-semibold text-brand-gold uppercase tracking-wider shadow-sm">
                 <Sparkles size={14} className="text-brand-gold animate-pulse" />
-                A TRUSTED HALAL SERVICE
+                A TRUSTED & VERIFIED MATRIMONY
                 <Sparkles size={14} className="text-brand-gold animate-pulse" />
               </span>
             </motion.div>

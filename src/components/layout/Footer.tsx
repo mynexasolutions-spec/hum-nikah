@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { OFFICE_LOCATIONS } from "@/data/locationsData";
 
 export function Footer() {
   return (
@@ -211,47 +212,29 @@ export function Footer() {
 
           {/* Locations Grid Pill Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 text-xs">
-            <div className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors">
-              <div className="text-brand-gold font-bold mb-1">Karnataka</div>
-              <div className="text-gray-300 font-light text-[11px] leading-relaxed">
-                Splendid Plaza, Wheeler Road, Cox Town, Bangalore 560005
+            {OFFICE_LOCATIONS.map((loc) => (
+              <div 
+                key={loc.id} 
+                className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors flex flex-col justify-between"
+              >
+                <div>
+                  <div className="text-brand-gold font-bold mb-1 flex items-center justify-between">
+                    <span>{loc.state}</span>
+                    {loc.isHeadquarters && (
+                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-brand-gold/20 text-brand-gold font-semibold uppercase">HQ</span>
+                    )}
+                  </div>
+                  <div className="text-gray-300 font-light text-[11px] leading-relaxed">
+                    {loc.address}
+                  </div>
+                </div>
+                {loc.phone && (
+                  <div className="mt-2 text-[10px] text-brand-gold/80 font-medium">
+                    {loc.phone}
+                  </div>
+                )}
               </div>
-            </div>
-
-            <div className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors">
-              <div className="text-brand-gold font-bold mb-1">Kerala</div>
-              <div className="text-gray-300 font-light text-[11px] leading-relaxed">
-                Kochi, Kerala – 682001
-              </div>
-            </div>
-
-            <div className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors">
-              <div className="text-brand-gold font-bold mb-1">Tamil Nadu</div>
-              <div className="text-gray-300 font-light text-[11px] leading-relaxed">
-                Chennai, Tamil Nadu – 600001
-              </div>
-            </div>
-
-            <div className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors">
-              <div className="text-brand-gold font-bold mb-1">Andhra Pradesh</div>
-              <div className="text-gray-300 font-light text-[11px] leading-relaxed">
-                Vijayawada, Andhra Pradesh – 520001
-              </div>
-            </div>
-
-            <div className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors">
-              <div className="text-brand-gold font-bold mb-1">Telangana</div>
-              <div className="text-gray-300 font-light text-[11px] leading-relaxed">
-                Hyderabad, Telangana – 500001
-              </div>
-            </div>
-
-            <div className="bg-white/5 border border-white/10 rounded-xl p-3 hover:border-brand-gold/40 transition-colors">
-              <div className="text-brand-gold font-bold mb-1">Maharashtra</div>
-              <div className="text-gray-300 font-light text-[11px] leading-relaxed">
-                Mumbai, Maharashtra – 400001
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
