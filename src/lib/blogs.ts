@@ -1,10 +1,16 @@
 import { cache } from "react";
 import { supabase } from "./supabase";
-import { BLOG_POSTS } from "@/data/blogsData";
 
 /**
- * Single source of truth for blog content: the Supabase `blogs` table with
- * fallback to static bundled posts in src/data/blogsData.ts.
+ * Single source of truth for blog content: the Supabase `blogs` table.
+ *
+ * There is deliberately NO bundled/hard-coded fallback. What is in the database
+ * is exactly what the site publishes, so deleting or editing a post in the admin
+ * dashboard always takes effect, and a post can never appear twice. If the
+ * database is unreachable these functions return empty results and log the
+ * error; they do not substitute other content.
+ *
+ * Posts are authored in /admin/blogs or loaded with scripts/seed-blogs-to-db.py.
  */
 
 export type BlogAuthor = { name?: string; role?: string; avatar?: string };
@@ -34,98 +40,75 @@ export type BlogRecord = {
 
 const SELECT = "*";
 
-/** All published posts, newest first. Merges Supabase blogs with static bundled posts so all SEO articles are live. */
+/** All published posts, newest first. */
 export const getBlogs = cache(async (): Promise<BlogRecord[]> => {
-  let dbBlogs: BlogRecord[] = [];
-  try {
-    const { data, error } = await supabase
-      .from("blogs")
-      .select(SELECT)
-      .order("created_at", { ascending: false });
+  const { data, error } = await supabase
+    .from("blogs")
+    .select(SELECT)
+    .order("created_at", { ascending: false });
 
-    if (!error && data && data.length > 0) {
-      dbBlogs = data as BlogRecord[];
-    } else if (error) {
-      console.warn("getBlogs DB query returned error, using bundled posts:", error.message);
-    }
-  } catch (err) {
-    console.warn("getBlogs failed, using bundled posts:", err);
+  if (error) {
+    console.error("getBlogs failed:", error.message);
+    return [];
   }
-
-  // Combine: DB versions take precedence for posts edited via admin dashboard.
-  // Any static bundled posts that are not yet in the DB are appended so newly added SEO guides are never lost.
-  const dbSlugs = new Set(dbBlogs.map((b) => b.slug));
-  const missingBundled = (BLOG_POSTS as unknown as BlogRecord[]).filter(
-    (p) => !dbSlugs.has(p.slug)
-  );
-
-  return [...dbBlogs, ...missingBundled];
+  return (data ?? []) as BlogRecord[];
 });
 
 export const getBlogBySlug = cache(async (slug: string): Promise<BlogRecord | null> => {
-  try {
-    const { data, error } = await supabase
-      .from("blogs")
-      .select(SELECT)
-      .eq("slug", slug)
-      .maybeSingle();
+  const { data, error } = await supabase
+    .from("blogs")
+    .select(SELECT)
+    .eq("slug", slug)
+    .maybeSingle();
 
-    if (!error && data) {
-      return data as BlogRecord;
-    }
-  } catch (err) {
-    console.warn(`getBlogBySlug(${slug}) DB query failed:`, err);
+  if (error) {
+    console.error(`getBlogBySlug(${slug}) failed:`, error.message);
+    return null;
   }
-  const fallback = BLOG_POSTS.find((p) => p.slug === slug);
-  return (fallback as unknown as BlogRecord) ?? null;
+  return (data as BlogRecord) ?? null;
 });
 
 /** Up to `limit` other posts, for the "Related articles" block. */
 export const getRelatedBlogs = cache(
   async (slug: string, limit = 3): Promise<BlogRecord[]> => {
-    const all = await getBlogs();
-    return all.filter((p) => p.slug !== slug).slice(0, limit);
+    const { data, error } = await supabase
+      .from("blogs")
+      .select(SELECT)
+      .neq("slug", slug)
+      .order("created_at", { ascending: false })
+      .limit(limit);
+
+    if (error) {
+      console.error("getRelatedBlogs failed:", error.message);
+      return [];
+    }
+    return (data ?? []) as BlogRecord[];
   },
 );
 
 /** Slugs + timestamps for the sitemap and generateStaticParams. */
 export const getBlogIndex = cache(
   async (): Promise<{ slug: string; lastModified?: Date }[]> => {
-    const slugsMap = new Map<string, Date | undefined>();
+    const { data, error } = await supabase
+      .from("blogs")
+      .select("slug, created_at, updated_at")
+      .order("created_at", { ascending: false });
 
-    try {
-      const { data, error } = await supabase
-        .from("blogs")
-        .select("slug, created_at, updated_at")
-        .order("created_at", { ascending: false });
-
-      if (!error && data && data.length > 0) {
-        for (const row of data) {
-          if (row.slug) {
-            const stamp = row.updated_at || row.created_at;
-            const date = stamp ? new Date(stamp) : undefined;
-            slugsMap.set(
-              row.slug,
-              date && !Number.isNaN(date.getTime()) ? date : undefined
-            );
-          }
-        }
-      }
-    } catch (err) {
-      console.warn("getBlogIndex DB query failed:", err);
+    if (error || !data) {
+      if (error) console.error("getBlogIndex failed:", error.message);
+      return [];
     }
 
-    // Merge static bundled posts so all 12 articles are always present in sitemap.xml
-    for (const post of BLOG_POSTS) {
-      if (!slugsMap.has(post.slug)) {
-        slugsMap.set(post.slug, new Date("2026-10-16"));
-      }
-    }
-
-    return Array.from(slugsMap.entries()).map(([slug, lastModified]) => ({
-      slug,
-      lastModified,
-    }));
+    return data
+      .filter((row: { slug?: string | null }) => Boolean(row.slug))
+      .map((row: { slug: string; created_at?: string; updated_at?: string }) => {
+        const stamp = row.updated_at || row.created_at;
+        const date = stamp ? new Date(stamp) : undefined;
+        return {
+          slug: row.slug,
+          lastModified: date && !Number.isNaN(date.getTime()) ? date : undefined,
+        };
+      });
   },
 );
 

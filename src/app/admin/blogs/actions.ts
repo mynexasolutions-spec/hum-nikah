@@ -3,7 +3,7 @@
 import { supabase } from "@/lib/supabase";
 import cloudinary from "@/lib/cloudinary";
 import { revalidatePath } from "next/cache";
-import { estimateReadTime } from "@/data/blogsData";
+import { estimateReadTime } from "@/lib/blog-utils";
 
 /** Optional text field: blank means "fall back to title/excerpt". */
 function optionalText(formData: FormData, key: string): string | null {

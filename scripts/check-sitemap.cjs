@@ -12,6 +12,8 @@ const APP = path.join(ROOT, ".next", "server", "app");
 
 const EXCLUDED = {
   "/thank-you": "noindex confirmation page",
+  "/privacy": "noindex legal page",
+  "/terms": "noindex legal page",
 };
 
 function walk(dir, out = []) {

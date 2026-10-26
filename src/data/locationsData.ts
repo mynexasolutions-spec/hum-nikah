@@ -1,3 +1,5 @@
+import { FACTS } from "@/lib/siteFacts";
+
 export interface OfficeLocation {
   id: string;
   state: string;
@@ -20,9 +22,9 @@ export const OFFICE_LOCATIONS: OfficeLocation[] = [
     city: "Bengaluru",
     address:
       "Splendid Plaza, No. 6, 2nd Floor, Wheeler Road, Cox Town, Bengaluru 560005",
-    phone: "+91 9019082205",
-    phone2: "+91 9844321312",
-    phones: ["+91 9019082205", "+91 9844321312"],
+    phone: FACTS.whatsapp.display,
+    phone2: FACTS.call.display,
+    phones: [FACTS.whatsapp.display, FACTS.call.display],
     email: "connect@humnikah.com",
     isHeadquarters: true,
     hasOffice: true,
@@ -33,9 +35,9 @@ export const OFFICE_LOCATIONS: OfficeLocation[] = [
     city: "Chennai",
     address: "",
     hasOffice: false,
-    phone: "+91 9019082205",
-    phone2: "+91 9844321312",
-    phones: ["+91 9019082205", "+91 9844321312"],
+    phone: FACTS.whatsapp.display,
+    phone2: FACTS.call.display,
+    phones: [FACTS.whatsapp.display, FACTS.call.display],
     email: "connect@humnikah.com",
   },
   {
@@ -44,9 +46,9 @@ export const OFFICE_LOCATIONS: OfficeLocation[] = [
     city: "Hyderabad",
     address: "",
     hasOffice: false,
-    phone: "+91 9019082205",
-    phone2: "+91 9844321312",
-    phones: ["+91 9019082205", "+91 9844321312"],
+    phone: FACTS.whatsapp.display,
+    phone2: FACTS.call.display,
+    phones: [FACTS.whatsapp.display, FACTS.call.display],
     email: "connect@humnikah.com",
   },
   {
@@ -55,9 +57,9 @@ export const OFFICE_LOCATIONS: OfficeLocation[] = [
     city: "Vijayawada",
     address: "",
     hasOffice: false,
-    phone: "+91 9019082205",
-    phone2: "+91 9844321312",
-    phones: ["+91 9019082205", "+91 9844321312"],
+    phone: FACTS.whatsapp.display,
+    phone2: FACTS.call.display,
+    phones: [FACTS.whatsapp.display, FACTS.call.display],
     email: "connect@humnikah.com",
   },
   {
@@ -66,9 +68,9 @@ export const OFFICE_LOCATIONS: OfficeLocation[] = [
     city: "Kochi",
     address: "",
     hasOffice: false,
-    phone: "+91 9019082205",
-    phone2: "+91 9844321312",
-    phones: ["+91 9019082205", "+91 9844321312"],
+    phone: FACTS.whatsapp.display,
+    phone2: FACTS.call.display,
+    phones: [FACTS.whatsapp.display, FACTS.call.display],
     email: "connect@humnikah.com",
   },
   {
@@ -77,9 +79,9 @@ export const OFFICE_LOCATIONS: OfficeLocation[] = [
     city: "Mumbai",
     address: "",
     hasOffice: false,
-    phone: "+91 9019082205",
-    phone2: "+91 9844321312",
-    phones: ["+91 9019082205", "+91 9844321312"],
+    phone: FACTS.whatsapp.display,
+    phone2: FACTS.call.display,
+    phones: [FACTS.whatsapp.display, FACTS.call.display],
     email: "connect@humnikah.com",
   },
 ];

@@ -4,7 +4,7 @@ import { Plus, Edit, ExternalLink, Download } from "lucide-react";
 import { deleteBlog } from "./actions";
 import { revalidatePath } from "next/cache";
 import DeleteButton from "./DeleteButton";
-import type { BlogPost } from "@/data/blogsData";
+import type { BlogRecord } from "@/lib/blogs";
 
 export const dynamic = "force-dynamic";
 
@@ -51,7 +51,7 @@ export default async function AdminBlogsPage() {
 
       {displayBlogs && displayBlogs.length > 0 ? (
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {displayBlogs.map((blog: BlogPost) => (
+          {displayBlogs.map((blog: BlogRecord) => (
             <div key={blog.id} className="bg-white rounded-2xl shadow-sm border border-brand-border/60 overflow-hidden flex flex-col group hover:shadow-md transition-shadow">
               <div className="relative h-24 sm:h-48 w-full bg-brand-beige overflow-hidden">
                 {blog.image ? (

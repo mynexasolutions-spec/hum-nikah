@@ -1,5 +1,6 @@
 "use client";
 
+import { FACTS } from "@/lib/siteFacts";
 import React, { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -507,10 +508,10 @@ export function FaqPageClient() {
                   <Mail size={15} className="shrink-0" /> connect@humnikah.com
                 </a>
                 <a
-                  href="tel:+919019082205"
+                  href={FACTS.whatsapp.tel}
                   className="inline-flex items-center justify-center sm:justify-start gap-2 bg-white/10 border border-white/20 text-white font-semibold rounded-lg px-4 py-2.5 hover:bg-white/20 transition-colors"
                 >
-                  <Phone size={15} className="text-brand-gold shrink-0" /> +91 90190 82205
+                  <Phone size={15} className="text-brand-gold shrink-0" /> {FACTS.whatsapp.display}
                 </a>
                 <Link
                   href="/contact"

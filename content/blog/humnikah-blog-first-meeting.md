@@ -1,7 +1,7 @@
 ---
 slug: first-rishta-meeting-checklist-for-families
 title: "First Rishta Meeting: A Simple Checklist for Families"
-description: "A practical checklist for your first rishta meeting. Learn etiquette, who to bring, respectful topics to discuss, common mistakes to avoid, and graceful follow-ups."
+description: "A simple checklist for your first rishta meeting: who to bring, respectful topics, mistakes to avoid and how to follow up kindly."
 h1: "First Rishta Meeting: A Simple Checklist for Families"
 primaryKeyword: "rishta meeting checklist"
 secondaryKeywords:
@@ -14,7 +14,7 @@ publishedAt: "2026-10-16"
 updatedAt: "2026-10-16"
 author: "HumNikah Editorial Team"
 heroImage: "/images/about/about_hero_couple.webp"
-heroAlt: "Two Muslim families meeting respectfully for an initial rishta conversation"
+heroAlt: "Two Muslim families talking over tea with a checklist on the table: first rishta meeting checklist"
 related: ["questions-to-ask-before-a-muslim-marriage", "how-to-verify-a-muslim-rishta"]
 ---
 

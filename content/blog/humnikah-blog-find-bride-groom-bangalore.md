@@ -1,7 +1,7 @@
 ---
 slug: how-to-find-a-muslim-bride-or-groom-in-bangalore
 title: "How to Find a Muslim Bride or Groom in Bangalore"
-description: "A complete guide on finding a Muslim bride or groom in Bangalore. Learn how to search through family, marriage bureaus, online safety, biodatas, and local areas."
+description: "How to find a Muslim bride or groom in Bangalore: family, marriage bureaus, safe online search, a clear biodata and areas of the city."
 h1: "How to Find a Muslim Bride or Groom in Bangalore"
 primaryKeyword: "muslim bride groom bangalore"
 secondaryKeywords:
@@ -14,7 +14,7 @@ publishedAt: "2026-10-16"
 updatedAt: "2026-10-16"
 author: "HumNikah Editorial Team"
 heroImage: "/images/about/about_hero_couple.webp"
-heroAlt: "Family searching for a Muslim bride or groom in Bangalore with verified matchmaking"
+heroAlt: "Gold wedding rings, flowers and a lantern: how to find a Muslim bride or groom in Bangalore"
 related: ["muslim-marriage-bureau-bangalore-guide", "muslim-biodata-format-for-marriage"]
 ---
 

@@ -1,3 +1,4 @@
+import { FACTS } from "@/lib/siteFacts";
 import React from "react";
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact/ContactForm";
@@ -95,10 +96,10 @@ export default function ContactPage() {
                   </h3>
                   <div className="text-xs sm:text-sm text-brand-secondary font-medium mt-0.5 flex flex-wrap items-center gap-2">
                     <a 
-                      href="tel:+919844321312" 
+                      href={FACTS.call.tel} 
                       className="hover:text-brand-gold hover:underline transition-colors"
                     >
-                      Call: +91 98443 21312
+                      Call: {FACTS.call.display}
                     </a>
                     <span className="text-slate-300">/</span>
                     <a 
@@ -160,7 +161,7 @@ export default function ContactPage() {
               </h2>
               <p className="text-xs sm:text-sm text-brand-secondary font-light leading-relaxed">
                 If you are looking for a Muslim marriage bureau contact number in Bangalore,
-                call +91 98443 21312 or message us on WhatsApp.
+                call {FACTS.call.display} or message us on WhatsApp.
               </p>
               <p className="mt-3 text-xs sm:text-sm text-brand-charcoal font-medium">
                 Submitting your biodata to HumNikah is free.

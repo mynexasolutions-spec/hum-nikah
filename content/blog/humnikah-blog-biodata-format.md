@@ -21,7 +21,7 @@ publishedAt: "2026-10-13"
 updatedAt: "2026-10-22"
 author: "HumNikah Editorial Team"
 heroImage: "/images/blog/muslim-biodata-format-for-marriage.webp"
-heroAlt: "Simple one-page Muslim marriage biodata template on a desk"
+heroAlt: "Muslim marriage biodata template with personal, education, profession and family sections beside gold rings"
 related: ["how-to-verify-a-muslim-rishta", "konkani-muslim-matrimony-mumbai-guide"]
 downloads:
   - "/downloads/muslim-biodata-format-boy.docx"

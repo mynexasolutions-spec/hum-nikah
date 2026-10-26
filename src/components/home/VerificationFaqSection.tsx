@@ -1,5 +1,6 @@
 "use client";
 
+import { FACTS } from "@/lib/siteFacts";
 import React, { useState } from "react";
 import { ShieldCheck, HelpCircle, ChevronRight, Sparkles, PhoneCall, ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -100,7 +101,7 @@ export function VerificationFaqSection() {
               <Sparkles size={14} /> Have custom verification questions?
             </span>
             <a
-              href="tel:+919844321312"
+              href={FACTS.call.tel}
               className="inline-flex items-center gap-1.5 text-white font-bold hover:text-brand-gold transition-colors"
             >
               <PhoneCall size={14} className="text-brand-gold" />

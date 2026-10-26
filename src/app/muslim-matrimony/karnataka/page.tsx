@@ -1,11 +1,13 @@
+import { Breadcrumbs, breadcrumbSchema, type Crumb } from "@/components/layout/Breadcrumbs";
+import { FACTS } from "@/lib/siteFacts";
 import React from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight, ChevronRight, MapPin, Phone } from "lucide-react";
 import { SITE_URL } from "@/lib/site";
 import { buildMetadata } from "@/lib/seo";
-import { CITY_LOCAL } from "@/data/cityLocal";
 import { liveZones, FREE_SENTENCE } from "@/data/bengaluru-zones";
+import { NearbyPlaces, KARNATAKA_TOWNS, townId } from "@/components/places/NearbyPlaces";
 
 const TITLE = "Muslim Matrimony & Marriage Bureau in Karnataka | HumNikah";
 const DESCRIPTION =
@@ -18,10 +20,6 @@ export const metadata: Metadata = buildMetadata({
   path: "/muslim-matrimony/karnataka",
 });
 
-// Towns come from the Bengaluru page's own data, so this page can only list
-// towns that page already lists. Never add a town here by hand.
-const TOWNS: string[] =
-  CITY_LOCAL.bengaluru.areas.find((g) => g.heading.toLowerCase().includes("karnataka"))?.places ?? [];
 
 const STEPS = [
   "Submit your biodata (free) or message us on WhatsApp.",
@@ -65,22 +63,16 @@ const FAQS = [
 export default function KarnatakaPage() {
   const pageUrl = `${SITE_URL}/muslim-matrimony/karnataka`;
 
+  const crumbs: Crumb[] = [
+    { name: "Home", href: "/" },
+    { name: "Muslim Matrimony", href: "/muslim-matrimony-india" },
+    { name: "Karnataka", href: "/muslim-matrimony/karnataka" },
+  ];
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Muslim Matrimony",
-            item: `${SITE_URL}/muslim-matrimony-india`,
-          },
-          { "@type": "ListItem", position: 3, name: "Karnataka", item: pageUrl },
-        ],
-      },
+      breadcrumbSchema(crumbs),
       {
         "@type": "FAQPage",
         mainEntity: FAQS.map((faq) => ({
@@ -101,18 +93,7 @@ export default function KarnatakaPage() {
 
       <section className="bg-[#1D184C] text-white py-12 sm:py-16 border-b border-brand-gold/20">
         <div className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8">
-          <nav
-            aria-label="Breadcrumb"
-            className="flex items-center justify-center gap-1.5 text-[11px] sm:text-xs text-slate-300 mb-4 flex-wrap"
-          >
-            <Link href="/" className="hover:text-brand-gold transition-colors">Home</Link>
-            <ChevronRight size={12} className="text-slate-500" />
-            <Link href="/muslim-matrimony-india" className="hover:text-brand-gold transition-colors">
-              Muslim Matrimony
-            </Link>
-            <ChevronRight size={12} className="text-slate-500" />
-            <span className="text-brand-gold">Karnataka</span>
-          </nav>
+          <Breadcrumbs items={crumbs} />
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="font-playfair font-bold text-white leading-[1.15] text-[28px] sm:text-4xl lg:text-5xl">
               Muslim Matrimony in Karnataka
@@ -171,8 +152,8 @@ export default function KarnatakaPage() {
             phone and WhatsApp, and you can visit our office by appointment if you wish.
           </p>
           <div className="space-y-4">
-            {TOWNS.map((town) => (
-              <div key={town}>
+            {KARNATAKA_TOWNS.map((town) => (
+              <div key={town} id={townId(town)} className="scroll-mt-24">
                 <h3 className="text-lg font-playfair font-bold text-brand-charcoal mb-1">
                   Muslim matrimony in {town}
                 </h3>
@@ -202,6 +183,8 @@ export default function KarnatakaPage() {
           </ul>
         </div>
       </section>
+
+      <NearbyPlaces />
 
       <section className="py-12 sm:py-14 bg-brand-cream border-b border-brand-border/50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -246,12 +229,12 @@ export default function KarnatakaPage() {
           <ul className="space-y-3 text-[15px] text-black">
             <li className="flex items-start gap-3">
               <MapPin size={18} className="text-brand-gold shrink-0 mt-0.5" />
-              <span>Splendid Plaza, No. 6, 2nd Floor, Wheeler Road, Cox Town, Bengaluru 560005</span>
+              <span>{FACTS.address.full}</span>
             </li>
             <li className="flex items-center gap-3">
               <Phone size={18} className="text-brand-gold shrink-0" />
-              <a href="tel:+919844321312" className="hover:text-brand-gold font-medium">
-                +91 98443 21312
+              <a href={FACTS.call.tel} className="hover:text-brand-gold font-medium">
+                {FACTS.call.display}
               </a>
             </li>
           </ul>
@@ -304,6 +287,13 @@ export default function KarnatakaPage() {
               Chat on WhatsApp
             </a>
           </div>
+          <p className="mt-6 text-sm text-brand-secondary">
+            Learn{" "}
+            <Link href="/how-we-verify" className="text-brand-gold font-semibold hover:underline">
+              how we verify profiles
+            </Link>
+            .
+          </p>
         </div>
       </section>
     </main>

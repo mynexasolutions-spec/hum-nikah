@@ -26,8 +26,8 @@ POSTS = [
     ("humnikah-blog-find-bride-groom-bangalore.md", "seo-8", "Choosing Partner"),
     ("humnikah-blog-it-professionals.md", "seo-9", "Choosing Partner"),
     ("humnikah-blog-first-meeting.md", "seo-10", "Pre-Marriage"),
-    ("humnikah-blog-rishta-kaise-dhundhe.md", "seo-11", "Choosing Partner"),
-    ("humnikah-blog-biodata-kaise-banayein.md", "seo-12", "Pre-Marriage"),
+    ("humnikah-blog-find-muslim-rishta.md", "seo-11", "Choosing Partner"),
+    ("humnikah-blog-make-biodata.md", "seo-12", "Pre-Marriage"),
 ]
 # Hero images uploaded to Cloudinary (scripts/upload-blog-images.cjs).
 CLOUDINARY = json.loads((SRC / "cloudinary-images.json").read_text(encoding="utf-8")) if (SRC / "cloudinary-images.json").exists() else {}

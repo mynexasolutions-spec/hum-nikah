@@ -1,3 +1,4 @@
+import { FACTS } from "@/lib/siteFacts";
 import React from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -170,7 +171,7 @@ const jsonLd = {
       ],
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Splendid Plaza, No. 6, 2nd Floor, Wheeler Road, Cox Town",
+        streetAddress: FACTS.address.street,
         addressLocality: "Bengaluru",
         addressRegion: "Karnataka",
         postalCode: "560005",
@@ -960,25 +961,24 @@ export default function MuslimMatrimonyIndiaPage() {
                 <li className="flex items-start gap-3">
                   <MapPin size={18} className="text-brand-gold shrink-0 mt-0.5" />
                   <span>
-                    Splendid Plaza, No. 6, 2nd Floor, Wheeler Road, Cox Town,
-                    Bengaluru 560005, Karnataka, India
+                    {FACTS.address.full}, Karnataka, India
                   </span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone size={18} className="text-brand-gold shrink-0" />
                   <span className="flex flex-wrap gap-x-2">
                     <a
-                      href="tel:+919019082205"
+                      href={FACTS.whatsapp.tel}
                       className="hover:text-brand-gold transition-colors"
                     >
-                      +91 90190 82205
+                      {FACTS.whatsapp.display}
                     </a>
                     <span className="text-brand-border">/</span>
                     <a
-                      href="tel:+919844321312"
+                      href={FACTS.call.tel}
                       className="hover:text-brand-gold transition-colors"
                     >
-                      +91 98443 21312
+                      {FACTS.call.display}
                     </a>
                   </span>
                 </li>

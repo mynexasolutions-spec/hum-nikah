@@ -1,3 +1,4 @@
+import { Breadcrumbs, breadcrumbSchema, type Crumb } from "@/components/layout/Breadcrumbs";
 import React from "react";
 import Link from "next/link";
 import { ArrowRight, ChevronRight } from "lucide-react";
@@ -6,27 +7,29 @@ import { CITY_CONTENT } from "@/data/cityContent";
 import { COMMUNITY_PAGES, type CommunityPage } from "@/data/communities";
 import { cityAnchor } from "@/data/seo-meta";
 
+/** Community pages that link back to the Karnataka hub and the Bengaluru page. */
+const KARNATAKA_COMMUNITY_SLUGS = [
+  "beary-bhatkali",
+  "deccani",
+  "konkani",
+  "divorcee-widow-remarriage",
+];
+
 export function CommunityPageView({ page }: { page: CommunityPage }) {
   const pageUrl = `${SITE_URL}/muslim-matrimony/${page.slug}`;
   const related = CITY_CONTENT.filter((c) => page.relatedCities.includes(c.slug));
   const otherPages = COMMUNITY_PAGES.filter((p) => p.slug !== page.slug);
 
+  const crumbs: Crumb[] = [
+    { name: "Home", href: "/" },
+    { name: "Muslim Matrimony", href: "/muslim-matrimony-india" },
+    { name: page.navLabel, href: `/muslim-matrimony/${page.slug}` },
+  ];
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Muslim Matrimony in India",
-            item: `${SITE_URL}/muslim-matrimony-india`,
-          },
-          { "@type": "ListItem", position: 3, name: page.navLabel, item: pageUrl },
-        ],
-      },
+      breadcrumbSchema(crumbs),
       {
         "@type": "FAQPage",
         mainEntity: page.faqs.map((faq) => ({
@@ -47,20 +50,7 @@ export function CommunityPageView({ page }: { page: CommunityPage }) {
 
       <section className="bg-[#1D184C] text-white py-12 sm:py-16 border-b border-brand-gold/20">
         <div className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8">
-          <nav
-            aria-label="Breadcrumb"
-            className="flex items-center justify-center gap-1.5 text-[11px] sm:text-xs text-slate-300 mb-4 flex-wrap"
-          >
-            <Link href="/" className="hover:text-brand-gold transition-colors">
-              Home
-            </Link>
-            <ChevronRight size={12} className="text-slate-500" />
-            <Link href="/muslim-matrimony-india" className="hover:text-brand-gold transition-colors">
-              Muslim Matrimony in India
-            </Link>
-            <ChevronRight size={12} className="text-slate-500" />
-            <span className="text-brand-gold">{page.navLabel}</span>
-          </nav>
+          <Breadcrumbs items={crumbs} />
 
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="font-playfair font-bold text-white leading-[1.15] text-[28px] sm:text-4xl lg:text-5xl">
@@ -101,6 +91,25 @@ export function CommunityPageView({ page }: { page: CommunityPage }) {
               {section.body.map((p) => (
                 <p key={p}>{p}</p>
               ))}
+
+          {page.bangaloreSection && (
+            <div>
+              <h2 className="text-2xl font-playfair font-bold text-brand-charcoal mb-3">
+                {page.bangaloreSection.heading}
+              </h2>
+              {page.bangaloreSection.body.map((para) => (
+                <p key={para}>{para}</p>
+              ))}
+              <p>
+                <Link
+                  href={page.bangaloreSection.link.href}
+                  className="text-brand-gold font-semibold hover:underline"
+                >
+                  {page.bangaloreSection.link.label}
+                </Link>
+              </p>
+            </div>
+          )}
             </div>
           ))}
         </div>
@@ -148,6 +157,35 @@ export function CommunityPageView({ page }: { page: CommunityPage }) {
                 {". "}
               </span>
             ))}
+            {KARNATAKA_COMMUNITY_SLUGS.includes(page.slug) && (
+              <>
+                <Link
+                  href="/muslim-matrimony/karnataka"
+                  className="text-brand-gold font-semibold hover:underline"
+                >
+                  Muslim matrimony in Karnataka
+                </Link>
+                {". "}
+                {!page.relatedCities.includes("bengaluru") && (
+                  <>
+                    <Link
+                      href="/muslim-matrimony/bengaluru"
+                      className="text-brand-gold font-semibold hover:underline"
+                    >
+                      Muslim marriage bureau in Bangalore
+                    </Link>
+                    {". "}
+                  </>
+                )}
+              </>
+            )}
+            <Link
+              href="/how-we-verify"
+              className="text-brand-gold font-semibold hover:underline"
+            >
+              How we verify profiles
+            </Link>
+            {". "}
             <Link
               href="/muslim-matrimony-india"
               className="text-brand-gold font-semibold hover:underline"

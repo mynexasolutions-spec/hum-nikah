@@ -9,7 +9,8 @@
     "lint": "eslint",
     "prebuild": "node scripts/check-todo.js",
     "check:sitemap": "node scripts/check-sitemap.cjs",
-    "check:links": "node scripts/check-links.cjs"
+    "check:links": "node scripts/check-links.cjs",
+    "audit:seo": "node scripts/audit-seo.cjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.7.1",

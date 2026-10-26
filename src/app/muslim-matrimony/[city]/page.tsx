@@ -1,3 +1,5 @@
+import { Breadcrumbs, breadcrumbSchema, type Crumb } from "@/components/layout/Breadcrumbs";
+import { FACTS } from "@/lib/siteFacts";
 import React from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -25,6 +27,7 @@ import { CITY_META } from "@/data/seo-meta";
 import { getGuidesForCity } from "@/data/guides";
 import { CITY_COMMUNITY_LINKS, getCommunityPage } from "@/data/communities";
 import { liveZones, FREE_SENTENCE } from "@/data/bengaluru-zones";
+import { NearbyPlaces } from "@/components/places/NearbyPlaces";
 
 interface PageProps {
   params: Promise<{ city: string }>;
@@ -119,6 +122,18 @@ export default async function CityMatrimonyPage({ params }: PageProps) {
   const hasOffice = office?.hasOffice ?? false;
   const pageUrl = `${SITE_URL}/muslim-matrimony/${content.slug}`;
 
+  const crumbs: Crumb[] = [
+    { name: "Home", href: "/" },
+    { name: "Muslim Matrimony", href: "/muslim-matrimony-india" },
+    ...(content.slug === "bengaluru"
+      ? [{ name: "Karnataka", href: "/muslim-matrimony/karnataka" }]
+      : []),
+    {
+      name: content.slug === "bengaluru" ? "Bengaluru" : content.city,
+      href: `/muslim-matrimony/${content.slug}`,
+    },
+  ];
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -135,7 +150,7 @@ export default async function CityMatrimonyPage({ params }: PageProps) {
               parentOrganization: { "@id": `${SITE_URL}/#organization` },
               telephone:
                 content.slug === "bengaluru"
-                  ? "+919844321312"
+                  ? FACTS.call.e164
                   : office?.phone2
                     ? `+${office.phone2.replace(/[^0-9]/g, "")}`
                     : office?.phone
@@ -146,7 +161,7 @@ export default async function CityMatrimonyPage({ params }: PageProps) {
                 "@type": "PostalAddress",
                 streetAddress:
                   content.slug === "bengaluru"
-                    ? "Splendid Plaza, No. 6, 2nd Floor, Wheeler Road, Cox Town"
+                    ? FACTS.address.street
                     : office?.address,
                 addressLocality: content.city,
                 addressRegion: content.state,
@@ -169,24 +184,7 @@ export default async function CityMatrimonyPage({ params }: PageProps) {
               )),
         ],
       },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Muslim Matrimony in India",
-            item: `${SITE_URL}/muslim-matrimony-india`,
-          },
-          {
-            "@type": "ListItem",
-            position: 3,
-            name: `Muslim Matrimony in ${content.city}`,
-            item: pageUrl,
-          },
-        ],
-      },
+      breadcrumbSchema(crumbs),
       {
         "@type": "FAQPage",
         mainEntity: content.faqs.map((faq) => ({
@@ -211,23 +209,7 @@ export default async function CityMatrimonyPage({ params }: PageProps) {
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#651514]/25 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <nav
-            aria-label="Breadcrumb"
-            className="flex items-center justify-center gap-1.5 text-[11px] sm:text-xs text-slate-300 mb-4 flex-wrap"
-          >
-            <Link href="/" className="hover:text-brand-gold transition-colors">
-              Home
-            </Link>
-            <ChevronRight size={12} className="text-slate-500" />
-            <Link
-              href="/muslim-matrimony-india"
-              className="hover:text-brand-gold transition-colors"
-            >
-              Muslim Matrimony in India
-            </Link>
-            <ChevronRight size={12} className="text-slate-500" />
-            <span className="text-brand-gold">{content.city}</span>
-          </nav>
+          <Breadcrumbs items={crumbs} />
 
           <div className="text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-gold/20 border border-brand-gold/40 text-brand-gold text-xs font-semibold tracking-wider uppercase mb-4">
@@ -447,6 +429,8 @@ export default async function CityMatrimonyPage({ params }: PageProps) {
               </p>
             </div>
           </section>
+
+          <NearbyPlaces currentCitySlug="bengaluru" />
         </>
       ) : (
         <section className="py-12 sm:py-16 bg-brand-cream border-b border-brand-border/50">
@@ -560,8 +544,7 @@ export default async function CityMatrimonyPage({ params }: PageProps) {
                   >
                     office in Cox Town, Bengaluru
                   </Link>{" "}
-                  (Splendid Plaza, No. 6, 2nd Floor, Wheeler Road, Cox Town, Bengaluru
-                  560005). Please call or message us before visiting.
+                  ({FACTS.address.full}). {FACTS.sentences.visitFirst}
                 </p>
               )}
               <ul className="space-y-3.5 text-sm text-black">
@@ -569,15 +552,15 @@ export default async function CityMatrimonyPage({ params }: PageProps) {
                   <>
                     <li className="flex items-start gap-3">
                       <MapPin size={18} className="text-brand-gold shrink-0 mt-0.5" />
-                      <span>Splendid Plaza, No. 6, 2nd Floor, Wheeler Road, Cox Town, Bengaluru 560005</span>
+                      <span>{FACTS.address.full}</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <Phone size={18} className="text-brand-gold shrink-0" />
                       <a
-                        href="tel:+919844321312"
+                        href={FACTS.call.tel}
                         className="hover:text-brand-gold transition-colors font-medium"
                       >
-                        +91 98443 21312
+                        {FACTS.call.display}
                       </a>
                     </li>
                     <li className="flex items-center gap-3">
@@ -760,6 +743,10 @@ export default async function CityMatrimonyPage({ params }: PageProps) {
             ,{" "}
             <Link href="/fees" className="text-brand-gold font-semibold hover:underline">
               see our fees
+            </Link>
+            ,{" "}
+            <Link href="/how-we-verify" className="text-brand-gold font-semibold hover:underline">
+              learn how we verify profiles
             </Link>{" "}
             or{" "}
             <Link href="/contact" className="text-brand-gold font-semibold hover:underline">

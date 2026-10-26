@@ -14,7 +14,7 @@ publishedAt: "2026-10-16"
 updatedAt: "2026-10-16"
 author: "HumNikah Editorial Team"
 heroImage: "/images/about/about_hero_couple.webp"
-heroAlt: "Family discussing Muslim marriage bureau fees in Bangalore with clear written terms"
+heroAlt: "Gold wedding rings and flowers before a Bangalore landmark: Muslim marriage bureau fees in Bangalore"
 related: ["muslim-marriage-bureau-bangalore-guide", "how-to-verify-a-muslim-rishta"]
 ---
 

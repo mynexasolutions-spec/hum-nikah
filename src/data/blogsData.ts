@@ -1,4 +1,10 @@
+/**
+ * SEED SOURCE ONLY. The site never reads this file at runtime: all blog content
+ * is served from the Supabase `blogs` table (see src/lib/blogs.ts). This module
+ * is only used by scripts/extract-blog-posts.cjs to load posts into the database.
+ */
 import { SEO_BLOG_POSTS } from "./blogPostsSeo";
+import { estimateReadTime } from "../lib/blog-utils";
 
 export interface BlogPost {
   id: string;
@@ -28,30 +34,12 @@ export interface BlogPost {
   faqs?: { q: string; a: string }[];
 }
 
-export const BLOG_CATEGORIES = [
-  "All",
-  "Nikah Sunnah",
-  "Choosing Partner",
-  "Mahr & Rights",
-  "Family & Rights",
-  "Pre-Marriage",
-  "Post-Nikah",
-] as const;
-
 /** Posts are published by the editorial team until real, verifiable author bios exist. */
 const EDITORIAL_TEAM = {
   name: "HumNikah Editorial Team",
   role: "Nikah & family guidance",
   avatar: "",
 };
-
-const WORDS_PER_MINUTE = 200;
-
-/** Reading time from the real word count of the HTML body. */
-export function estimateReadTime(html: string): string {
-  const words = html.replace(/<[^>]*>/g, " ").split(/\s+/).filter(Boolean).length;
-  return `${Math.max(1, Math.round(words / WORDS_PER_MINUTE))} min read`;
-}
 
 /**
  * ARCHIVED — the six original posts, retired from the site in October 2026.

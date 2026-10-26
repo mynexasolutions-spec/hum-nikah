@@ -103,7 +103,7 @@ const INITIAL_BOY_DATA: BiodataData = {
   partnerLocation: "Bengaluru or South India (Flexible)",
   partnerValues: "Practising Muslimah, respectful family values, simple & honest",
   contactPerson: "Syed Abdul Rahman (Father)",
-  contactNumber: "+91 98443 21312",
+  contactNumber: "+91 9XXXX XXXXX",
   contactEmail: "family.contact@example.com",
 };
 
@@ -140,7 +140,7 @@ const INITIAL_GIRL_DATA: BiodataData = {
   partnerLocation: "Bengaluru / Overseas NRI welcome",
   partnerValues: "Deen-conscious, non-smoker, respectable family background",
   contactPerson: "Dr. Mohammed Tariq (Father / Wali)",
-  contactNumber: "+91 90190 82205",
+  contactNumber: "+91 9XXXX XXXXX",
   contactEmail: "wali.contact@example.com",
 };
 
@@ -897,9 +897,9 @@ _Created for free on HumNikah: https://www.humnikah.com/biodata-maker_`;
                     بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
                   </div>
                 )}
-                <h1 className="text-lg sm:text-xl font-bold tracking-widest uppercase font-playfair text-brand-deep-green">
+                <h2 className="text-lg sm:text-xl font-bold tracking-widest uppercase font-playfair text-brand-deep-green">
                   Muslim Marriage Biodata
-                </h1>
+                </h2>
                 <p className="text-[11px] sm:text-xs text-brand-gold font-semibold uppercase tracking-[0.25em] mt-0.5">
                   {data.gender === "boy" ? "Groom Profile" : "Bride Profile"}
                 </p>

@@ -4,7 +4,7 @@ import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Sparkles, Heart } from "lucide-react";
-import { BLOG_CATEGORIES } from "@/data/blogsData";
+import { BLOG_CATEGORIES } from "@/lib/blog-utils";
 import type { BlogRecord } from "@/lib/blogs";
 import { BlogCard } from "@/components/blog/BlogCard";
 

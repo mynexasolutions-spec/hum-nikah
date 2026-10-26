@@ -1,3 +1,5 @@
+import { Breadcrumbs, breadcrumbSchema, type Crumb } from "@/components/layout/Breadcrumbs";
+import { FACTS } from "@/lib/siteFacts";
 import React from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -54,6 +56,14 @@ export default async function ZonePage({ params }: PageProps) {
     .map((n) => getLiveZone(n))
     .filter((z): z is NonNullable<typeof z> => Boolean(z));
 
+  const crumbs: Crumb[] = [
+    { name: "Home", href: "/" },
+    { name: "Muslim Matrimony", href: "/muslim-matrimony-india" },
+    { name: "Karnataka", href: "/muslim-matrimony/karnataka" },
+    { name: "Bengaluru", href: "/muslim-matrimony/bengaluru" },
+    { name: zone.name, href: `/muslim-matrimony/bengaluru/${zone.slug}` },
+  ];
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -65,25 +75,7 @@ export default async function ZonePage({ params }: PageProps) {
         // Reference the existing Cox Town business; never a new entity per zone.
         about: { "@id": `${SITE_URL}/#bengaluru-office` },
       },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Muslim Matrimony",
-            item: `${SITE_URL}/muslim-matrimony-india`,
-          },
-          {
-            "@type": "ListItem",
-            position: 3,
-            name: "Bengaluru",
-            item: `${SITE_URL}/muslim-matrimony/bengaluru`,
-          },
-          { "@type": "ListItem", position: 4, name: zone.name, item: pageUrl },
-        ],
-      },
+      breadcrumbSchema(crumbs),
       {
         "@type": "FAQPage",
         mainEntity: zone.faqs.map((faq) => ({
@@ -105,22 +97,7 @@ export default async function ZonePage({ params }: PageProps) {
       {/* Hero */}
       <section className="bg-[#1D184C] text-white py-12 sm:py-16 border-b border-brand-gold/20">
         <div className="max-w-wrap mx-auto px-4 sm:px-6 lg:px-8">
-          <nav
-            aria-label="Breadcrumb"
-            className="flex items-center justify-center gap-1.5 text-[11px] sm:text-xs text-slate-300 mb-4 flex-wrap"
-          >
-            <Link href="/" className="hover:text-brand-gold transition-colors">Home</Link>
-            <ChevronRight size={12} className="text-slate-500" />
-            <Link href="/muslim-matrimony-india" className="hover:text-brand-gold transition-colors">
-              Muslim Matrimony
-            </Link>
-            <ChevronRight size={12} className="text-slate-500" />
-            <Link href="/muslim-matrimony/bengaluru" className="hover:text-brand-gold transition-colors">
-              Bengaluru
-            </Link>
-            <ChevronRight size={12} className="text-slate-500" />
-            <span className="text-brand-gold">{zone.name}</span>
-          </nav>
+          <Breadcrumbs items={crumbs} />
 
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="font-playfair font-bold text-white leading-[1.15] text-[26px] sm:text-4xl lg:text-5xl">
@@ -199,12 +176,12 @@ export default async function ZonePage({ params }: PageProps) {
           <ul className="space-y-3 text-[15px] text-black">
             <li className="flex items-start gap-3">
               <MapPin size={18} className="text-brand-gold shrink-0 mt-0.5" />
-              <span>Splendid Plaza, No. 6, 2nd Floor, Wheeler Road, Cox Town, Bengaluru 560005</span>
+              <span>{FACTS.address.full}</span>
             </li>
             <li className="flex items-center gap-3">
               <Phone size={18} className="text-brand-gold shrink-0" />
-              <a href="tel:+919844321312" className="hover:text-brand-gold font-medium">
-                +91 98443 21312
+              <a href={FACTS.call.tel} className="hover:text-brand-gold font-medium">
+                {FACTS.call.display}
               </a>
             </li>
           </ul>
@@ -264,6 +241,11 @@ export default async function ZonePage({ params }: PageProps) {
               </li>
             ))}
             <li>
+              <Link href="/how-we-verify" className="text-brand-gold font-semibold hover:underline">
+                How we verify profiles
+              </Link>
+            </li>
+            <li>
               <Link href="/blog/how-to-verify-a-muslim-rishta" className="text-brand-gold font-semibold hover:underline">
                 How to verify a Muslim rishta safely
               </Link>
@@ -298,10 +280,10 @@ export default async function ZonePage({ params }: PageProps) {
               Chat on WhatsApp
             </a>
             <a
-              href="tel:+919844321312"
+              href={FACTS.call.tel}
               className="inline-flex items-center justify-center px-6 py-3.5 border border-brand-border bg-white font-semibold rounded-xl hover:border-brand-gold transition-colors"
             >
-              Call +91 98443 21312
+              Call {FACTS.call.display}
             </a>
           </div>
         </div>

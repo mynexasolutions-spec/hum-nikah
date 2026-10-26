@@ -22,6 +22,12 @@ export interface CommunityPage {
   sections: { heading: string; body: string[] }[];
   /** "How matching works" / "What families usually ask" style sections, rendered after `sections`. */
   extraSections?: { heading: string; body: string[] }[];
+  /** Short "...in Bangalore" section with a link to the Bengaluru page (or a zone). */
+  bangaloreSection?: {
+    heading: string;
+    body: string[];
+    link: { href: string; label: string };
+  };
   placesHeading: string;
   places: { heading: string; body: string }[];
   /** City page slugs this page links to. */
@@ -88,6 +94,14 @@ export const COMMUNITY_PAGES: CommunityPage[] = [
         ],
       },
     ],
+    bangaloreSection: {
+      heading: "Tamil Muslim Families in Bangalore",
+      body: [
+        "Many Tamil Muslim families live and work in Bangalore while their roots are in Tamil Nadu. If that is your family, you can work with us from Bangalore without travelling to Chennai: our office is in Cox Town, and most of the process happens by phone and WhatsApp.",
+        "Tell us your community, whether Labbai, Rowther, Marakkayar or another Tamil Muslim community, and the language you prefer. You can choose Tamil, Urdu or English. We record your preferences in the biodata and use them when we shortlist, and we can also share profiles from Tamil families in Chennai and elsewhere. Every profile is manually screened, and the Wali is involved where the bride's family wishes. Submitting your biodata to HumNikah is free, and you can ask questions about how we work before you decide anything.",
+      ],
+      link: { href: "/muslim-matrimony/bengaluru", label: "Muslim marriage bureau in Bangalore" },
+    },
     placesHeading: "Tamil Nadu towns we serve",
     places: [
       {
@@ -169,6 +183,14 @@ export const COMMUNITY_PAGES: CommunityPage[] = [
         ],
       },
     ],
+    bangaloreSection: {
+      heading: "Malayali Muslim Families in Bangalore",
+      body: [
+        "Malayali Muslim families who have settled in Bangalore for work or study can use HumNikah without going back to Kerala to begin the search. Our office is in Cox Town, Bengaluru, and we speak with families by phone and WhatsApp at times that suit them.",
+        "Tell us your community, including Mappila, and your family and language preferences, and we take them into account when we shortlist. We can share profiles from families in Bangalore and from families in Kerala, and we also coordinate introductions with Malayali families in the Gulf. Privacy comes first: photographs and contact details are shared only with matches that you and your family approve, and every profile is manually screened. Submitting your biodata to HumNikah is free, and you can message us on WhatsApp first if you prefer.",
+      ],
+      link: { href: "/muslim-matrimony/bengaluru", label: "Muslim marriage bureau in Bangalore" },
+    },
     placesHeading: "Kerala districts we serve",
     places: [
       {
@@ -347,6 +369,14 @@ export const COMMUNITY_PAGES: CommunityPage[] = [
         ],
       },
     ],
+    bangaloreSection: {
+      heading: "Families from Karnataka in Bangalore",
+      body: [
+        "If your family lives in Bangalore and you would like Deccani or Urdu-speaking proposals, you can start from here without travelling to Hyderabad. Our office is in Cox Town, Bengaluru, and the whole process can happen by phone and WhatsApp.",
+        "Tell us your community, your language and your family's expectations, and we take them into account when we shortlist. Families from Karnataka are welcome to ask for proposals within Bangalore, across the state or from Hyderabad. Every profile is manually screened and we check identity and address documents. We do not run formal criminal-record checks, so we encourage families to make their own enquiries too. Submitting your biodata to HumNikah is free, and please call or message before visiting so that we can set aside time for your family.",
+      ],
+      link: { href: "/muslim-matrimony/karnataka", label: "Muslim matrimony in Karnataka" },
+    },
     placesHeading: "Telangana areas we serve",
     places: [
       {
@@ -430,6 +460,14 @@ export const COMMUNITY_PAGES: CommunityPage[] = [
         ],
       },
     ],
+    bangaloreSection: {
+      heading: "Remarriage in Bangalore",
+      body: [
+        "HumNikah's office is in Cox Town, Bengaluru, and families across Bangalore can begin a conversation about a second marriage by phone, on WhatsApp or by appointment at the office. Many members prefer to keep this part of their life private, so we speak with you first, and with your family if you wish, before anything is shared with another family.",
+        "Marital status is stated openly in the biodata and verified like every other detail, and introductions are made only with your approval and through your Wali or family. You can start from any part of the city. Please call or message us before visiting, so that we can set aside time for you. You are welcome to ask questions about how we work before you decide anything, and there is no obligation to go ahead.",
+      ],
+      link: { href: "/muslim-matrimony/bengaluru", label: "Muslim marriage bureau in Bangalore" },
+    },
     placesHeading: "Families we support across India",
     places: [
       {
@@ -514,6 +552,14 @@ export const COMMUNITY_PAGES: CommunityPage[] = [
         ],
       },
     ],
+    bangaloreSection: {
+      heading: "Families from Karnataka in Bangalore",
+      body: [
+        "Beary and Bhatkali families often have ties to the coastal towns of Karnataka, such as Mangaluru and Bhatkal, while living or working in Bangalore. HumNikah's office in Cox Town is a short step from the city's central neighbourhoods, and families from coastal Karnataka can also talk to us by phone and WhatsApp.",
+        "Tell us your community, your language and what you are looking for. We record these in the biodata and take them into account when we shortlist profiles, though we cannot promise a specific match or timeline. Introductions are made through families, with the Wali involved where the bride's family wishes, and your biodata is never posted publicly. Submitting your biodata to HumNikah is free, and you are welcome to call before you visit.",
+      ],
+      link: { href: "/muslim-matrimony/bengaluru/central-bangalore", label: "Muslim matrimony in Central Bangalore" },
+    },
     placesHeading: "Where we serve Beary and Bhatkali families",
     places: [
       {
@@ -680,6 +726,14 @@ export const COMMUNITY_PAGES: CommunityPage[] = [
         ],
       },
     ],
+    bangaloreSection: {
+      heading: "Muslim Professionals in Bangalore",
+      body: [
+        "Doctors, engineers, IT professionals, chartered accountants and business owners in Bangalore often have long working days, so we plan the search around your schedule. Tell us which times suit you for a call or a WhatsApp message, and we will try to accommodate you.",
+        "Your relationship manager does the screening and shortlisting, so you review a short list of aligned, manually screened profiles instead of searching alone. Share your education, work, location and family expectations once, and we take them into account. You can do everything by phone and WhatsApp, and visit our Cox Town office only if you want to. Introductions are made through families, with the Wali involved where the bride's family wishes, and your biodata is never posted publicly.",
+      ],
+      link: { href: "/muslim-matrimony/bengaluru", label: "Muslim marriage bureau in Bangalore" },
+    },
     placesHeading: "Where professionals can find matches",
     places: [
       {

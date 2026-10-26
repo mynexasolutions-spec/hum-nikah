@@ -6,11 +6,15 @@ const ts = require("typescript");
 
 const root = path.join(__dirname, "..");
 const dataDir = path.join(root, "src", "data");
+const libDir = path.join(root, "src", "lib");
 const cache = {};
 
 function load(name) {
   if (cache[name]) return cache[name].exports;
-  const src = fs.readFileSync(path.join(dataDir, name + ".ts"), "utf8");
+  const file = [dataDir, libDir]
+    .map((d) => path.join(d, name + ".ts"))
+    .find((f) => fs.existsSync(f));
+  const src = fs.readFileSync(file, "utf8");
   const out = ts.transpileModule(src, {
     compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
   }).outputText;
@@ -18,7 +22,7 @@ function load(name) {
   cache[name] = mod;
   new Function("exports", "require", "module", out)(
     mod.exports,
-    (p) => load(p.replace(/^\.\//, "")),
+    (p) => load(p.replace(/^(\.\.\/lib\/|\.\/)/, "")),
     mod,
   );
   return mod.exports;

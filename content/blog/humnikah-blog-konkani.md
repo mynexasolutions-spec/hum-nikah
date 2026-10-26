@@ -20,7 +20,7 @@ publishedAt: "2026-10-13"
 updatedAt: "2026-10-13"
 author: "HumNikah Editorial Team"
 heroImage: "/images/blog/konkani-muslim-matrimony-mumbai-guide.webp"
-heroAlt: "Konkani Muslim family discussing a rishta with a matchmaker in Mumbai"
+heroAlt: "Gateway of India and gold wedding rings for the Konkani Muslim matrimony in Mumbai family guide"
 related: ["how-to-verify-a-muslim-rishta", "muslim-marriage-bureau-bangalore-guide"]
 ---
 
@@ -139,7 +139,7 @@ For more about how we work, see our [FAQ](/faq) and [About page](/about), or rea
 
 Message our team personally on WhatsApp, or share your biodata free of charge.
 
-**[Chat on WhatsApp](/whatsapp?src=blog-konkani-cta)** · **[Submit your biodata](/submit-biodata)** · or call **+91 9019082205**
+**[Chat on WhatsApp](/whatsapp?src=blog-konkani-cta)** · **[Submit your biodata](/submit-biodata)** · or call **+91 90190 82205**
 
 ## FAQs
 

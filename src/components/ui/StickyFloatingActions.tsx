@@ -1,5 +1,6 @@
 "use client";
 
+import { FACTS } from "@/lib/siteFacts";
 import React, { useEffect, useState } from "react";
 import { ArrowUp, Phone } from "lucide-react";
 
@@ -41,7 +42,7 @@ export function StickyFloatingActions() {
 
       {/* Phone Call Button */}
       <a
-        href="tel:+919844321312"
+        href={FACTS.call.tel}
         aria-label="Call Us"
         className="w-12 h-12 rounded-full bg-brand-emerald text-white shadow-lg hover:shadow-xl hover:bg-brand-emerald-hover flex items-center justify-center transition-all duration-300 transform hover:-translate-y-1 active:scale-95 group border border-white/20"
       >
@@ -50,9 +51,9 @@ export function StickyFloatingActions() {
 
       {/* WhatsApp Button */}
       <a
-        href="https://wa.me/919019082205"
+        href="/whatsapp?src=sticky"
         target="_blank"
-        rel="noopener noreferrer"
+        rel="nofollow noopener noreferrer"
         aria-label="Chat on WhatsApp"
         className="w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white shadow-xl hover:shadow-2xl flex items-center justify-center transition-all duration-300 transform hover:-translate-y-1 active:scale-95 group border-2 border-white/40 cursor-pointer"
       >

@@ -1,3 +1,4 @@
+import { FACTS } from "@/lib/siteFacts";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -64,9 +65,9 @@ export function Footer() {
               <div className="flex items-center gap-3">
                 {/* 1. WhatsApp */}
                 <a
-                  href="https://wa.me/919019082205"
+                  href="/whatsapp?src=footer"
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="nofollow noopener noreferrer"
                   aria-label="WhatsApp"
                   className="w-10 h-10 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white flex items-center justify-center transition-all duration-300 hover:scale-110 border border-white/20 shadow-sm cursor-pointer"
                 >
@@ -77,7 +78,7 @@ export function Footer() {
 
                 {/* 2. Call */}
                 <a
-                  href="tel:+919844321312"
+                  href={FACTS.call.tel}
                   aria-label="Call Us"
                   className="w-10 h-10 rounded-full bg-[#1D184C] hover:bg-[#C58D5F] text-white flex items-center justify-center transition-all duration-300 hover:scale-110 border border-white/20 shadow-sm cursor-pointer group"
                 >
@@ -167,6 +168,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/how-we-verify" className="text-gray-300 hover:text-brand-gold transition-colors text-xs sm:text-sm font-light">
+                  How We Verify Profiles
+                </Link>
+              </li>
+              <li>
                 <Link href="/fees" className="text-gray-300 hover:text-brand-gold transition-colors text-xs sm:text-sm font-light">
                   Fees &amp; Payment
                 </Link>
@@ -233,19 +239,19 @@ export function Footer() {
               <li className="flex items-start gap-2.5">
                 <MapPin size={18} className="text-brand-gold shrink-0 mt-0.5" />
                 <span className="text-gray-200 text-sm sm:text-base font-normal leading-relaxed">
-                  Splendid Plaza, No. 6, 2nd Floor, Wheeler Road, Cox Town, Bengaluru 560005
+                  {FACTS.address.full}
                 </span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone size={18} className="text-brand-gold shrink-0" />
-                <a href="tel:+919019082205" className="text-gray-200 text-sm sm:text-base font-medium hover:text-brand-gold transition-colors tracking-wide">
-                  +91 9019082205
+                <a href={FACTS.whatsapp.tel} className="text-gray-200 text-sm sm:text-base font-medium hover:text-brand-gold transition-colors tracking-wide">
+                  {FACTS.whatsapp.display}
                 </a>
               </li>
                             <li className="flex items-center gap-2.5">
                 <Phone size={18} className="text-brand-gold shrink-0" />
-                <a href="tel:+919844321312" className="text-gray-200 text-sm sm:text-base font-medium hover:text-brand-gold transition-colors tracking-wide">
-                  +91 9844321312
+                <a href={FACTS.call.tel} className="text-gray-200 text-sm sm:text-base font-medium hover:text-brand-gold transition-colors tracking-wide">
+                  {FACTS.call.display}
                 </a>
               </li>
 

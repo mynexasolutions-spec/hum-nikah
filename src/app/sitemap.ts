@@ -39,6 +39,7 @@ const STATIC_ROUTES: StaticRoute[] = [
   // Photos are managed in the admin dashboard, so no fixed lastmod.
   { path: "/gallery", priority: 0.5, changeFrequency: "weekly" },
   { path: "/fees", priority: 0.5, changeFrequency: "monthly", lastModified: CONTENT_UPDATED.overhaul },
+  { path: "/how-we-verify", priority: 0.6, changeFrequency: "monthly", lastModified: new Date("2026-10-26") },
   { path: "/faq", priority: 0.5, changeFrequency: "monthly" },
   { path: "/contact", priority: 0.5, changeFrequency: "yearly", lastModified: CONTENT_UPDATED.overhaul },
 ];

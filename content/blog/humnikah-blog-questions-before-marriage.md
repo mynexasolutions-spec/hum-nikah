@@ -1,7 +1,7 @@
 ---
 slug: questions-to-ask-before-a-muslim-marriage
 title: "Questions to Ask Before a Muslim Marriage: Family Checklist"
-description: "A comprehensive checklist of essential questions to ask before a Muslim marriage. Discuss work, living plans, finances, family roles, and health respectfully."
+description: "Questions to ask before a Muslim marriage: work, where you will live, finances, family roles and health, asked with respect."
 h1: "Questions to Ask Before a Muslim Marriage: Family Checklist"
 primaryKeyword: "questions to ask before marriage"
 secondaryKeywords:
@@ -14,7 +14,7 @@ publishedAt: "2026-10-16"
 updatedAt: "2026-10-16"
 author: "HumNikah Editorial Team"
 heroImage: "/images/about/about_hero_couple.webp"
-heroAlt: "Families discussing important questions before a Muslim marriage"
+heroAlt: "Checklist, pen and gold wedding rings on a desk: questions to ask before a Muslim marriage"
 related: ["how-to-verify-a-muslim-rishta", "muslim-biodata-format-for-marriage"]
 ---
 

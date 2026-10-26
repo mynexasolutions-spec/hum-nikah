@@ -1,7 +1,8 @@
+import { FACTS } from "@/lib/siteFacts";
 import { NextRequest, NextResponse } from "next/server";
 
 // Personal WhatsApp chat with the HumNikah team (no open group).
-const NUMBER = "919019082205";
+const NUMBER = FACTS.whatsapp.digits;
 
 const MESSAGES: Record<string, string> = {
   default: "Assalamu alaikum, I would like to talk about a rishta.",
@@ -25,8 +26,10 @@ const MESSAGES: Record<string, string> = {
     "Assalamu alaikum, I read your guide for IT professionals and would like to talk about a rishta.",
   "blog-meeting":
     "Assalamu alaikum, I read your first meeting checklist and would like to talk about a rishta.",
-  "blog-kaise":
-    "Assalamu alaikum, maine aapka rishta guide padha aur mujhe rishtey ke baare mein baat karni hai.",
+  "blog-rishta":
+    "Assalamu alaikum, I read your guide on how to find a Muslim rishta and would like to talk about a rishta.",
+  "blog-make":
+    "Assalamu alaikum, I read your guide on how to make a Muslim biodata and would like to submit a biodata.",
   "india-hinglish": "Assalamu alaikum, mujhe rishta ke liye baat karni hai.",
   "home-hinglish": "Assalamu alaikum, mujhe rishta ke liye baat karni hai.",
   karnataka: "Assalamu alaikum, I would like to talk about a rishta in Karnataka.",

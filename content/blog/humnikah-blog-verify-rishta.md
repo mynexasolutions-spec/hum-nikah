@@ -16,7 +16,7 @@ publishedAt: "2026-10-13"
 updatedAt: "2026-10-13"
 author: "HumNikah Editorial Team"
 heroImage: "/images/blog/how-to-verify-a-muslim-rishta.webp"
-heroAlt: "Parents checking documents and details for a Muslim rishta"
+heroAlt: "Checklist on a clipboard with gold wedding rings: how to verify a Muslim rishta safely, a family checklist"
 related: ["muslim-biodata-format-for-marriage", "muslim-marriage-bureau-bangalore-guide"]
 ---
 
@@ -135,7 +135,7 @@ If you would like to know how we verify profiles before making introductions, [m
 
 Start your search with a team that screens profiles and involves the Wali. Not sure how to write your biodata? Use our [free Muslim biodata format](/blog/muslim-biodata-format-for-marriage).
 
-**[Chat on WhatsApp](/whatsapp?src=blog-verify-cta)** · **[Submit your biodata](/submit-biodata)** · or call **+91 9019082205**
+**[Chat on WhatsApp](/whatsapp?src=blog-verify-cta)** · **[Submit your biodata](/submit-biodata)** · or call **+91 90190 82205**
 
 ## FAQs
 

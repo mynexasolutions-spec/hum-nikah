@@ -15,7 +15,7 @@ publishedAt: "2026-10-13"
 updatedAt: "2026-10-13"
 author: "HumNikah Editorial Team"
 heroImage: "/images/blog/muslim-marriage-bureau-bangalore-guide.webp"
-heroAlt: "Family discussing a rishta with a matchmaker at a Muslim marriage bureau in Bangalore"
+heroAlt: "Muslim couple in traditional dress overlooking Bangalore: guide to choosing the best Muslim marriage bureau"
 related: ["muslim-marriage-bureau-hyderabad-guide"]
 ---
 
@@ -120,7 +120,7 @@ Not everyone lives close by. We also work with families in Whitefield, Electroni
 
 <!-- OWNER: confirm walk-in is accepted and add opening hours, or ask visitors to call first. -->
 
-You can reach us on **+91 9019082205** or **+91 9844321312**.
+You can reach us on **+91 90190 82205** or **+91 98443 21312**.
 
 ## Looking for a Muslim matrimony Bangalore WhatsApp group link?
 
@@ -135,7 +135,7 @@ In an open group:
 
 A better first step is a personal chat. [Chat with us on WhatsApp](/whatsapp?src=blog-bangalore) and you will speak to our team, share what your family is looking for and be guided through the next step. Your details are not added to any group without your permission.
 
-<!-- OWNER: confirm this is the policy, and that +91 9019082205 is the WhatsApp number behind the /whatsapp redirect. -->
+<!-- OWNER: confirm this is the policy, and that +91 90190 82205 is the WhatsApp number behind the /whatsapp redirect. -->
 
 ## How the process works at HumNikah
 
@@ -166,7 +166,7 @@ If you can tick every line, you are on solid ground.
 
 Message us personally on WhatsApp, or share your biodata free of charge. We will talk to you about what your family is looking for. You can also learn more on [our Bangalore matrimony page](/muslim-matrimony/bengaluru).
 
-**[Chat on WhatsApp](/whatsapp?src=blog-bangalore-cta)** · **[Submit your biodata](/submit-biodata)** · or call **+91 9019082205**
+**[Chat on WhatsApp](/whatsapp?src=blog-bangalore-cta)** · **[Submit your biodata](/submit-biodata)** · or call **+91 90190 82205**
 
 ## FAQs
 

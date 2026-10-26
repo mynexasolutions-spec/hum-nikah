@@ -14,7 +14,7 @@ publishedAt: "2026-10-16"
 updatedAt: "2026-10-16"
 author: "HumNikah Editorial Team"
 heroImage: "/images/about/about_hero_couple.webp"
-heroAlt: "Muslim IT professional in Bangalore discussing matrimony and career balance"
+heroAlt: "Smiling Muslim man and woman talking at a laptop with city office towers behind: matrimony for IT professionals"
 related: ["muslim-marriage-bureau-bangalore-guide", "muslim-biodata-format-for-marriage"]
 ---
 

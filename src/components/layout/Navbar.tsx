@@ -1,5 +1,6 @@
 "use client";
 
+import { FACTS } from "@/lib/siteFacts";
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -231,15 +232,8 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Desktop CTAs: Biodata Maker + Submit Biodata */}
+          {/* Desktop CTA: Submit Biodata ("Biodata Maker" is already in the menu) */}
           <div className="hidden md:flex items-center gap-2.5">
-            <Link
-              href="/biodata-maker"
-              className="hidden 2xl:flex items-center gap-1.5 shrink-0 whitespace-nowrap rounded-full border border-brand-emerald/40 hover:border-brand-emerald bg-brand-cream/60 hover:bg-brand-emerald hover:text-white text-brand-deep-green text-[13px] font-semibold font-outfit px-3.5 py-2 transition-all duration-200"
-            >
-              <Sparkles size={14} className="text-brand-gold" />
-              <span>Biodata Maker</span>
-            </Link>
             <Link 
               href="/submit-biodata" 
               className="flex items-center gap-2 shrink-0 whitespace-nowrap rounded-full bg-gradient-to-r from-brand-emerald via-[#2A2365] to-brand-emerald hover:from-[#2A2365] hover:via-[#3B3280] hover:to-[#1D184C] text-white border border-brand-gold/30 hover:border-brand-gold/60 shadow-sm hover:shadow-md hover:shadow-brand-emerald/25 transition-all duration-300 active:scale-95 text-[14px] font-semibold font-outfit px-4 xl:px-5 py-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"
@@ -342,23 +336,23 @@ export function Navbar() {
           <div className="mt-3 pt-3 border-t border-brand-border/80 flex flex-col gap-2.5">
             {/* Phone Quick Call */}
             <a
-              href="tel:+919844321312"
+              href={FACTS.call.tel}
               className="w-full flex items-center justify-center gap-2.5 py-2.5 px-4 rounded-xl bg-brand-cream/70 border border-brand-border text-brand-charcoal hover:bg-[#1D184C] hover:text-white font-semibold font-outfit text-sm transition-all shadow-2xs group"
             >
               <div className="w-7 h-7 rounded-full bg-brand-emerald text-white flex items-center justify-center group-hover:bg-brand-gold transition-colors">
                 <Phone size={14} />
               </div>
-              <span className="tracking-wide">+91 98443 21312</span>
+              <span className="tracking-wide">{FACTS.call.display}</span>
             </a>
 
             <a
-              href="tel:+919019082205"
+              href={FACTS.whatsapp.tel}
               className="w-full flex items-center justify-center gap-2.5 py-2.5 px-4 rounded-xl bg-brand-cream/70 border border-brand-border text-brand-charcoal hover:bg-[#1D184C] hover:text-white font-semibold font-outfit text-sm transition-all shadow-2xs group"
             >
               <div className="w-7 h-7 rounded-full bg-brand-emerald text-white flex items-center justify-center group-hover:bg-brand-gold transition-colors">
                 <Phone size={14} />
               </div>
-              <span className="tracking-wide">+91 90190 82205</span>
+              <span className="tracking-wide">{FACTS.whatsapp.display}</span>
             </a>
 
 

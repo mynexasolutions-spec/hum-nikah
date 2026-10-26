@@ -18,7 +18,7 @@ publishedAt: "2026-10-13"
 updatedAt: "2026-10-13"
 author: "HumNikah Editorial Team"
 heroImage: "/images/blog/muslim-marriage-bureau-hyderabad-guide.webp"
-heroAlt: "Hyderabad Muslim family reviewing a rishta biodata with a matchmaker"
+heroAlt: "Charminar illustration with gold wedding rings for the Muslim marriage bureau in Hyderabad rishta guide"
 related: ["muslim-marriage-bureau-bangalore-guide"]
 ---
 
@@ -159,7 +159,7 @@ Based in Bangalore, or have family there? Read our guide to choosing a [Muslim m
 
 Message our team personally on WhatsApp, or share your biodata free of charge, and tell us what your family is looking for.
 
-**[Chat on WhatsApp](/whatsapp?src=blog-hyderabad-cta)** · **[Submit your biodata](/submit-biodata)** · or call **+91 9019082205** or **+91 9844321312**
+**[Chat on WhatsApp](/whatsapp?src=blog-hyderabad-cta)** · **[Submit your biodata](/submit-biodata)** · or call **+91 90190 82205** or **+91 98443 21312**
 
 ## FAQs
 

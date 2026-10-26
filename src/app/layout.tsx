@@ -1,3 +1,4 @@
+import { FACTS } from "@/lib/siteFacts";
 import type { Metadata } from "next";
 import { Playfair_Display, Montserrat, Outfit, Amiri } from "next/font/google";
 import "./globals.css";
@@ -115,7 +116,7 @@ const organizationJsonLd = {
       url: `${SITE_URL}/muslim-matrimony/${office.city.toLowerCase()}`,
       telephone:
         office.city === "Bengaluru"
-          ? "+919844321312"
+          ? FACTS.call.e164
           : office.phone
             ? `+${office.phone.replace(/[^0-9]/g, "")}`
             : undefined,
